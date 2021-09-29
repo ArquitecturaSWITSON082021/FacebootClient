@@ -1,0 +1,25 @@
+@startuml
+
+' --- Definir observadores
+
+
+interface ISubscriber {
+    + update()
+}
+
+interface IObserver {
+    - subcribers: List<ISubscriber>
+
+    + subscribe()
+    + unsubscribe()
+    + notify()
+}
+
+ISubscriber <|-- IObserver
+
+class AppSubscriber implements ISubscriber {}
+class AppObserver implements IObserver {}
+
+UserNotificationModel <|-- AppSubscriber 
+
+@enduml

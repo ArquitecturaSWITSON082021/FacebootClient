@@ -1,0 +1,51 @@
+@startuml
+
+
+' --- Definir controladores
+
+class PeerSocket {
+    + id : int
+    + ipAddress : String
+    + socket : Socket
+}
+
+interface IController {
+    + userToken : UserTokenModel
+    + peer : PeerSocket
+    + request
+}
+
+class AuthController implements IController {
+    + login()
+    + register()
+    + recovery()
+}
+
+class UserController implements IController {
+    + fetchProfile()
+    + fetchUserSettings()
+    + saveUserSettings()
+}
+
+class FeedController implements IController {
+    + fetch()
+    + search()
+
+    + post()
+    + updatePost()
+    + deletePost()
+
+    + comment()
+    + deleteComment()
+    + updateComment()
+
+    + react()
+    + removeReact()
+}
+
+class ChatController implements IController {
+    + sendMessage()
+    + updateTypeStatus()
+}
+
+@enduml

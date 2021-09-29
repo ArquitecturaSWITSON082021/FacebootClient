@@ -1,0 +1,14 @@
+@startuml
+
+' --- Definir servers
+
+interface IServer {
+    - peers: List<PeerSocket>
+
+    + start()
+    + kill()
+}
+
+class AppTcpServer implements IServer {}
+
+@enduml

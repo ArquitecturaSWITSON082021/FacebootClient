@@ -1,0 +1,128 @@
+@startuml
+
+' --- Definir modelos
+
+interface IModel {
+    + id : int
+    + createdAt: LocalDateTime
+    + updatedAt: LocalDateTime
+    + deletedAt: LocalDateTime
+
+    + save() : boolean
+    + delete() : boolean
+}
+
+enum EGender {
+    Male,
+    Female,
+    Other
+}
+
+class UserModel implements IModel {
+    + name : String
+    + phone : String
+    + bornDate : Date
+    + email : String
+    + password : String
+    + gender : EGender
+    + getAge() : int
+}
+
+EGender <|-- UserModel
+
+' --- Definir feed
+
+class PostModel implements IModel {
+    + userId : int
+    + content : String 
+}
+
+enum EPostAttachmentType {
+    Image
+}
+
+class PostAttachmentModel implements IModel {
+    + postId : int
+    + attachmentType : EPostAttachmentType
+    + filename : String
+    + filepath : String
+    + filesize: int
+}
+
+EPostAttachmentType <|-- PostAttachmentModel
+
+
+class PostHashtagModel implements IModel {
+    + postId: int
+    + hashtag : String
+}
+
+class PostUserTagModel implements IModel {
+    + postId: int
+    + userId: int
+}
+
+enum EPostUserReact {
+    Like,
+    Love,
+    Care,
+    Haha,
+    Wow,
+    Sad,
+    Angry,
+}
+
+class PostUserReactModel implements IModel {
+    + postId : int
+    + userId : int
+    + reactionType : EPostUserReact
+}
+
+EPostUserReact <|-- PostUserReactModel
+
+class PostUserCommentModel implements IModel {
+    + postId : int
+    + userId : int
+    + text : String
+}
+
+enum EChatMessageStatus {
+    Sent,
+    Read
+}
+
+class ChatMessageModel implements IModel {
+    + userSenderId : int
+    + userReceiverId : int
+    + status : EChatMessageStatus
+    + text : String
+}
+
+EChatMessageStatus <|-- ChatMessageModel
+
+class UserTokenModel implements IModel {
+    + userId : int
+    + ipAddress : String
+    + uuid : String
+    + vigency : DateTime
+}
+
+enum EUserNotification {
+    chatMessage,
+    postComment,
+    postReact
+}
+
+class UserNotificationModel implements IModel {
+    + userId : int
+    + notificationType : EUserNotification
+    + chatMessageId : int
+    + postCommentId : int
+    + postReactId: int
+    + isSeen: boolean
+}
+
+EUserNotification <|-- UserNotificationModel
+
+
+@enduml

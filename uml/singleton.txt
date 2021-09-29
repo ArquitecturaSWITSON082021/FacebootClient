@@ -1,0 +1,18 @@
+@startuml
+
+' --- Definir clases de bases de datos
+interface IDatabaseSingleton {
+  - instance : IDatabaseSingleton
+  + getInstance() : IDatabaseSingleton
+  + query()
+}
+
+class MySqlDatabaseSingleton implements IDatabaseSingleton {
+    
+}
+
+class MongoDatabaseSingleton implements IDatabaseSingleton {
+    
+}
+
+@enduml

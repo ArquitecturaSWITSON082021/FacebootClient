@@ -1,0 +1,14 @@
+@startuml
+
+' --- Definir decoradores
+
+interface INotificationDecorator {
+    + text: String
+}
+
+class SimpleJavaMailDecorator implements INotificationDecorator {}
+class TwilioDecorator implements INotificationDecorator {}
+class OneSignalDecorator implements INotificationDecorator {}
+
+
+@enduml

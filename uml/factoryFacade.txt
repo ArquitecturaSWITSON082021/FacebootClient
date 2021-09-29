@@ -1,0 +1,22 @@
+@startuml
+
+' --- Definir Factory y Facade
+
+interface ILoginFactory {
+    + login()
+}
+
+class LoginFactory implements ILoginFactory {}
+' \n
+interface ILoginFacade {
+    + apiKey: String
+    + secretKey: String
+    + login()
+}
+
+class LocalLoginFacade implements ILoginFacade {}
+class FacebookLoginFacade implements ILoginFacade {}
+class GoogleLoginFacade implements ILoginFacade {}
+class TwitterLoginFacade implements ILoginFacade {}
+
+@enduml
