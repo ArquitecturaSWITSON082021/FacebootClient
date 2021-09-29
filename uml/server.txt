@@ -9,6 +9,14 @@ interface IServer {
     + kill()
 }
 
+IServer <|-- PeerSocket
+
+class PeerSocket {
+    + id : int
+    + ipAddress : String
+    + socket : Socket
+}
+
 class AppTcpServer implements IServer {}
 
 @enduml

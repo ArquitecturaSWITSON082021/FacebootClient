@@ -3,17 +3,14 @@
 
 ' --- Definir controladores
 
-class PeerSocket {
-    + id : int
-    + ipAddress : String
-    + socket : Socket
-}
-
 interface IController {
     + userToken : UserTokenModel
     + peer : PeerSocket
     + request
 }
+
+IController <|-- UserTokenModel
+IController <|-- PeerSocket
 
 class AuthController implements IController {
     + login()

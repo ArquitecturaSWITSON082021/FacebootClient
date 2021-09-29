@@ -4,4 +4,4 @@ Proyecto final "Faceboot" de arquitectura de software en el ITSON, semestre 5 ag
 
 # Estructura
 
--- uml: Contiene los diagramas UML, para renderizar es necesario utilizar PlantUML.
+-- **uml:** Contiene los diagramas UML, para renderizar es necesario utilizar PlantUML.
