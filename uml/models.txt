@@ -60,6 +60,7 @@ class PostHashtagModel implements IModel {
 class PostUserTagModel implements IModel {
     + postId: int
     + userId: int
+    + commentId: int
 }
 
 enum EPostUserReact {
