@@ -5,6 +5,8 @@
  */
 package View;
 
+import Faceboot.App;
+import Faceboot.AppState;
 import View.Components.TextPrompt;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
@@ -124,7 +126,6 @@ public class Register extends javax.swing.JFrame {
         name.setForeground(new java.awt.Color(204, 204, 204));
         name.setBorder(null);
         name.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        name.setIgnoreRepaint(true);
         name.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 nameFocusGained(evt);
@@ -161,7 +162,6 @@ public class Register extends javax.swing.JFrame {
         lastname.setForeground(new java.awt.Color(204, 204, 204));
         lastname.setBorder(null);
         lastname.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        lastname.setIgnoreRepaint(true);
         lastname.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 lastnameFocusGained(evt);
@@ -199,7 +199,6 @@ public class Register extends javax.swing.JFrame {
         email.setToolTipText("");
         email.setBorder(null);
         email.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        email.setIgnoreRepaint(true);
         email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 emailFocusGained(evt);
@@ -214,7 +213,7 @@ public class Register extends javax.swing.JFrame {
         containerName2Layout.setHorizontalGroup(
             containerName2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerName2Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -237,7 +236,6 @@ public class Register extends javax.swing.JFrame {
         password.setToolTipText("");
         password.setBorder(null);
         password.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        password.setIgnoreRepaint(true);
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFocusGained(evt);
@@ -281,7 +279,6 @@ public class Register extends javax.swing.JFrame {
         cDay.setMaximumRowCount(10);
         cDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cDay.setBorder(null);
-        cDay.setIgnoreRepaint(true);
         containerName4.add(cDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, 40));
 
         Content.add(containerName4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 120, 40));
@@ -401,11 +398,14 @@ public class Register extends javax.swing.JFrame {
         signUp.setForeground(new java.awt.Color(255, 255, 255));
         signUp.setText("Registrarte");
         signUp.setContentAreaFilled(false);
+        signUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpActionPerformed(evt);
+            }
+        });
         containerBtn1.add(signUp, java.awt.BorderLayout.CENTER);
 
         Content.add(containerBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 190, 35));
-
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         Content.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 430, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -493,10 +493,13 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MousePressed
 
     private void closeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setVisible(false);
-        } 
+        App.GetSingleton().SetState(AppState.Login);
     }//GEN-LAST:event_closeMousePressed
+
+    private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Login);
+    }//GEN-LAST:event_signUpActionPerformed
 
     public void comboboxSetInvisible(){
         cDay.setBackground(new Color(0,0,0,0));

@@ -5,6 +5,8 @@
  */
 package View;
 
+import Faceboot.App;
+import Faceboot.AppState;
 import java.awt.Color;
 
 /**
@@ -265,6 +267,9 @@ public class Profile extends javax.swing.JFrame {
             }
         });
         homeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeButtonMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 homeButtonMouseExited(evt);
             }
@@ -288,6 +293,11 @@ public class Profile extends javax.swing.JFrame {
         settings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 settingsMouseExited(evt);
+            }
+        });
+        settings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsActionPerformed(evt);
             }
         });
         containerSettings.add(settings, java.awt.BorderLayout.CENTER);
@@ -333,6 +343,11 @@ public class Profile extends javax.swing.JFrame {
         user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 userMouseExited(evt);
+            }
+        });
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
             }
         });
         containerUser.add(user, java.awt.BorderLayout.CENTER);
@@ -717,6 +732,21 @@ public class Profile extends javax.swing.JFrame {
     private void postButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_postButtonActionPerformed
+
+    private void homeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonMouseClicked
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_homeButtonMouseClicked
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Profile);
+    }//GEN-LAST:event_userActionPerformed
+
+    private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Settings);
+    }//GEN-LAST:event_settingsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel About;

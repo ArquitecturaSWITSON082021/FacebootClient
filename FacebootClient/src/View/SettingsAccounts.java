@@ -5,6 +5,8 @@
  */
 package View;
 
+import Faceboot.App;
+import Faceboot.AppState;
 import java.awt.Color;
 
 /**
@@ -21,6 +23,7 @@ public class SettingsAccounts extends javax.swing.JFrame {
      */
     public SettingsAccounts() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -53,6 +56,7 @@ public class SettingsAccounts extends javax.swing.JFrame {
         ConnectBtnGo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(23, 24, 26));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -77,6 +81,9 @@ public class SettingsAccounts extends javax.swing.JFrame {
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 closeMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
             }
         });
         jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
@@ -227,9 +234,7 @@ public class SettingsAccounts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setVisible(false);
-        }
+
     }//GEN-LAST:event_closeMousePressed
 
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
@@ -285,6 +290,11 @@ public class SettingsAccounts extends javax.swing.JFrame {
     private void ConnectBtnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectBtnGoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ConnectBtnGoActionPerformed
+
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Settings);
+    }//GEN-LAST:event_closeMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConnectBtnFb1;

@@ -36,6 +36,7 @@ public class App {
     public View.Register RegisterView;
     public View.Profile ProfileView;
     public View.Settings SettingsView;
+    public View.SettingsAccounts SettingsAccountsView;
     private AppState State;
     
     public App(){
@@ -50,6 +51,7 @@ public class App {
         RegisterView = new View.Register();
         ProfileView = new View.Profile();
         SettingsView = new View.Settings();
+        SettingsAccountsView = new View.SettingsAccounts();
         
         // Create network client.
         Client = new FacebootNetClient("127.0.0.1", 3400);
@@ -73,7 +75,8 @@ public class App {
         HomeView.setVisible(State == AppState.Home);
         RegisterView.setVisible(State == AppState.Register);
         ProfileView.setVisible(State == AppState.Profile);
-        SettingsView.setVisible(State == AppState.Settings);       
+        SettingsView.setVisible(State == AppState.Settings);      
+        SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
     }
     
     public void OnHello(SHelloPacket request){

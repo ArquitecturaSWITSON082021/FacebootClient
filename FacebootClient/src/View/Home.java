@@ -423,6 +423,11 @@ public class Home extends javax.swing.JFrame {
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/flogo.png"))); // NOI18N
+        logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoMouseClicked(evt);
+            }
+        });
         topMenu.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 40, -1));
 
         containerSearch.setBackground(new java.awt.Color(58, 59, 60));
@@ -473,6 +478,11 @@ public class Home extends javax.swing.JFrame {
         homeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 homeButtonMouseExited(evt);
+            }
+        });
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
             }
         });
         containerHome.add(homeButton, java.awt.BorderLayout.CENTER);
@@ -709,6 +719,16 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         App.GetSingleton().SetState(AppState.Settings);
     }//GEN-LAST:event_settingsActionPerformed
+
+    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_logoMouseClicked
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private View.Components.RoundPanelText ChatUser;
