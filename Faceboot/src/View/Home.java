@@ -6,6 +6,7 @@
 package View;
 
 import View.Components.CustomScrollBarUI;
+import View.Components.TextPrompt;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
@@ -25,6 +26,9 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         
+        new TextPrompt("Buscar en faceboot", search);
+        new TextPrompt("Buscar usuarios", searchUsers);
+        
         String separator = File.separator;
         if (separator.equals("/")) {
             setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 22, 22));
@@ -38,8 +42,7 @@ public class Home extends javax.swing.JFrame {
             this.FullScreenButton.setVisible(false);
         }
         
-//        this.jScrollPane2.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-//        this.jScrollPane2.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        this.jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         
         setLocationRelativeTo(null);
     }
@@ -57,7 +60,7 @@ public class Home extends javax.swing.JFrame {
         Users = new javax.swing.JPanel();
         containerUserSearch = new View.Components.RoundPanelText();
         searchIcon1 = new javax.swing.JLabel();
-        search1 = new javax.swing.JTextField();
+        searchUsers = new javax.swing.JTextField();
         ChatUser = new View.Components.RoundPanelText();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,26 +70,18 @@ public class Home extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         posts = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPosts = new javax.swing.JPanel();
         addPost = new View.Components.RoundedPanel();
         containerUser1 = new View.Components.RoundPanelText();
         user1 = new javax.swing.JButton();
-        containerSearch1 = new View.Components.RoundPanelText();
-        search2 = new javax.swing.JTextField();
+        containerPost = new View.Components.RoundPanelText();
+        postButton = new javax.swing.JButton();
         containerPhoto = new View.Components.RoundedPanel();
         addPhoto = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        post = new View.Components.RoundedPanel();
-        containerUser2 = new View.Components.RoundPanelText();
-        user2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        post1 = new View.Components.Post();
+        post2 = new View.Components.Post();
         topBar = new javax.swing.JPanel();
         DisposeButton = new javax.swing.JLabel();
         MinimizeButton = new javax.swing.JLabel();
@@ -127,14 +122,13 @@ public class Home extends javax.swing.JFrame {
         searchIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/search.png"))); // NOI18N
         containerUserSearch.add(searchIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 30, 30));
 
-        search1.setBackground(new java.awt.Color(58, 59, 60));
-        search1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        search1.setForeground(new java.awt.Color(153, 153, 153));
-        search1.setText("Buscar usuarios");
-        search1.setBorder(null);
-        search1.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        search1.setIgnoreRepaint(true);
-        containerUserSearch.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 0, 150, 30));
+        searchUsers.setBackground(new java.awt.Color(58, 59, 60));
+        searchUsers.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchUsers.setForeground(new java.awt.Color(204, 204, 204));
+        searchUsers.setBorder(null);
+        searchUsers.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+        searchUsers.setIgnoreRepaint(true);
+        containerUserSearch.add(searchUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 0, 150, 30));
 
         Users.add(containerUserSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 210, 30));
 
@@ -148,7 +142,7 @@ public class Home extends javax.swing.JFrame {
         Users.add(ChatUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 40, 40));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Usuario #2");
         Users.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 160, 40));
 
@@ -171,7 +165,7 @@ public class Home extends javax.swing.JFrame {
         Users.add(ChatUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 40, 40));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Usuario #1");
         Users.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 160, 40));
 
@@ -179,6 +173,13 @@ public class Home extends javax.swing.JFrame {
 
         posts.setBackground(new java.awt.Color(23, 24, 26));
         posts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane1.setBackground(new java.awt.Color(23, 24, 26));
+        jScrollPane1.setBorder(null);
+
+        scrollPosts.setBackground(new java.awt.Color(23, 24, 26));
+        scrollPosts.setPreferredSize(new java.awt.Dimension(738, 2000));
+        scrollPosts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         addPost.setBackground(new java.awt.Color(35, 36, 37));
         addPost.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -193,34 +194,30 @@ public class Home extends javax.swing.JFrame {
 
         addPost.add(containerUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
 
-        containerSearch1.setBackground(new java.awt.Color(58, 59, 60));
+        containerPost.setBackground(new java.awt.Color(58, 59, 60));
+        containerPost.setForeground(new java.awt.Color(204, 204, 204));
+        containerPost.setLayout(new java.awt.BorderLayout());
 
-        search2.setBackground(new java.awt.Color(58, 59, 60));
-        search2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        search2.setForeground(new java.awt.Color(153, 153, 153));
-        search2.setText("¿Qué estás pensando?");
-        search2.setBorder(null);
-        search2.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        search2.setIgnoreRepaint(true);
+        postButton.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        postButton.setForeground(new java.awt.Color(153, 153, 153));
+        postButton.setText("¿Qué estás pensando?");
+        postButton.setActionCommand("¿Qué estás pensando?");
+        postButton.setContentAreaFilled(false);
+        postButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        postButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        postButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                postButtonMouseMoved(evt);
+            }
+        });
+        postButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                postButtonMouseExited(evt);
+            }
+        });
+        containerPost.add(postButton, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout containerSearch1Layout = new javax.swing.GroupLayout(containerSearch1);
-        containerSearch1.setLayout(containerSearch1Layout);
-        containerSearch1Layout.setHorizontalGroup(
-            containerSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerSearch1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(search2, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        containerSearch1Layout.setVerticalGroup(
-            containerSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerSearch1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(search2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        addPost.add(containerSearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 644, -1));
+        addPost.add(containerPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 644, 40));
 
         containerPhoto.setBackground(new java.awt.Color(35, 36, 37));
         containerPhoto.setLayout(new java.awt.BorderLayout());
@@ -246,62 +243,13 @@ public class Home extends javax.swing.JFrame {
         addPost.add(containerPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 216, 40));
         addPost.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
 
-        posts.add(addPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 734, 120));
+        scrollPosts.add(addPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 734, 120));
+        scrollPosts.add(post1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, -1));
+        scrollPosts.add(post2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, -1, -1));
 
-        post.setBackground(new java.awt.Color(35, 36, 37));
-        post.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jScrollPane1.setViewportView(scrollPosts);
 
-        containerUser2.setBackground(new java.awt.Color(58, 59, 60));
-        containerUser2.setLayout(new java.awt.BorderLayout());
-
-        user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        user2.setContentAreaFilled(false);
-        user2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        containerUser2.add(user2, java.awt.BorderLayout.CENTER);
-
-        post.add(containerUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Usuario #1");
-        post.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, 20));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("11 h");
-        post.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 20));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("<html>\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, suscipit malesuada suscipit id, rhoncus a nunc. Curabitur nec nunc eget odio vehicula cursus. Duis at accumsan purus. Sed odio risus, ultrices eget nunc at, varius auctor nisi. Morbi sed posuere ipsum, id tempor neque. Morbi pretium ex risus, sed imperdiet eros rhoncus a. Nulla facilisi. Fusce tincidunt tortor ut est aliquet, ac mattis libero pharetra. Integer quis faucibus turpis, sit amet tincidunt eros.\n</html>");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        post.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 694, 90));
-        post.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 694, 3));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/likeicon.png"))); // NOI18N
-        jLabel7.setText("2");
-        post.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setText("2 comentarios");
-        post.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 190, 90, -1));
-        post.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 225, 694, 3));
-
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Comentar");
-        post.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 200, 30));
-
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Me gusta");
-        post.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 200, 30));
-
-        posts.add(post, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 734, 280));
+        posts.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 754, 630));
 
         content.add(posts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 774, 628));
 
@@ -445,8 +393,7 @@ public class Home extends javax.swing.JFrame {
 
         search.setBackground(new java.awt.Color(58, 59, 60));
         search.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        search.setForeground(new java.awt.Color(153, 153, 153));
-        search.setText("Buscar en Faceboot");
+        search.setForeground(new java.awt.Color(204, 204, 204));
         search.setBorder(null);
         search.setDisabledTextColor(new java.awt.Color(153, 153, 153));
         search.setIgnoreRepaint(true);
@@ -459,7 +406,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(searchIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         containerSearchLayout.setVerticalGroup(
@@ -685,40 +632,13 @@ public class Home extends javax.swing.JFrame {
         containerPhoto.setBackground(new Color(35,36,37));
     }//GEN-LAST:event_addPhotoMouseExited
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Home().setVisible(true);
-//            }
-//        });
-//    }
+    private void postButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseExited
+        containerPost.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_postButtonMouseExited
+
+    private void postButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseMoved
+        containerPost.setBackground(new Color(78,78,79));
+    }//GEN-LAST:event_postButtonMouseMoved
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private View.Components.RoundPanelText ChatUser;
@@ -737,44 +657,36 @@ public class Home extends javax.swing.JFrame {
     private View.Components.RoundedPanel containerHome;
     private View.Components.RoundPanelText containerNotifications;
     private View.Components.RoundedPanel containerPhoto;
+    private View.Components.RoundPanelText containerPost;
     private View.Components.RoundPanelText containerSearch;
-    private View.Components.RoundPanelText containerSearch1;
     private View.Components.RoundPanelText containerSettings;
     private View.Components.RoundPanelText containerUser;
     private View.Components.RoundPanelText containerUser1;
-    private View.Components.RoundPanelText containerUser2;
     private View.Components.RoundPanelText containerUserSearch;
     private javax.swing.JPanel content;
     private javax.swing.JButton homeButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private View.Components.RoundedPanel post;
+    private View.Components.Post post1;
+    private View.Components.Post post2;
+    private javax.swing.JButton postButton;
     private javax.swing.JPanel posts;
+    private javax.swing.JPanel scrollPosts;
     private javax.swing.JTextField search;
-    private javax.swing.JTextField search1;
-    private javax.swing.JTextField search2;
     private javax.swing.JLabel searchIcon;
     private javax.swing.JLabel searchIcon1;
+    private javax.swing.JTextField searchUsers;
     private javax.swing.JButton settings;
     private javax.swing.JPanel topBar;
     private javax.swing.JPanel topMenu;
     private javax.swing.JButton user;
     private javax.swing.JButton user1;
-    private javax.swing.JButton user2;
     // End of variables declaration//GEN-END:variables
 }
