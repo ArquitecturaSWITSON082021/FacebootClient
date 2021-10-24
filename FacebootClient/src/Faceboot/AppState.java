@@ -16,4 +16,5 @@ public enum AppState {
     Home,
     Profile,
     Settings,
+    LinkedAccounts
 }

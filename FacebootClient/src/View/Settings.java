@@ -5,6 +5,8 @@
  */
 package View;
 
+import Faceboot.App;
+import Faceboot.AppState;
 import java.awt.Color;
 
 /**
@@ -83,7 +85,9 @@ public class Settings extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setForeground(java.awt.Color.white);
         setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         topBar1.setBackground(new java.awt.Color(31, 32, 36));
         topBar1.setPreferredSize(new java.awt.Dimension(0, 35));
@@ -208,11 +212,18 @@ public class Settings extends javax.swing.JFrame {
         });
         topBar1.add(MinimizeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 0, 55, 33));
 
+        getContentPane().add(topBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1023, -1));
+
         topMenu.setBackground(new java.awt.Color(31, 32, 36));
         topMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/flogo.png"))); // NOI18N
+        logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoMouseClicked(evt);
+            }
+        });
         topMenu.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 40, -1));
 
         containerSearch.setBackground(new java.awt.Color(58, 59, 60));
@@ -263,6 +274,11 @@ public class Settings extends javax.swing.JFrame {
         homeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 homeButtonMouseExited(evt);
+            }
+        });
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
             }
         });
         containerHome.add(homeButton, java.awt.BorderLayout.CENTER);
@@ -326,9 +342,16 @@ public class Settings extends javax.swing.JFrame {
                 userMouseExited(evt);
             }
         });
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
         containerUser.add(user, java.awt.BorderLayout.CENTER);
 
         topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
+
+        getContentPane().add(topMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 1023, 57));
 
         jPanel1.setBackground(new java.awt.Color(24, 25, 26));
 
@@ -489,6 +512,17 @@ public class Settings extends javax.swing.JFrame {
         LinkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/enlace.png"))); // NOI18N
         LinkButton.setContentAreaFilled(false);
         LinkButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LinkButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LinkButtonMouseClicked(evt);
+            }
+        });
+        LinkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LinkButtonActionPerformed(evt);
+            }
+        });
+
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
@@ -531,24 +565,7 @@ public class Settings extends javax.swing.JFrame {
                 .addGap(0, 46, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(topMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1023, Short.MAX_VALUE)
-            .addComponent(topBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(topBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(topMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1023, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -692,6 +709,30 @@ public class Settings extends javax.swing.JFrame {
     private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgeActionPerformed
+
+    private void LinkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LinkButtonMouseClicked
+
+    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_logoMouseClicked
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Profile);
+    }//GEN-LAST:event_userActionPerformed
+
+    private void LinkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LinkButtonActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.LinkedAccounts);
+    }//GEN-LAST:event_LinkButtonActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DisposeButton;
