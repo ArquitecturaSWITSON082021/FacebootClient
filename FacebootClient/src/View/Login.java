@@ -5,6 +5,8 @@
  */
 package View;
 
+import Faceboot.App;
+import Faceboot.AppState;
 import View.Components.TextPrompt;
 import java.awt.Color;
 import java.awt.Font;
@@ -72,11 +74,11 @@ public class Login extends javax.swing.JFrame {
         containerBtnLog = new View.Components.RoundedPanel();
         LogInBtn = new javax.swing.JButton();
         facebook = new View.Components.RoundedPanel();
-        jButton1 = new javax.swing.JButton();
+        btnFacebook = new javax.swing.JButton();
         twitter = new View.Components.RoundedPanel();
-        jButton2 = new javax.swing.JButton();
+        btnTwitter = new javax.swing.JButton();
         google = new View.Components.RoundedPanel();
-        jButton3 = new javax.swing.JButton();
+        btnGoogle = new javax.swing.JButton();
         topBar = new javax.swing.JPanel();
         DisposeButton = new javax.swing.JLabel();
         MinimizeButton = new javax.swing.JLabel();
@@ -128,8 +130,6 @@ public class Login extends javax.swing.JFrame {
         });
         containerBtn.add(CreateAccountBt, java.awt.BorderLayout.CENTER);
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-
         forgot.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         forgot.setForeground(new java.awt.Color(37, 119, 241));
         forgot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -154,7 +154,6 @@ public class Login extends javax.swing.JFrame {
         mail.setToolTipText("");
         mail.setBorder(null);
         mail.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        mail.setIgnoreRepaint(true);
         mail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 mailFocusGained(evt);
@@ -171,7 +170,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(containerMailLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         containerMailLayout.setVerticalGroup(
             containerMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +189,6 @@ public class Login extends javax.swing.JFrame {
         password.setToolTipText("");
         password.setBorder(null);
         password.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        password.setIgnoreRepaint(true);
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFocusGained(evt);
@@ -207,7 +205,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(containerPasswordLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         containerPasswordLayout.setVerticalGroup(
             containerPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,24 +280,39 @@ public class Login extends javax.swing.JFrame {
         facebook.setBackground(new java.awt.Color(37, 119, 241));
         facebook.setLayout(new java.awt.BorderLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/facebookLogin.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(64, 64));
-        facebook.add(jButton1, java.awt.BorderLayout.PAGE_END);
+        btnFacebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/facebookLogin.png"))); // NOI18N
+        btnFacebook.setContentAreaFilled(false);
+        btnFacebook.setPreferredSize(new java.awt.Dimension(64, 64));
+        btnFacebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacebookActionPerformed(evt);
+            }
+        });
+        facebook.add(btnFacebook, java.awt.BorderLayout.PAGE_END);
 
         twitter.setBackground(new java.awt.Color(45, 163, 226));
         twitter.setLayout(new java.awt.BorderLayout());
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/twitterLogin.png"))); // NOI18N
-        jButton2.setContentAreaFilled(false);
-        twitter.add(jButton2, java.awt.BorderLayout.CENTER);
+        btnTwitter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/twitterLogin.png"))); // NOI18N
+        btnTwitter.setContentAreaFilled(false);
+        btnTwitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTwitterActionPerformed(evt);
+            }
+        });
+        twitter.add(btnTwitter, java.awt.BorderLayout.CENTER);
 
         google.setBackground(new java.awt.Color(255, 255, 255));
         google.setLayout(new java.awt.BorderLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/googleLogin.png"))); // NOI18N
-        jButton3.setContentAreaFilled(false);
-        google.add(jButton3, java.awt.BorderLayout.CENTER);
+        btnGoogle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/googleLogin.png"))); // NOI18N
+        btnGoogle.setContentAreaFilled(false);
+        btnGoogle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoogleActionPerformed(evt);
+            }
+        });
+        google.add(btnGoogle, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -328,9 +341,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(contentLayout.createSequentialGroup()
                 .addGap(155, 155, 155)
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contentLayout.createSequentialGroup()
-                        .addComponent(log, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 154, Short.MAX_VALUE))
+                    .addComponent(log, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(contentLayout.createSequentialGroup()
                         .addComponent(FacebootLogo)
                         .addGap(15, 15, 15)
@@ -340,8 +351,8 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(google, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(facebook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         topBar.setBackground(new java.awt.Color(31, 32, 36));
@@ -571,9 +582,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_MinimizeButtonWMousePressed
 
     private void CreateAccountBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountBtActionPerformed
-        Register registro = new Register();
-        registro.setVisible(true);
-        this.setVisible(false);
+        App.GetSingleton().SetState(AppState.Register);
     }//GEN-LAST:event_CreateAccountBtActionPerformed
 
     private void CreateAccountBtMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateAccountBtMouseMoved
@@ -604,6 +613,11 @@ public class Login extends javax.swing.JFrame {
         /*
         Iniciar sesion
         */
+        
+        // TODO: AGREGAR VALIDACIONES AQUI.
+        String email = mail.getText();
+        String password = new String(this.password.getPassword());
+        App.GetSingleton().Client.DoLogin(email, password);
     }//GEN-LAST:event_LogInBtnActionPerformed
 
     private void mailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mailFocusGained
@@ -624,6 +638,28 @@ public class Login extends javax.swing.JFrame {
     private void forgotMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotMouseExited
         forgot.setFont(new Font("Arial", Font.BOLD, 13));
     }//GEN-LAST:event_forgotMouseExited
+
+    private void btnFacebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacebookActionPerformed
+        // TODO: AGREGAR LOGIN DE FB
+        String email = mail.getText();
+        String password = new String(this.password.getPassword());
+        App.GetSingleton().Client.DoLogin(email, password);
+    }//GEN-LAST:event_btnFacebookActionPerformed
+
+    private void btnTwitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwitterActionPerformed
+        // TODO: AGREGAR LOGIN DE Twitter
+        String email = mail.getText();
+        String password = new String(this.password.getPassword());
+        App.GetSingleton().Client.DoLogin(email, password);
+    }//GEN-LAST:event_btnTwitterActionPerformed
+
+    private void btnGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoogleActionPerformed
+        // TODO add your handling code here:
+        // TODO: AGREGAR LOGIN DE Google
+        String email = mail.getText();
+        String password = new String(this.password.getPassword());
+        App.GetSingleton().Client.DoLogin(email, password);
+    }//GEN-LAST:event_btnGoogleActionPerformed
 
     
     
@@ -674,6 +710,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel MinimizeButton;
     private javax.swing.JLabel MinimizeButtonW;
     private javax.swing.JLabel Title;
+    private javax.swing.JButton btnFacebook;
+    private javax.swing.JButton btnGoogle;
+    private javax.swing.JButton btnTwitter;
     public View.Components.RoundedPanel containerBtn;
     private View.Components.RoundedPanel containerBtnLog;
     private View.Components.RoundedPanel containerMail;
@@ -682,9 +721,6 @@ public class Login extends javax.swing.JFrame {
     private View.Components.RoundedPanel facebook;
     private javax.swing.JLabel forgot;
     private View.Components.RoundedPanel google;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JSeparator jSeparator1;
     private View.Components.RoundedPanel log;
     private javax.swing.JTextField mail;

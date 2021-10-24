@@ -5,11 +5,16 @@
  */
 package View;
 
+import Faceboot.App;
+import Faceboot.AppState;
 import View.Components.CustomScrollBarUI;
 import View.Components.TextPrompt;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,6 +24,7 @@ public class Home extends javax.swing.JFrame {
     
     private int mouseX;
     private int mouseY;
+    private int PostOffset;
 
     /**
      * Creates new form Login
@@ -45,6 +51,8 @@ public class Home extends javax.swing.JFrame {
         this.jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         
         setLocationRelativeTo(null);
+        
+
     }
 
     /**
@@ -72,7 +80,8 @@ public class Home extends javax.swing.JFrame {
         posts = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         scrollPosts = new javax.swing.JPanel();
-        addPost = new View.Components.RoundedPanel();
+        addPost = new javax.swing.JPanel();
+        addPostRoundedPane = new View.Components.RoundedPanel();
         containerUser1 = new View.Components.RoundPanelText();
         user1 = new javax.swing.JButton();
         containerPost = new View.Components.RoundPanelText();
@@ -107,6 +116,11 @@ public class Home extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         content.setBackground(new java.awt.Color(23, 24, 26));
@@ -171,17 +185,21 @@ public class Home extends javax.swing.JFrame {
         content.add(Users, new org.netbeans.lib.awtextra.AbsoluteConstraints(774, 0, 250, 628));
 
         posts.setBackground(new java.awt.Color(23, 24, 26));
-        posts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        posts.setLayout(new javax.swing.BoxLayout(posts, javax.swing.BoxLayout.Y_AXIS));
 
         jScrollPane1.setBackground(new java.awt.Color(23, 24, 26));
         jScrollPane1.setBorder(null);
 
         scrollPosts.setBackground(new java.awt.Color(23, 24, 26));
         scrollPosts.setPreferredSize(new java.awt.Dimension(738, 2000));
-        scrollPosts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        scrollPosts.setLayout(new javax.swing.BoxLayout(scrollPosts, javax.swing.BoxLayout.Y_AXIS));
 
-        addPost.setBackground(new java.awt.Color(35, 36, 37));
-        addPost.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        addPost.setBackground(new java.awt.Color(23, 24, 26));
+
+        addPostRoundedPane.setBackground(new java.awt.Color(35, 36, 37));
+        addPostRoundedPane.setMinimumSize(new java.awt.Dimension(734, 280));
+        addPostRoundedPane.setPreferredSize(new java.awt.Dimension(734, 110));
+        addPostRoundedPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         containerUser1.setBackground(new java.awt.Color(58, 59, 60));
         containerUser1.setLayout(new java.awt.BorderLayout());
@@ -191,7 +209,7 @@ public class Home extends javax.swing.JFrame {
         user1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         containerUser1.add(user1, java.awt.BorderLayout.CENTER);
 
-        addPost.add(containerUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
+        addPostRoundedPane.add(containerUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
 
         containerPost.setBackground(new java.awt.Color(58, 59, 60));
         containerPost.setForeground(new java.awt.Color(204, 204, 204));
@@ -215,7 +233,7 @@ public class Home extends javax.swing.JFrame {
         });
         containerPost.add(postButton, java.awt.BorderLayout.CENTER);
 
-        addPost.add(containerPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 644, 40));
+        addPostRoundedPane.add(containerPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 644, 40));
 
         containerPhoto.setBackground(new java.awt.Color(35, 36, 37));
         containerPhoto.setLayout(new java.awt.BorderLayout());
@@ -238,16 +256,38 @@ public class Home extends javax.swing.JFrame {
         });
         containerPhoto.add(addPhoto, java.awt.BorderLayout.CENTER);
 
-        addPost.add(containerPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 216, 40));
-        addPost.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
+        addPostRoundedPane.add(containerPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 216, 40));
+        addPostRoundedPane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
 
-        scrollPosts.add(addPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 734, 120));
-        scrollPosts.add(post1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, -1));
-        scrollPosts.add(post2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, -1, -1));
+        javax.swing.GroupLayout addPostLayout = new javax.swing.GroupLayout(addPost);
+        addPost.setLayout(addPostLayout);
+        addPostLayout.setHorizontalGroup(
+            addPostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPostLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(addPostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addPostRoundedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(post2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(post1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        addPostLayout.setVerticalGroup(
+            addPostLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPostLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(addPostRoundedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(post1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1202, Short.MAX_VALUE))
+        );
+
+        scrollPosts.add(addPost);
 
         jScrollPane1.setViewportView(scrollPosts);
 
-        posts.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 754, 630));
+        posts.add(jScrollPane1);
 
         content.add(posts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 774, 628));
 
@@ -456,6 +496,11 @@ public class Home extends javax.swing.JFrame {
                 settingsMouseExited(evt);
             }
         });
+        settings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsActionPerformed(evt);
+            }
+        });
         containerSettings.add(settings, java.awt.BorderLayout.CENTER);
 
         topMenu.add(containerSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(964, 7, 40, 40));
@@ -494,6 +539,11 @@ public class Home extends javax.swing.JFrame {
         user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 userMouseExited(evt);
+            }
+        });
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
             }
         });
         containerUser.add(user, java.awt.BorderLayout.CENTER);
@@ -637,40 +687,28 @@ public class Home extends javax.swing.JFrame {
         containerPost.setBackground(new Color(78,78,79));
     }//GEN-LAST:event_postButtonMouseMoved
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        PostOffset = 0;
+        App.GetSingleton().Client.DoFetchPosts(PostOffset);
+        
+        /* View.Components.Post testPost = new View.Components.Post();
+        JPanel view = (JPanel)this.jScrollPane1.getViewport().getView();
+        view.add(new View.Components.Post());
+        view.add(new View.Components.Post());
+        revalidate();
+        repaint(); */
+    }//GEN-LAST:event_formComponentShown
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
-    }
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Profile);
+    }//GEN-LAST:event_userActionPerformed
+
+    private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Settings);
+    }//GEN-LAST:event_settingsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private View.Components.RoundPanelText ChatUser;
@@ -685,7 +723,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel Title;
     private javax.swing.JPanel Users;
     private javax.swing.JButton addPhoto;
-    private View.Components.RoundedPanel addPost;
+    private javax.swing.JPanel addPost;
+    private View.Components.RoundedPanel addPostRoundedPane;
     private View.Components.RoundedPanel containerHome;
     private View.Components.RoundPanelText containerNotifications;
     private View.Components.RoundedPanel containerPhoto;

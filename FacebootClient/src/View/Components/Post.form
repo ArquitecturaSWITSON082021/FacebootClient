@@ -18,31 +18,8 @@
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
   </AuxValues>
 
-  <Layout>
-    <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="734" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="post" min="-2" pref="734" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="280" max="32767" attributes="0"/>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="post" min="-2" pref="280" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-      </Group>
-    </DimensionLayout>
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+    <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
     <Container class="View.Components.RoundedPanel" name="post">
@@ -51,6 +28,11 @@
           <Color blue="25" green="24" red="23" type="rgb"/>
         </Property>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="0" y="31" width="734" height="280"/>
+        </Constraint>
+      </Constraints>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="false"/>
@@ -127,7 +109,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, suscipit malesuada suscipit id, rhoncus a nunc. Curabitur nec nunc eget odio vehicula cursus. Duis at accumsan purus. Sed odio risus, ultrices eget nunc at, varius auctor nisi. Morbi sed posuere ipsum, id tempor neque. Morbi pretium ex risus, sed imperdiet eros rhoncus a. Nulla facilisi. Fusce tincidunt tortor ut est aliquet, ac mattis libero pharetra. Integer quis faucibus turpis, sit amet tincidunt eros.&#xa;&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, suscipit malesuada suscipit id, rhoncus a nunc. Curabitur nec nunc eget odio vehicula cursus. Duis at accumsan purus. Sed odio risus, ultrices eget nunc at, varius auctor nisi. Morbi sed posuere ipsum, id tempor neque. Morbi pretium ex risus, sed imperdiet eros rhoncus a. Nulla facilisi. Fusce tincidunt tortor ut est aliquet, ac mattis libero pharetra. Integer quis faucibus turpis, sit amet tincidunt eros. &lt;/html&gt;"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
           <Constraints>

@@ -1,7 +1,13 @@
 package Faceboot;
 import Callbacks.HelloPacketCallback;
+import Callbacks.MessageRouterCallback;
+import FacebootNet.Engine.AbstractPacket;
+import FacebootNet.Engine.Opcodes;
+import FacebootNet.Engine.PacketBuffer;
 import FacebootNet.FacebootNetClient;
+import FacebootNet.Packets.Server.SFetchPostsPacket;
 import FacebootNet.Packets.Server.SHelloPacket;
+import FacebootNet.Packets.Server.SLoginPacket;
 import View.Home;
 import View.Login;
 import java.util.logging.Level;
@@ -19,24 +25,55 @@ import java.util.logging.Logger;
  */
 public class App {
     
+    private static App AppSingleton;
+    
+    public FacebootNetClient Client;
+    
     public View.Login LoginView;
+    public Controllers.LoginController LoginController;
+    public Controllers.HomeController HomeController;
     public View.Home HomeView;
     public View.Register RegisterView;
+    public View.Profile ProfileView;
+    public View.Settings SettingsView;
+    private AppState State;
     
     public App(){
+        
+        App.AppSingleton = this;
+        State = AppState.Initializing;
         // Create application views and hide them by default.
         LoginView = new View.Login();
+        LoginController = new Controllers.LoginController(this);
         HomeView = new View.Home();
-        // RegisterView = new View.Register();
+        HomeController = new Controllers.HomeController(this);
+        RegisterView = new View.Register();
+        ProfileView = new View.Profile();
+        SettingsView = new View.Settings();
         
         // Create network client.
-        FacebootNetClient client = new FacebootNetClient("127.0.0.1", 3400);
-        client.OnHelloMessage = new HelloPacketCallback(this);
+        Client = new FacebootNetClient("127.0.0.1", 3400);
+        Client.OnHelloMessage = new HelloPacketCallback(this);
+        Client.OnMessage = new MessageRouterCallback(this);
         try {
-            client.Start();
+            Client.Start();
         } catch (Exception ex) {
             Utils.ShowErrorMessage("FacebootNetClient error: " + ex.getMessage() + "\n\n" + ex.getStackTrace());
         }
+    }
+    
+    public AppState GetState(){
+        return State;
+    }
+    
+    public void SetState(AppState newState){
+        State = newState;
+        
+        LoginView.setVisible(State == AppState.Login);
+        HomeView.setVisible(State == AppState.Home);
+        RegisterView.setVisible(State == AppState.Register);
+        ProfileView.setVisible(State == AppState.Profile);
+        SettingsView.setVisible(State == AppState.Settings);       
     }
     
     public void OnHello(SHelloPacket request){
@@ -48,7 +85,23 @@ public class App {
             Utils.ShowErrorMessage("El servicio de autentiación se encuentra deshabilitado.");
         }
         
-        LoginView.setVisible(true);
+        SetState(AppState.Login);
+    }
+    
+    public void OnMessageRouter(PacketBuffer packet){
+        try {
+            byte[] data = packet.Serialize();
+            String hex = Utils.BytesToHex(data);
+            System.out.println("[+] Got packet from server: " + hex);
+            
+            if (packet.GetOpcode() == Opcodes.Login)
+                LoginController.OnLogin(SLoginPacket.Deserialize(data));
+            else if (packet.GetOpcode() == Opcodes.FetchPosts)
+                HomeController.OnFetchPosts(SFetchPostsPacket.Deserialize(data));
+            
+        } catch (Exception ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -78,13 +131,11 @@ public class App {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        /* java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        }); */
         
         new App();
+    }
+    
+    public static App GetSingleton(){
+        return AppSingleton;
     }
 }

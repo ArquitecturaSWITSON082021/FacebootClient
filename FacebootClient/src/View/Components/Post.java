@@ -47,6 +47,7 @@ public class Post extends javax.swing.JPanel {
         likeButton = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(23, 24, 26));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         post.setBackground(new java.awt.Color(35, 36, 37));
         post.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -74,7 +75,7 @@ public class Post extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("<html>\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, suscipit malesuada suscipit id, rhoncus a nunc. Curabitur nec nunc eget odio vehicula cursus. Duis at accumsan purus. Sed odio risus, ultrices eget nunc at, varius auctor nisi. Morbi sed posuere ipsum, id tempor neque. Morbi pretium ex risus, sed imperdiet eros rhoncus a. Nulla facilisi. Fusce tincidunt tortor ut est aliquet, ac mattis libero pharetra. Integer quis faucibus turpis, sit amet tincidunt eros.\n</html>");
+        jLabel4.setText("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, suscipit malesuada suscipit id, rhoncus a nunc. Curabitur nec nunc eget odio vehicula cursus. Duis at accumsan purus. Sed odio risus, ultrices eget nunc at, varius auctor nisi. Morbi sed posuere ipsum, id tempor neque. Morbi pretium ex risus, sed imperdiet eros rhoncus a. Nulla facilisi. Fusce tincidunt tortor ut est aliquet, ac mattis libero pharetra. Integer quis faucibus turpis, sit amet tincidunt eros. </html>");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         post.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 694, 90));
         post.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 694, 3));
@@ -146,26 +147,7 @@ public class Post extends javax.swing.JPanel {
 
         post.add(containerLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 200, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 734, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(post, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(post, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        add(post, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 31, 734, 280));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCommentMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCommentMouseMoved
