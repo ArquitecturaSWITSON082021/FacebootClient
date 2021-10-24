@@ -489,22 +489,6 @@ public class Settings extends javax.swing.JFrame {
         LinkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/enlace.png"))); // NOI18N
         LinkButton.setContentAreaFilled(false);
         LinkButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        LinkButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                LinkButtonMouseMoved(evt);
-            }
-        });
-        LinkButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                LinkButtonMouseExited(evt);
-            }
-        });
-        LinkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LinkButtonActionPerformed(evt);
-            }
-        });
-
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
