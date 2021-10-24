@@ -571,9 +571,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_MinimizeButtonWMousePressed
 
     private void CreateAccountBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountBtActionPerformed
-        /*
-        Crear cuenta
-        */
+        Register registro = new Register();
+        registro.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_CreateAccountBtActionPerformed
 
     private void CreateAccountBtMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateAccountBtMouseMoved

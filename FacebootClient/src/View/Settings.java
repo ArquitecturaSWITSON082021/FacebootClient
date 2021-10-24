@@ -5,46 +5,22 @@
  */
 package View;
 
-import View.Components.CustomScrollBarUI;
-import View.Components.TextPrompt;
 import java.awt.Color;
-import java.awt.geom.RoundRectangle2D;
-import java.io.File;
 
 /**
  *
- * @author orlandocamacho
+ * @author urias
  */
-public class Home extends javax.swing.JFrame {
-    
+public class Settings extends javax.swing.JFrame {
+
     private int mouseX;
     private int mouseY;
-
+    
     /**
-     * Creates new form Login
+     * Creates new form Settings
      */
-    public Home() {
+    public Settings() {
         initComponents();
-        
-        new TextPrompt("Buscar en faceboot", search);
-        new TextPrompt("Buscar usuarios", searchUsers);
-        
-        String separator = File.separator;
-        if (separator.equals("/")) {
-            setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 22, 22));
-            this.DisposeButtonW.setVisible(false);
-            this.MinimizeButtonW.setVisible(false);
-            this.FullScreenButtonW.setVisible(false);
-        } else {
-            setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 0, 0));
-            this.DisposeButton.setVisible(false);
-            this.MinimizeButton.setVisible(false);
-            this.FullScreenButton.setVisible(false);
-        }
-        
-        this.jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -56,37 +32,12 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        content = new javax.swing.JPanel();
-        Users = new javax.swing.JPanel();
-        containerUserSearch = new View.Components.RoundPanelText();
-        searchIcon1 = new javax.swing.JLabel();
-        searchUsers = new javax.swing.JTextField();
-        ChatUser = new View.Components.RoundPanelText();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        ChatUser1 = new View.Components.RoundPanelText();
-        jLabel8 = new javax.swing.JLabel();
-        ChatUser2 = new View.Components.RoundPanelText();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        posts = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        scrollPosts = new javax.swing.JPanel();
-        addPost = new View.Components.RoundedPanel();
-        containerUser1 = new View.Components.RoundPanelText();
-        user1 = new javax.swing.JButton();
-        containerPost = new View.Components.RoundPanelText();
-        postButton = new javax.swing.JButton();
-        containerPhoto = new View.Components.RoundedPanel();
-        addPhoto = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        post1 = new View.Components.Post();
-        post2 = new View.Components.Post();
-        topBar = new javax.swing.JPanel();
+        topBar1 = new javax.swing.JPanel();
         DisposeButton = new javax.swing.JLabel();
         MinimizeButton = new javax.swing.JLabel();
         FullScreenButton = new javax.swing.JLabel();
-        Title = new javax.swing.JLabel();
+        Title1 = new javax.swing.JLabel();
         DisposeButtonW = new javax.swing.JLabel();
         FullScreenButtonW = new javax.swing.JLabel();
         MinimizeButtonW = new javax.swing.JLabel();
@@ -103,169 +54,43 @@ public class Home extends javax.swing.JFrame {
         notifications = new javax.swing.JButton();
         containerUser = new View.Components.RoundPanelText();
         user = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtNumber = new javax.swing.JTextField();
+        txtGender = new javax.swing.JTextField();
+        txtBirth = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        content.setBackground(new java.awt.Color(23, 24, 26));
-        content.setPreferredSize(new java.awt.Dimension(1280, 670));
-        content.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Users.setBackground(new java.awt.Color(23, 24, 26));
-        Users.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        containerUserSearch.setBackground(new java.awt.Color(58, 59, 60));
-        containerUserSearch.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        searchIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/search.png"))); // NOI18N
-        containerUserSearch.add(searchIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 30, 30));
-
-        searchUsers.setBackground(new java.awt.Color(58, 59, 60));
-        searchUsers.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        searchUsers.setForeground(new java.awt.Color(204, 204, 204));
-        searchUsers.setBorder(null);
-        searchUsers.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        containerUserSearch.add(searchUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 0, 150, 30));
-
-        Users.add(containerUserSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 210, 30));
-
-        ChatUser.setBackground(new java.awt.Color(58, 59, 60));
-        ChatUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        ChatUser.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
-
-        Users.add(ChatUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 40, 40));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setText("Usuario #2");
-        Users.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 160, 40));
-
-        ChatUser1.setBackground(new java.awt.Color(58, 59, 60));
-        ChatUser1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        ChatUser1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
-
-        Users.add(ChatUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 40, 40));
-
-        ChatUser2.setBackground(new java.awt.Color(58, 59, 60));
-        ChatUser2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        ChatUser2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
-
-        Users.add(ChatUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 40, 40));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Usuario #1");
-        Users.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 160, 40));
-
-        content.add(Users, new org.netbeans.lib.awtextra.AbsoluteConstraints(774, 0, 250, 628));
-
-        posts.setBackground(new java.awt.Color(23, 24, 26));
-        posts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane1.setBackground(new java.awt.Color(23, 24, 26));
-        jScrollPane1.setBorder(null);
-
-        scrollPosts.setBackground(new java.awt.Color(23, 24, 26));
-        scrollPosts.setPreferredSize(new java.awt.Dimension(738, 2000));
-        scrollPosts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        addPost.setBackground(new java.awt.Color(35, 36, 37));
-        addPost.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        containerUser1.setBackground(new java.awt.Color(58, 59, 60));
-        containerUser1.setLayout(new java.awt.BorderLayout());
-
-        user1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        user1.setContentAreaFilled(false);
-        user1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        containerUser1.add(user1, java.awt.BorderLayout.CENTER);
-
-        addPost.add(containerUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
-
-        containerPost.setBackground(new java.awt.Color(58, 59, 60));
-        containerPost.setForeground(new java.awt.Color(204, 204, 204));
-        containerPost.setLayout(new java.awt.BorderLayout());
-
-        postButton.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        postButton.setForeground(new java.awt.Color(153, 153, 153));
-        postButton.setText("¿Qué estás pensando?");
-        postButton.setContentAreaFilled(false);
-        postButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        postButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        postButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                postButtonMouseMoved(evt);
-            }
-        });
-        postButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                postButtonMouseExited(evt);
-            }
-        });
-        containerPost.add(postButton, java.awt.BorderLayout.CENTER);
-
-        addPost.add(containerPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 644, 40));
-
-        containerPhoto.setBackground(new java.awt.Color(35, 36, 37));
-        containerPhoto.setLayout(new java.awt.BorderLayout());
-
-        addPhoto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        addPhoto.setForeground(new java.awt.Color(153, 153, 153));
-        addPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/insertPhoto.png"))); // NOI18N
-        addPhoto.setText("Foto");
-        addPhoto.setContentAreaFilled(false);
-        addPhoto.setIconTextGap(10);
-        addPhoto.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                addPhotoMouseMoved(evt);
-            }
-        });
-        addPhoto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                addPhotoMouseExited(evt);
-            }
-        });
-        containerPhoto.add(addPhoto, java.awt.BorderLayout.CENTER);
-
-        addPost.add(containerPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 216, 40));
-        addPost.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
-
-        scrollPosts.add(addPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 734, 120));
-        scrollPosts.add(post1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, -1));
-        scrollPosts.add(post2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, -1, -1));
-
-        jScrollPane1.setViewportView(scrollPosts);
-
-        posts.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 754, 630));
-
-        content.add(posts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 774, 628));
-
-        getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 92, 1024, 628));
-
-        topBar.setBackground(new java.awt.Color(31, 32, 36));
-        topBar.setPreferredSize(new java.awt.Dimension(0, 35));
-        topBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        topBar1.setBackground(new java.awt.Color(31, 32, 36));
+        topBar1.setPreferredSize(new java.awt.Dimension(0, 35));
+        topBar1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                topBarMouseDragged(evt);
+                topBar1MouseDragged(evt);
             }
         });
-        topBar.addMouseListener(new java.awt.event.MouseAdapter() {
+        topBar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                topBarMousePressed(evt);
+                topBar1MousePressed(evt);
             }
         });
-        topBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        topBar1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DisposeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png"))); // NOI18N
@@ -285,7 +110,7 @@ public class Home extends javax.swing.JFrame {
                 DisposeButtonMousePressed(evt);
             }
         });
-        topBar.add(DisposeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        topBar1.add(DisposeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         MinimizeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png"))); // NOI18N
@@ -305,7 +130,7 @@ public class Home extends javax.swing.JFrame {
                 MinimizeButtonMousePressed(evt);
             }
         });
-        topBar.add(MinimizeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        topBar1.add(MinimizeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         FullScreenButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png"))); // NOI18N
@@ -322,11 +147,11 @@ public class Home extends javax.swing.JFrame {
                 FullScreenButtonMouseExited(evt);
             }
         });
-        topBar.add(FullScreenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
+        topBar1.add(FullScreenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
-        Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Faceboot.png"))); // NOI18N
-        topBar.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 0, 145, 35));
+        Title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Title1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Faceboot.png"))); // NOI18N
+        topBar1.add(Title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 0, 145, 35));
 
         DisposeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png"))); // NOI18N
@@ -343,7 +168,7 @@ public class Home extends javax.swing.JFrame {
                 DisposeButtonWMousePressed(evt);
             }
         });
-        topBar.add(DisposeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(968, 0, 55, 33));
+        topBar1.add(DisposeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(968, 0, 55, 33));
 
         FullScreenButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW.png"))); // NOI18N
@@ -357,7 +182,7 @@ public class Home extends javax.swing.JFrame {
                 FullScreenButtonWMouseExited(evt);
             }
         });
-        topBar.add(FullScreenButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(911, 0, 55, 33));
+        topBar1.add(FullScreenButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(911, 0, 55, 33));
 
         MinimizeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png"))); // NOI18N
@@ -374,9 +199,7 @@ public class Home extends javax.swing.JFrame {
                 MinimizeButtonWMousePressed(evt);
             }
         });
-        topBar.add(MinimizeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 0, 55, 33));
-
-        getContentPane().add(topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1024, -1));
+        topBar1.add(MinimizeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 0, 55, 33));
 
         topMenu.setBackground(new java.awt.Color(31, 32, 36));
         topMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -418,7 +241,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        topMenu.add(containerSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 7, 190, 50));
+        topMenu.add(containerSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 190, 50));
 
         containerHome.setBackground(new java.awt.Color(31, 32, 36));
         containerHome.setLayout(new java.awt.BorderLayout());
@@ -500,22 +323,187 @@ public class Home extends javax.swing.JFrame {
 
         topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
 
-        getContentPane().add(topMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 1024, 57));
+        jPanel1.setBackground(new java.awt.Color(24, 25, 26));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Configuración general de la cuenta");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 12, -1, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(228, 230, 235));
+        jSeparator2.setForeground(new java.awt.Color(228, 230, 235));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 902, 1));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombre");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Edad");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator3.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 902, 1));
+
+        jSeparator4.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator4.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 902, 1));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Correo electrónico");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        jSeparator5.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator5.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 902, 1));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Número de celular");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Sexo");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+
+        jSeparator6.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator6.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 902, 1));
+
+        jSeparator7.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator7.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 902, 1));
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Fecha de nacimiento");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+
+        txtAge.setBackground(new java.awt.Color(0, 0, 0));
+        txtAge.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAge.setForeground(new java.awt.Color(102, 102, 102));
+        txtAge.setText("19");
+        txtAge.setBorder(null);
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgeActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 600, -1));
+
+        txtName.setBackground(new java.awt.Color(0, 0, 0));
+        txtName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtName.setForeground(new java.awt.Color(102, 102, 102));
+        txtName.setText("Usuario");
+        txtName.setBorder(null);
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 600, -1));
+
+        txtEmail.setEditable(false);
+        txtEmail.setBackground(new java.awt.Color(0, 0, 0));
+        txtEmail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(102, 102, 102));
+        txtEmail.setText("Usuario@hotmail.com");
+        txtEmail.setBorder(null);
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 600, -1));
+
+        txtNumber.setEditable(false);
+        txtNumber.setBackground(new java.awt.Color(0, 0, 0));
+        txtNumber.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNumber.setForeground(new java.awt.Color(102, 102, 102));
+        txtNumber.setText("6442574128");
+        txtNumber.setBorder(null);
+        txtNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumberActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 600, -1));
+
+        txtGender.setBackground(new java.awt.Color(0, 0, 0));
+        txtGender.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtGender.setForeground(new java.awt.Color(102, 102, 102));
+        txtGender.setText("Hombre");
+        txtGender.setBorder(null);
+        txtGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGenderActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 600, -1));
+
+        txtBirth.setBackground(new java.awt.Color(0, 0, 0));
+        txtBirth.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtBirth.setForeground(new java.awt.Color(102, 102, 102));
+        txtBirth.setText("29 de octubre de 2001");
+        txtBirth.setBorder(null);
+        txtBirth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBirthActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 600, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 61, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(topMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+            .addComponent(topBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(topBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(topMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void topBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBarMousePressed
-        mouseX = evt.getX();
-        mouseY = evt.getY();
-    }//GEN-LAST:event_topBarMousePressed
-
-    private void topBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBarMouseDragged
-        int X = evt.getXOnScreen();
-        int Y = evt.getYOnScreen();
-
-        setLocation(X - mouseX, Y - mouseY + 1);
-    }//GEN-LAST:event_topBarMouseDragged
 
     private void DisposeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMouseMoved
         DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton2.png")));
@@ -525,6 +513,12 @@ public class Home extends javax.swing.JFrame {
         DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png")));
     }//GEN-LAST:event_DisposeButtonMouseExited
 
+    private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
+        if (evt.getClickCount() >= 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_DisposeButtonMousePressed
+
     private void MinimizeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseMoved
         MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton2.png")));
     }//GEN-LAST:event_MinimizeButtonMouseMoved
@@ -532,6 +526,12 @@ public class Home extends javax.swing.JFrame {
     private void MinimizeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseExited
         MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png")));
     }//GEN-LAST:event_MinimizeButtonMouseExited
+
+    private void MinimizeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMousePressed
+        if (evt.getClickCount() >= 0) {
+            this.setExtendedState(1);
+        }
+    }//GEN-LAST:event_MinimizeButtonMousePressed
 
     private void FullScreenButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonMouseMoved
         FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton2.png")));
@@ -541,18 +541,6 @@ public class Home extends javax.swing.JFrame {
         FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png")));
     }//GEN-LAST:event_FullScreenButtonMouseExited
 
-    private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.dispose();
-        } 
-    }//GEN-LAST:event_DisposeButtonMousePressed
-
-    private void MinimizeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setExtendedState(1);  
-        } 
-    }//GEN-LAST:event_MinimizeButtonMousePressed
-
     private void DisposeButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseMoved
         DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW2.png")));
     }//GEN-LAST:event_DisposeButtonWMouseMoved
@@ -560,6 +548,12 @@ public class Home extends javax.swing.JFrame {
     private void DisposeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseExited
         DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png")));
     }//GEN-LAST:event_DisposeButtonWMouseExited
+
+    private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
+        if (evt.getClickCount() >= 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_DisposeButtonWMousePressed
 
     private void FullScreenButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonWMouseMoved
         FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW2.png")));
@@ -574,20 +568,26 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_MinimizeButtonWMouseMoved
 
     private void MinimizeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMouseExited
-         MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png")));
+        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png")));
     }//GEN-LAST:event_MinimizeButtonWMouseExited
-
-    private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.dispose();
-        } 
-    }//GEN-LAST:event_DisposeButtonWMousePressed
 
     private void MinimizeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMousePressed
         if (evt.getClickCount() >= 0) {
-            this.setExtendedState(1);  
-        } 
+            this.setExtendedState(1);
+        }
     }//GEN-LAST:event_MinimizeButtonWMousePressed
+
+    private void topBar1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBar1MouseDragged
+        int X = evt.getXOnScreen();
+        int Y = evt.getYOnScreen();
+
+        setLocation(X - mouseX, Y - mouseY + 1);
+    }//GEN-LAST:event_topBar1MouseDragged
+
+    private void topBar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBar1MousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_topBar1MousePressed
 
     private void homeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonMouseMoved
         containerHome.setBackground(new Color(58,59,60));
@@ -597,13 +597,13 @@ public class Home extends javax.swing.JFrame {
         containerHome.setBackground(new Color(31,32,36));
     }//GEN-LAST:event_homeButtonMouseExited
 
-    private void userMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseMoved
-        containerUser.setBackground(new Color(84,86,86));
-    }//GEN-LAST:event_userMouseMoved
+    private void settingsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseMoved
+        containerSettings.setBackground(new Color(84,86,86));
+    }//GEN-LAST:event_settingsMouseMoved
 
-    private void userMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseExited
-        containerUser.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_userMouseExited
+    private void settingsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseExited
+        containerSettings.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_settingsMouseExited
 
     private void notificationsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationsMouseMoved
         containerNotifications.setBackground(new Color(84,86,86));
@@ -613,29 +613,37 @@ public class Home extends javax.swing.JFrame {
         containerNotifications.setBackground(new Color(58,59,60));
     }//GEN-LAST:event_notificationsMouseExited
 
-    private void settingsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseMoved
-        containerSettings.setBackground(new Color(84,86,86));
-    }//GEN-LAST:event_settingsMouseMoved
+    private void userMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseMoved
+        containerUser.setBackground(new Color(84,86,86));
+    }//GEN-LAST:event_userMouseMoved
 
-    private void settingsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseExited
-        containerSettings.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_settingsMouseExited
+    private void userMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseExited
+        containerUser.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_userMouseExited
 
-    private void addPhotoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPhotoMouseMoved
-        containerPhoto.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_addPhotoMouseMoved
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeActionPerformed
 
-    private void addPhotoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPhotoMouseExited
-        containerPhoto.setBackground(new Color(35,36,37));
-    }//GEN-LAST:event_addPhotoMouseExited
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
-    private void postButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseExited
-        containerPost.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_postButtonMouseExited
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void postButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseMoved
-        containerPost.setBackground(new Color(78,78,79));
-    }//GEN-LAST:event_postButtonMouseMoved
+    private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumberActionPerformed
+
+    private void txtGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGenderActionPerformed
+
+    private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBirthActionPerformed
 
     /**
      * @param args the command line arguments
@@ -654,71 +662,67 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Settings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Settings().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private View.Components.RoundPanelText ChatUser;
-    private View.Components.RoundPanelText ChatUser1;
-    private View.Components.RoundPanelText ChatUser2;
     private javax.swing.JLabel DisposeButton;
     private javax.swing.JLabel DisposeButtonW;
     private javax.swing.JLabel FullScreenButton;
     private javax.swing.JLabel FullScreenButtonW;
     private javax.swing.JLabel MinimizeButton;
     private javax.swing.JLabel MinimizeButtonW;
-    private javax.swing.JLabel Title;
-    private javax.swing.JPanel Users;
-    private javax.swing.JButton addPhoto;
-    private View.Components.RoundedPanel addPost;
+    private javax.swing.JLabel Title1;
     private View.Components.RoundedPanel containerHome;
     private View.Components.RoundPanelText containerNotifications;
-    private View.Components.RoundedPanel containerPhoto;
-    private View.Components.RoundPanelText containerPost;
     private View.Components.RoundPanelText containerSearch;
     private View.Components.RoundPanelText containerSettings;
     private View.Components.RoundPanelText containerUser;
-    private View.Components.RoundPanelText containerUser1;
-    private View.Components.RoundPanelText containerUserSearch;
-    private javax.swing.JPanel content;
     private javax.swing.JButton homeButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private View.Components.Post post1;
-    private View.Components.Post post2;
-    private javax.swing.JButton postButton;
-    private javax.swing.JPanel posts;
-    private javax.swing.JPanel scrollPosts;
     private javax.swing.JTextField search;
     private javax.swing.JLabel searchIcon;
-    private javax.swing.JLabel searchIcon1;
-    private javax.swing.JTextField searchUsers;
     private javax.swing.JButton settings;
-    private javax.swing.JPanel topBar;
+    private javax.swing.JPanel topBar1;
     private javax.swing.JPanel topMenu;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtBirth;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtGender;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNumber;
     private javax.swing.JButton user;
-    private javax.swing.JButton user1;
     // End of variables declaration//GEN-END:variables
 }

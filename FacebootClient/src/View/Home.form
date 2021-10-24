@@ -107,7 +107,6 @@
                     <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="99" type="rgb"/>
                     </Property>
-                    <Property name="ignoreRepaint" type="boolean" value="true"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -363,7 +362,6 @@
                                   <Color blue="99" green="99" red="99" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="&#xbf;Qu&#xe9; est&#xe1;s pensando?"/>
-                                <Property name="actionCommand" type="java.lang.String" value="&#xbf;Qu&#xe9; est&#xe1;s pensando?"/>
                                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                                 <Property name="horizontalAlignment" type="int" value="2"/>
                                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -660,7 +658,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="70" y="7" width="190" height="-1"/>
+              <AbsoluteConstraints x="70" y="7" width="190" height="50"/>
             </Constraint>
           </Constraints>
 
@@ -672,7 +670,7 @@
                       <Component id="searchIcon" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="search" min="-2" pref="129" max="-2" attributes="0"/>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -717,7 +715,6 @@
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>
                 </Property>
-                <Property name="ignoreRepaint" type="boolean" value="true"/>
               </Properties>
             </Component>
           </SubComponents>
