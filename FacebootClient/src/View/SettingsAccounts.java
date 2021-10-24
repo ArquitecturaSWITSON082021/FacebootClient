@@ -11,7 +11,7 @@ import java.awt.Color;
  *
  * @author urias
  */
-public class Connections extends javax.swing.JFrame {
+public class SettingsAccounts extends javax.swing.JFrame {
 
     private int mouseX;
     private int mouseY;
@@ -19,7 +19,7 @@ public class Connections extends javax.swing.JFrame {
     /**
      * Creates new form Connections
      */
-    public Connections() {
+    public SettingsAccounts() {
         initComponents();
     }
 
