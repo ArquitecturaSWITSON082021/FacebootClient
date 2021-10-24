@@ -5,13 +5,15 @@
  */
 package View;
 
+import Faceboot.App;
+import Faceboot.AppState;
 import java.awt.Color;
 
 /**
  *
  * @author urias
  */
-public class Connections extends javax.swing.JFrame {
+public class SettingsAccounts extends javax.swing.JFrame {
 
     private int mouseX;
     private int mouseY;
@@ -19,8 +21,9 @@ public class Connections extends javax.swing.JFrame {
     /**
      * Creates new form Connections
      */
-    public Connections() {
+    public SettingsAccounts() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -53,6 +56,7 @@ public class Connections extends javax.swing.JFrame {
         ConnectBtnGo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(23, 24, 26));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -77,6 +81,9 @@ public class Connections extends javax.swing.JFrame {
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 closeMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeMouseClicked(evt);
             }
         });
         jPanel1.add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, -1, -1));
@@ -227,9 +234,7 @@ public class Connections extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setVisible(false);
-        }
+
     }//GEN-LAST:event_closeMousePressed
 
     private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
@@ -286,40 +291,10 @@ public class Connections extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ConnectBtnGoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Connections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Connections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Connections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Connections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Connections().setVisible(true);
-            }
-        });
-    }
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        App.GetSingleton().SetState(AppState.Settings);
+    }//GEN-LAST:event_closeMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConnectBtnFb1;
