@@ -497,8 +497,11 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_closeMousePressed
 
     private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed
-        // TODO add your handling code here:
-        App.GetSingleton().SetState(AppState.Login);
+        String name = this.name.getText();
+        String lastName = this.lastname.getText();
+        String email = this.email.getText();
+        String password = new String(this.password.getPassword());
+        App.GetSingleton().RegisterController.AttemptRegister(name, lastName, email, password);
     }//GEN-LAST:event_signUpActionPerformed
 
     public void comboboxSetInvisible(){

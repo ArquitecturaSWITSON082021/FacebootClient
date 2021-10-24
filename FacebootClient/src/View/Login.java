@@ -610,14 +610,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_LogInBtnMouseMoved
 
     private void LogInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInBtnActionPerformed
-        /*
-        Iniciar sesion
-        */
-        
-        // TODO: AGREGAR VALIDACIONES AQUI.
         String email = mail.getText();
         String password = new String(this.password.getPassword());
-        App.GetSingleton().Client.DoLogin(email, password);
+        App.GetSingleton().LoginController.AttemptLogin(email, password);
     }//GEN-LAST:event_LogInBtnActionPerformed
 
     private void mailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mailFocusGained
@@ -643,14 +638,14 @@ public class Login extends javax.swing.JFrame {
         // TODO: AGREGAR LOGIN DE FB
         String email = mail.getText();
         String password = new String(this.password.getPassword());
-        App.GetSingleton().Client.DoLogin(email, password);
+        App.GetSingleton().LoginController.AttemptLogin(email, password);
     }//GEN-LAST:event_btnFacebookActionPerformed
 
     private void btnTwitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwitterActionPerformed
         // TODO: AGREGAR LOGIN DE Twitter
         String email = mail.getText();
         String password = new String(this.password.getPassword());
-        App.GetSingleton().Client.DoLogin(email, password);
+        App.GetSingleton().LoginController.AttemptLogin(email, password);
     }//GEN-LAST:event_btnTwitterActionPerformed
 
     private void btnGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoogleActionPerformed
@@ -658,7 +653,7 @@ public class Login extends javax.swing.JFrame {
         // TODO: AGREGAR LOGIN DE Google
         String email = mail.getText();
         String password = new String(this.password.getPassword());
-        App.GetSingleton().Client.DoLogin(email, password);
+        App.GetSingleton().LoginController.AttemptLogin(email, password);
     }//GEN-LAST:event_btnGoogleActionPerformed
 
     

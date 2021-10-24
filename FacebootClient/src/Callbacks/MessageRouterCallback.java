@@ -12,7 +12,7 @@ import FacebootNet.Engine.PacketBuffer;
 import FacebootNet.FacebootNetCallback;
 
 /**
- *
+ * MessageRouterCallback, may get called if given on FacebootNet.Client.
  * @author Ivy
  */
 public class MessageRouterCallback extends FacebootNetCallback<byte[]> {

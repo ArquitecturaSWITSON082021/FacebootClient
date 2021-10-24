@@ -6,7 +6,7 @@
 package Faceboot;
 
 /**
- *
+ * This struct defines the possible application states.
  * @author Ivy
  */
 public enum AppState {
