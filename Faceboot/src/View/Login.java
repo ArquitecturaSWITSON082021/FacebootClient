@@ -5,6 +5,7 @@
  */
 package View;
 
+import View.Components.TextPrompt;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
@@ -28,8 +29,11 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         
+        new TextPrompt("Correo electronico", mail);
+        new TextPrompt("Contraseña", password);
+        
         String separator = File.separator;
-        if (separator.equals("")) {
+        if (separator.equals("/")) {
             setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 22, 22));
             this.DisposeButtonW.setVisible(false);
             this.MinimizeButtonW.setVisible(false);
@@ -146,8 +150,8 @@ public class Login extends javax.swing.JFrame {
 
         mail.setBackground(new java.awt.Color(58, 59, 60));
         mail.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        mail.setForeground(new java.awt.Color(153, 153, 153));
-        mail.setText("Correo electrónico");
+        mail.setForeground(new java.awt.Color(204, 204, 204));
+        mail.setToolTipText("");
         mail.setBorder(null);
         mail.setDisabledTextColor(new java.awt.Color(153, 153, 153));
         mail.setIgnoreRepaint(true);
@@ -182,11 +186,10 @@ public class Login extends javax.swing.JFrame {
 
         password.setBackground(new java.awt.Color(58, 59, 60));
         password.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        password.setForeground(new java.awt.Color(153, 153, 153));
-        password.setText("Contraseña");
+        password.setForeground(new java.awt.Color(204, 204, 204));
+        password.setToolTipText("");
         password.setBorder(null);
         password.setDisabledTextColor(new java.awt.Color(153, 153, 153));
-        password.setEchoChar('\u0000');
         password.setIgnoreRepaint(true);
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -325,7 +328,9 @@ public class Login extends javax.swing.JFrame {
             .addGroup(contentLayout.createSequentialGroup()
                 .addGap(155, 155, 155)
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(log, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(contentLayout.createSequentialGroup()
+                        .addComponent(log, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 154, Short.MAX_VALUE))
                     .addGroup(contentLayout.createSequentialGroup()
                         .addComponent(FacebootLogo)
                         .addGap(15, 15, 15)
@@ -335,8 +340,8 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(google, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(facebook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(136, 154, Short.MAX_VALUE))
+                            .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         topBar.setBackground(new java.awt.Color(31, 32, 36));
@@ -622,40 +627,40 @@ public class Login extends javax.swing.JFrame {
 
     
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Login().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateAccountBt;
