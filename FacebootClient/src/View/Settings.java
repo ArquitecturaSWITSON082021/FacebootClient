@@ -76,6 +76,11 @@ public class Settings extends javax.swing.JFrame {
         txtNumber = new javax.swing.JTextField();
         txtGender = new javax.swing.JTextField();
         txtBirth = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        containerLink = new View.Components.RoundPanelText();
+        LinkButton = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -348,8 +353,8 @@ public class Settings extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Edad");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+        jLabel3.setText("Vincular cuenta");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
         jSeparator3.setBackground(new java.awt.Color(51, 51, 51));
         jSeparator3.setForeground(new java.awt.Color(51, 51, 51));
@@ -469,6 +474,63 @@ public class Settings extends javax.swing.JFrame {
         });
         jPanel2.add(txtBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 600, -1));
 
+        jSeparator8.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator8.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 902, 1));
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Edad");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        containerLink.setBackground(new java.awt.Color(58, 59, 60));
+
+        LinkButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/enlace.png"))); // NOI18N
+        LinkButton.setContentAreaFilled(false);
+        LinkButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LinkButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                LinkButtonMouseMoved(evt);
+            }
+        });
+        LinkButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LinkButtonMouseExited(evt);
+            }
+        });
+        LinkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LinkButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setText("Vincular");
+
+        javax.swing.GroupLayout containerLinkLayout = new javax.swing.GroupLayout(containerLink);
+        containerLink.setLayout(containerLinkLayout);
+        containerLinkLayout.setHorizontalGroup(
+            containerLinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLinkLayout.createSequentialGroup()
+                .addComponent(LinkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        containerLinkLayout.setVerticalGroup(
+            containerLinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLinkLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(containerLinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LinkButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)))
+        );
+
+        jPanel2.add(containerLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 190, 40));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -481,8 +543,8 @@ public class Settings extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 72, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -499,8 +561,9 @@ public class Settings extends javax.swing.JFrame {
                 .addComponent(topBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(topMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -651,10 +714,12 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JLabel DisposeButtonW;
     private javax.swing.JLabel FullScreenButton;
     private javax.swing.JLabel FullScreenButtonW;
+    private javax.swing.JButton LinkButton;
     private javax.swing.JLabel MinimizeButton;
     private javax.swing.JLabel MinimizeButtonW;
     private javax.swing.JLabel Title1;
     private View.Components.RoundedPanel containerHome;
+    private View.Components.RoundPanelText containerLink;
     private View.Components.RoundPanelText containerNotifications;
     private View.Components.RoundPanelText containerSearch;
     private View.Components.RoundPanelText containerSettings;
@@ -667,6 +732,8 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -676,6 +743,7 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
     private javax.swing.JTextField search;
