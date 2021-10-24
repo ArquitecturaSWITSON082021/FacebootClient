@@ -1,7 +1,11 @@
 package Faceboot;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 
 /**
- *
+ * Simple class which holds some utility functions.
  * @author Ivy
  */
 public class Utils {
@@ -26,7 +30,18 @@ public static String BytesToHex(byte[] bytes) {
     return new String(hexChars);
 }
     
+    public static void ShowInfoMessage(String Msg){
+        JOptionPane.showMessageDialog(null, Msg, "", INFORMATION_MESSAGE);
+    }
+
     public static void ShowErrorMessage(String Error){
-        JOptionPane.showMessageDialog(null, Error);
+        JOptionPane.showMessageDialog(null, Error, "Error", ERROR_MESSAGE);
+    }
+    
+    public static boolean IsEmail(String email){
+        Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+        Matcher mat = pattern.matcher(email);
+
+        return mat.matches();
     }
 }

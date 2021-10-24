@@ -8,7 +8,7 @@ package Controllers;
 import Faceboot.App;
 
 /**
- *
+ * BaseController for the MVC pattern.
  * @author Ivy
  */
 public class BaseController {
