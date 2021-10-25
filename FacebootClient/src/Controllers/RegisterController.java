@@ -11,30 +11,38 @@ import Faceboot.Utils;
 import FacebootNet.Packets.Server.SLoginPacket;
 
 /**
- * LoginController, may get called when client receives packets with
- * LoginController opcodes.
+ * RegisterController, may get called when client receives packets with
+ * RegisterController opcodes.
  *
  * @author Ivy
  */
-public class LoginController extends BaseController {
+public class RegisterController extends BaseController {
 
     /**
-     * LoginController constructor.
+     * RegisterController constructor.
      *
      * @param app
      */
-    public LoginController(App app) {
+    public RegisterController(App app) {
         super(app);
     }
 
     /**
      * Attempts to login with a given email and password.
      *
-     * @param Email
-     * @param Password
+     * @param email
+     * @param password
      */
-    public void AttemptLogin(String Email, String Password) {
+    public void AttemptRegister(String Name, String LastName, String Email, String Password) {
         try {
+            
+            if (Name.length() <= 0) {
+                throw new Exception("El nombre no puede estar vacío.");
+            }
+            
+            if (LastName.length() <= 0) {
+                throw new Exception("Los apellidos no pueden estar vacíos.");
+            }
 
             if (!Utils.IsEmail(Email)) {
                 throw new Exception("El correo proporcionado es inválido.");
@@ -44,10 +52,11 @@ public class LoginController extends BaseController {
                 throw new Exception("La contraseña no puede estar vacía.");
             }
 
-            // If everything is valid, attempt to login with server.
-            app.Client.DoLogin(Email, Password);
+            // If everything is valid, attempt to register with server.
+            app.SetState(AppState.Login);
+            Utils.ShowInfoMessage("Registro exitoso");
         } catch (Exception e) {
-            Utils.ShowErrorMessage("Error al iniciar sesión: " + e.getMessage());
+            Utils.ShowErrorMessage("Error al registrarse: " + e.getMessage());
         }
     }
 

@@ -10,7 +10,7 @@ import FacebootNet.FacebootNetCallback;
 import FacebootNet.Packets.Server.SHelloPacket;
 
 /**
- *
+ * HelloPacketCallback, may get called if given on FacebootNet.Client.
  * @author Ivy
  */
 public class HelloPacketCallback extends FacebootNetCallback<SHelloPacket> {

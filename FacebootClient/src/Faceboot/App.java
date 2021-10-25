@@ -32,6 +32,7 @@ public class App {
     public View.Login LoginView;
     public Controllers.LoginController LoginController;
     public Controllers.HomeController HomeController;
+    public Controllers.RegisterController RegisterController;
     public View.Home HomeView;
     public View.Register RegisterView;
     public View.Profile ProfileView;
@@ -39,38 +40,57 @@ public class App {
     public View.SettingsAccounts SettingsAccountsView;
     private AppState State;
     
+    // Entry point of Faceboot app.
     public App(){
         
+        // Define the static application singleton to this one.
         App.AppSingleton = this;
+        
+        // Set the initial application state.
         State = AppState.Initializing;
-        // Create application views and hide them by default.
+        
+        // Create all application views and hide them by default.
         LoginView = new View.Login();
         LoginController = new Controllers.LoginController(this);
         HomeView = new View.Home();
         HomeController = new Controllers.HomeController(this);
         RegisterView = new View.Register();
+        RegisterController = new Controllers.RegisterController(this);
         ProfileView = new View.Profile();
         SettingsView = new View.Settings();
         SettingsAccountsView = new View.SettingsAccounts();
         
         // Create network client.
         Client = new FacebootNetClient("127.0.0.1", 3400);
+        
+        // Map all client callbacks.
         Client.OnHelloMessage = new HelloPacketCallback(this);
         Client.OnMessage = new MessageRouterCallback(this);
         try {
+            // Attempt to start the network client.
             Client.Start();
         } catch (Exception ex) {
             Utils.ShowErrorMessage("FacebootNetClient error: " + ex.getMessage() + "\n\n" + ex.getStackTrace());
         }
     }
     
+    /**
+     * Returns the current application state.
+     * @return 
+     */
     public AppState GetState(){
         return State;
     }
     
+    /**
+     * Changes the application state to the one provided, if given.
+     * @param newState 
+     */
     public void SetState(AppState newState){
+        // Update the application state.
         State = newState;
         
+        // Hide and show the necessary views, given the state.
         LoginView.setVisible(State == AppState.Login);
         HomeView.setVisible(State == AppState.Home);
         RegisterView.setVisible(State == AppState.Register);
@@ -79,24 +99,41 @@ public class App {
         SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
     }
     
+    /**
+     * OnHelloPacket callback. Returns the server application version, services running, etc.
+     * @param request 
+     */
     public void OnHello(SHelloPacket request){
+        // Print hello response from server for debugging purposes.
         System.out.printf("[+] Got hello response from server. ApplicationVersion=%d, IsAuthServiceRunning=%b.\n",
                 request.ApplicationVersion,
                 request.IsAuthServiceRunning);
         
+        // If server says that auth service is not running, throw an error and return.
         if (!request.IsAuthServiceRunning){
             Utils.ShowErrorMessage("El servicio de autentiación se encuentra deshabilitado.");
+            return;
         }
         
+        // If everything is okay, then switch to Login view state.
         SetState(AppState.Login);
     }
     
+    /**
+     * OnMessageRouter callback.
+     * This function gets called when server replies with a valid packet, if given.
+     * @param packet 
+     */
     public void OnMessageRouter(PacketBuffer packet){
         try {
+            // Get the binary buffer from packet.
             byte[] data = packet.Serialize();
+            
+            // Print the hex representation of packet, for debugging purposes.
             String hex = Utils.BytesToHex(data);
             System.out.println("[+] Got packet from server: " + hex);
             
+            // Packet router. If opcode is valid, then call controllers... if valid.
             if (packet.GetOpcode() == Opcodes.Login)
                 LoginController.OnLogin(SLoginPacket.Deserialize(data));
             else if (packet.GetOpcode() == Opcodes.FetchPosts)
@@ -138,6 +175,10 @@ public class App {
         new App();
     }
     
+    /**
+     * Returns the application singleton.
+     * @return 
+     */
     public static App GetSingleton(){
         return AppSingleton;
     }
