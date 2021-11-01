@@ -46,7 +46,7 @@ public class Login extends javax.swing.JFrame {
             this.MinimizeButton.setVisible(false);
             this.FullScreenButton.setVisible(false);
         }
-
+        
         setLocationRelativeTo(null);
     }
 
@@ -91,6 +91,7 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         content.setBackground(new java.awt.Color(23, 24, 26));
         content.setPreferredSize(new java.awt.Dimension(1280, 670));
@@ -140,6 +141,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
         forgot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgotMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 forgotMouseExited(evt);
             }
@@ -332,7 +336,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(google, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(log, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
         );
@@ -352,8 +356,10 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(google, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(facebook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
+
+        getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 1024, 685));
 
         topBar.setBackground(new java.awt.Color(31, 32, 36));
         topBar.setPreferredSize(new java.awt.Dimension(0, 35));
@@ -478,21 +484,7 @@ public class Login extends javax.swing.JFrame {
         });
         topBar.add(MinimizeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 0, 55, 33));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(topBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(topBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
+        getContentPane().add(topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1024, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -582,6 +574,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_MinimizeButtonWMousePressed
 
     private void CreateAccountBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountBtActionPerformed
+        
         App.GetSingleton().SetState(AppState.Register);
     }//GEN-LAST:event_CreateAccountBtActionPerformed
 
@@ -655,6 +648,9 @@ public class Login extends javax.swing.JFrame {
         String password = new String(this.password.getPassword());
         App.GetSingleton().LoginController.AttemptLogin(email, password);
     }//GEN-LAST:event_btnGoogleActionPerformed
+
+    private void forgotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotMouseClicked
+    }//GEN-LAST:event_forgotMouseClicked
 
     
     

@@ -7,22 +7,49 @@ package View;
 
 import Faceboot.App;
 import Faceboot.AppState;
+import View.Components.CustomScrollBarUI;
+import View.Components.TextPrompt;
 import java.awt.Color;
+import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+
 
 /**
  *
- * @author urias
+ * @author orlandocamacho
  */
 public class Profile extends javax.swing.JFrame {
-
+    
     private int mouseX;
     private int mouseY;
-    
+    private int PostOffset;
+
     /**
-     * Creates new form Perfil
+     * Creates new form Login
      */
     public Profile() {
         initComponents();
+        
+        new TextPrompt("Buscar en faceboot", search);
+        
+        
+        String separator = File.separator;
+        
+        if (separator.equals("/")) {
+            setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 22, 22));
+            this.DisposeButtonW.setVisible(false);
+            this.MinimizeButtonW.setVisible(false);
+            this.FullScreenButtonW.setVisible(false);
+        } else {
+            setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 0, 0));
+            this.DisposeButton.setVisible(false);
+            this.MinimizeButton.setVisible(false);
+            this.FullScreenButton.setVisible(false);
+        }
+        
+        this.jScrollPane1.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+ 
+
         setLocationRelativeTo(null);
     }
 
@@ -35,14 +62,45 @@ public class Profile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        topBar1 = new javax.swing.JPanel();
-        DisposeButtonW = new javax.swing.JLabel();
-        MinimizeButtonW = new javax.swing.JLabel();
-        FullScreenButtonW = new javax.swing.JLabel();
-        Title1 = new javax.swing.JLabel();
+        content = new javax.swing.JPanel();
+        posts = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPosts = new javax.swing.JPanel();
+        addPost = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        containerImage = new View.Components.RoundPanelText();
+        user2 = new javax.swing.JButton();
+        roundPanelText1 = new View.Components.RoundPanelText();
+        jLabel12 = new javax.swing.JLabel();
+        roundedPanel4 = new View.Components.RoundedPanel();
+        jLabel2 = new javax.swing.JLabel();
+        addPostRoundedPane = new View.Components.RoundedPanel();
+        containerUser1 = new View.Components.RoundPanelText();
+        user1 = new javax.swing.JButton();
+        containerPost = new View.Components.RoundPanelText();
+        postButton = new javax.swing.JButton();
+        containerPhoto = new View.Components.RoundedPanel();
+        addPhoto = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        roundedPanel5 = new View.Components.RoundedPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        post3 = new View.Components.Post();
+        topBar = new javax.swing.JPanel();
         DisposeButton = new javax.swing.JLabel();
-        FullScreenButton = new javax.swing.JLabel();
         MinimizeButton = new javax.swing.JLabel();
+        FullScreenButton = new javax.swing.JLabel();
+        Title = new javax.swing.JLabel();
+        DisposeButtonW = new javax.swing.JLabel();
+        FullScreenButtonW = new javax.swing.JLabel();
+        MinimizeButtonW = new javax.swing.JLabel();
         topMenu = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         containerSearch = new View.Components.RoundPanelText();
@@ -56,118 +114,238 @@ public class Profile extends javax.swing.JFrame {
         notifications = new javax.swing.JButton();
         containerUser = new View.Components.RoundPanelText();
         user = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        topUser = new javax.swing.JPanel();
-        containerImage = new View.Components.RoundPanelText();
-        user2 = new javax.swing.JButton();
-        Title2 = new javax.swing.JLabel();
-        profileImage = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        About = new javax.swing.JPanel();
-        addPost1 = new View.Components.RoundedPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        scrollPosts = new javax.swing.JPanel();
-        addPost = new View.Components.RoundedPanel();
-        containerUser1 = new View.Components.RoundPanelText();
-        user1 = new javax.swing.JButton();
-        containerPost = new View.Components.RoundPanelText();
-        postButton = new javax.swing.JButton();
-        containerPhoto = new View.Components.RoundedPanel();
-        addPhoto = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        post1 = new View.Components.Post();
-        post2 = new View.Components.Post();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(23, 24, 26));
         setUndecorated(true);
+        setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        topBar1.setBackground(new java.awt.Color(31, 32, 36));
-        topBar1.setPreferredSize(new java.awt.Dimension(0, 35));
-        topBar1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        content.setBackground(new java.awt.Color(23, 24, 26));
+        content.setFocusable(false);
+        content.setPreferredSize(new java.awt.Dimension(1280, 670));
+        content.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        posts.setBackground(new java.awt.Color(23, 24, 26));
+        posts.setLayout(new javax.swing.BoxLayout(posts, javax.swing.BoxLayout.Y_AXIS));
+
+        jScrollPane1.setBackground(new java.awt.Color(23, 24, 26));
+        jScrollPane1.setBorder(null);
+
+        scrollPosts.setBackground(new java.awt.Color(23, 24, 26));
+        scrollPosts.setPreferredSize(new java.awt.Dimension(738, 1000));
+        scrollPosts.setLayout(new javax.swing.BoxLayout(scrollPosts, javax.swing.BoxLayout.Y_AXIS));
+
+        addPost.setBackground(new java.awt.Color(23, 24, 26));
+        addPost.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(35, 36, 37));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        containerImage.setBackground(new java.awt.Color(58, 59, 60));
+        containerImage.setLayout(new java.awt.BorderLayout());
+
+        user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/camera.png"))); // NOI18N
+        user2.setContentAreaFilled(false);
+        user2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        user2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                user2MouseMoved(evt);
+            }
+        });
+        user2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                user2MouseExited(evt);
+            }
+        });
+        user2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                user2ActionPerformed(evt);
+            }
+        });
+        containerImage.add(user2, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(containerImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 40, 40));
+
+        roundPanelText1.setBackground(new java.awt.Color(153, 153, 153));
+        roundPanelText1.setLayout(new java.awt.BorderLayout());
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/profilePhotoIcon.png"))); // NOI18N
+        roundPanelText1.add(jLabel12, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(roundPanelText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 40, 120, 120));
+
+        roundedPanel4.setBackground(new java.awt.Color(58, 59, 60));
+
+        javax.swing.GroupLayout roundedPanel4Layout = new javax.swing.GroupLayout(roundedPanel4);
+        roundedPanel4.setLayout(roundedPanel4Layout);
+        roundedPanel4Layout.setHorizontalGroup(
+            roundedPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
+        roundedPanel4Layout.setVerticalGroup(
+            roundedPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
+        jPanel4.add(roundedPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 0, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Usuario");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 700, 40));
+
+        addPost.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1031, 200));
+
+        addPostRoundedPane.setBackground(new java.awt.Color(35, 36, 37));
+        addPostRoundedPane.setMinimumSize(new java.awt.Dimension(734, 280));
+        addPostRoundedPane.setPreferredSize(new java.awt.Dimension(734, 110));
+        addPostRoundedPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        containerUser1.setBackground(new java.awt.Color(58, 59, 60));
+        containerUser1.setLayout(new java.awt.BorderLayout());
+
+        user1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
+        user1.setContentAreaFilled(false);
+        user1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        containerUser1.add(user1, java.awt.BorderLayout.CENTER);
+
+        addPostRoundedPane.add(containerUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
+
+        containerPost.setBackground(new java.awt.Color(58, 59, 60));
+        containerPost.setForeground(new java.awt.Color(204, 204, 204));
+        containerPost.setLayout(new java.awt.BorderLayout());
+
+        postButton.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        postButton.setForeground(new java.awt.Color(153, 153, 153));
+        postButton.setText("¿Qué estás pensando?");
+        postButton.setContentAreaFilled(false);
+        postButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        postButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        postButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                postButtonMouseMoved(evt);
+            }
+        });
+        postButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                postButtonMouseExited(evt);
+            }
+        });
+        postButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                postButtonActionPerformed(evt);
+            }
+        });
+        containerPost.add(postButton, java.awt.BorderLayout.CENTER);
+
+        addPostRoundedPane.add(containerPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 644, 40));
+
+        containerPhoto.setBackground(new java.awt.Color(35, 36, 37));
+        containerPhoto.setLayout(new java.awt.BorderLayout());
+
+        addPhoto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        addPhoto.setForeground(new java.awt.Color(153, 153, 153));
+        addPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/insertPhoto.png"))); // NOI18N
+        addPhoto.setText("Foto");
+        addPhoto.setContentAreaFilled(false);
+        addPhoto.setIconTextGap(10);
+        addPhoto.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                addPhotoMouseMoved(evt);
+            }
+        });
+        addPhoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addPhotoMouseExited(evt);
+            }
+        });
+        containerPhoto.add(addPhoto, java.awt.BorderLayout.CENTER);
+
+        addPostRoundedPane.add(containerPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 216, 40));
+        addPostRoundedPane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
+
+        addPost.add(addPostRoundedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, 120));
+
+        roundedPanel5.setBackground(new java.awt.Color(35, 36, 37));
+        roundedPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Detalles");
+        roundedPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(196, 198, 202));
+        jLabel5.setText("Worked");
+        roundedPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 60, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/suitcase.png"))); // NOI18N
+        roundedPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 30, 30));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/graduation-hat.png"))); // NOI18N
+        roundedPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 30, 30));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(196, 198, 202));
+        jLabel7.setText("Studied");
+        roundedPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 60, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/home-profile.png"))); // NOI18N
+        roundedPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 30, 30));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(196, 198, 202));
+        jLabel9.setText("Lives");
+        roundedPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 60, -1));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/placeholder.png"))); // NOI18N
+        roundedPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 30, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(196, 198, 202));
+        jLabel10.setText("From");
+        roundedPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 60, -1));
+
+        addPost.add(roundedPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 230, 220));
+        addPost.add(post3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, -1));
+
+        scrollPosts.add(addPost);
+
+        jScrollPane1.setViewportView(scrollPosts);
+
+        posts.add(jScrollPane1);
+
+        content.add(posts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1031, 628));
+
+        getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 92, 1024, 628));
+
+        topBar.setBackground(new java.awt.Color(31, 32, 36));
+        topBar.setPreferredSize(new java.awt.Dimension(0, 35));
+        topBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                topBar1MouseDragged(evt);
+                topBarMouseDragged(evt);
             }
         });
-        topBar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        topBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                topBar1MousePressed(evt);
+                topBarMousePressed(evt);
             }
         });
-        topBar1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        DisposeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png"))); // NOI18N
-        DisposeButtonW.setMaximumSize(new java.awt.Dimension(14, 14));
-        DisposeButtonW.setMinimumSize(new java.awt.Dimension(14, 14));
-        DisposeButtonW.setPreferredSize(new java.awt.Dimension(14, 14));
-        DisposeButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                DisposeButtonWMouseMoved(evt);
-            }
-        });
-        DisposeButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                DisposeButtonWMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DisposeButtonWMousePressed(evt);
-            }
-        });
-        topBar1.add(DisposeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        MinimizeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png"))); // NOI18N
-        MinimizeButtonW.setMaximumSize(new java.awt.Dimension(14, 14));
-        MinimizeButtonW.setMinimumSize(new java.awt.Dimension(14, 14));
-        MinimizeButtonW.setPreferredSize(new java.awt.Dimension(14, 14));
-        MinimizeButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                MinimizeButtonWMouseMoved(evt);
-            }
-        });
-        MinimizeButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                MinimizeButtonWMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MinimizeButtonWMousePressed(evt);
-            }
-        });
-        topBar1.add(MinimizeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
-
-        FullScreenButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png"))); // NOI18N
-        FullScreenButtonW.setMaximumSize(new java.awt.Dimension(14, 14));
-        FullScreenButtonW.setMinimumSize(new java.awt.Dimension(14, 14));
-        FullScreenButtonW.setPreferredSize(new java.awt.Dimension(14, 14));
-        FullScreenButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                FullScreenButtonWMouseMoved(evt);
-            }
-        });
-        FullScreenButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                FullScreenButtonWMouseExited(evt);
-            }
-        });
-        topBar1.add(FullScreenButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
-
-        Title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Title1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Faceboot.png"))); // NOI18N
-        topBar1.add(Title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 0, 145, 35));
+        topBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DisposeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png"))); // NOI18N
+        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png"))); // NOI18N
+        DisposeButton.setMaximumSize(new java.awt.Dimension(14, 14));
+        DisposeButton.setMinimumSize(new java.awt.Dimension(14, 14));
+        DisposeButton.setPreferredSize(new java.awt.Dimension(14, 14));
         DisposeButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 DisposeButtonMouseMoved(evt);
@@ -181,24 +359,13 @@ public class Profile extends javax.swing.JFrame {
                 DisposeButtonMousePressed(evt);
             }
         });
-        topBar1.add(DisposeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 55, 33));
-
-        FullScreenButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW.png"))); // NOI18N
-        FullScreenButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                FullScreenButtonMouseMoved(evt);
-            }
-        });
-        FullScreenButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                FullScreenButtonMouseExited(evt);
-            }
-        });
-        topBar1.add(FullScreenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 0, 55, 33));
+        topBar.add(DisposeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         MinimizeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png"))); // NOI18N
+        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png"))); // NOI18N
+        MinimizeButton.setMaximumSize(new java.awt.Dimension(14, 14));
+        MinimizeButton.setMinimumSize(new java.awt.Dimension(14, 14));
+        MinimizeButton.setPreferredSize(new java.awt.Dimension(14, 14));
         MinimizeButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 MinimizeButtonMouseMoved(evt);
@@ -212,13 +379,89 @@ public class Profile extends javax.swing.JFrame {
                 MinimizeButtonMousePressed(evt);
             }
         });
-        topBar1.add(MinimizeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, 55, 33));
+        topBar.add(MinimizeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        FullScreenButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png"))); // NOI18N
+        FullScreenButton.setMaximumSize(new java.awt.Dimension(14, 14));
+        FullScreenButton.setMinimumSize(new java.awt.Dimension(14, 14));
+        FullScreenButton.setPreferredSize(new java.awt.Dimension(14, 14));
+        FullScreenButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                FullScreenButtonMouseMoved(evt);
+            }
+        });
+        FullScreenButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                FullScreenButtonMouseExited(evt);
+            }
+        });
+        topBar.add(FullScreenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
+
+        Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Faceboot.png"))); // NOI18N
+        topBar.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 0, 145, 35));
+
+        DisposeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png"))); // NOI18N
+        DisposeButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                DisposeButtonWMouseMoved(evt);
+            }
+        });
+        DisposeButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DisposeButtonWMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DisposeButtonWMousePressed(evt);
+            }
+        });
+        topBar.add(DisposeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(968, 0, 55, 33));
+
+        FullScreenButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW.png"))); // NOI18N
+        FullScreenButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                FullScreenButtonWMouseMoved(evt);
+            }
+        });
+        FullScreenButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                FullScreenButtonWMouseExited(evt);
+            }
+        });
+        topBar.add(FullScreenButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(911, 0, 55, 33));
+
+        MinimizeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png"))); // NOI18N
+        MinimizeButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                MinimizeButtonWMouseMoved(evt);
+            }
+        });
+        MinimizeButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MinimizeButtonWMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                MinimizeButtonWMousePressed(evt);
+            }
+        });
+        topBar.add(MinimizeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 0, 55, 33));
+
+        getContentPane().add(topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1024, -1));
 
         topMenu.setBackground(new java.awt.Color(31, 32, 36));
         topMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/flogo.png"))); // NOI18N
+        logo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoMouseClicked(evt);
+            }
+        });
         topMenu.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 7, 40, -1));
 
         containerSearch.setBackground(new java.awt.Color(58, 59, 60));
@@ -254,12 +497,12 @@ public class Profile extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        topMenu.add(containerSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 190, 50));
+        topMenu.add(containerSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 7, 190, 40));
 
         containerHome.setBackground(new java.awt.Color(31, 32, 36));
         containerHome.setLayout(new java.awt.BorderLayout());
 
-        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/home.png"))); // NOI18N
+        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/homeOut.png"))); // NOI18N
         homeButton.setContentAreaFilled(false);
         homeButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -267,11 +510,13 @@ public class Profile extends javax.swing.JFrame {
             }
         });
         homeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                homeButtonMouseClicked(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 homeButtonMouseExited(evt);
+            }
+        });
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
             }
         });
         containerHome.add(homeButton, java.awt.BorderLayout.CENTER);
@@ -302,7 +547,7 @@ public class Profile extends javax.swing.JFrame {
         });
         containerSettings.add(settings, java.awt.BorderLayout.CENTER);
 
-        topMenu.add(containerSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 10, 40, 40));
+        topMenu.add(containerSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(964, 7, 40, 40));
 
         containerNotifications.setBackground(new java.awt.Color(58, 59, 60));
         containerNotifications.setLayout(new java.awt.BorderLayout());
@@ -320,14 +565,9 @@ public class Profile extends javax.swing.JFrame {
                 notificationsMouseExited(evt);
             }
         });
-        notifications.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notificationsActionPerformed(evt);
-            }
-        });
         containerNotifications.add(notifications, java.awt.BorderLayout.CENTER);
 
-        topMenu.add(containerNotifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 40, 40));
+        topMenu.add(containerNotifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 7, 40, 40));
 
         containerUser.setBackground(new java.awt.Color(58, 59, 60));
         containerUser.setLayout(new java.awt.BorderLayout());
@@ -352,318 +592,96 @@ public class Profile extends javax.swing.JFrame {
         });
         containerUser.add(user, java.awt.BorderLayout.CENTER);
 
-        topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 40, 40));
+        topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
 
-        jScrollPane2.setBackground(new java.awt.Color(23, 24, 26));
-        jScrollPane2.setBorder(null);
-
-        topUser.setBackground(new java.awt.Color(31, 32, 36));
-        topUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        containerImage.setBackground(new java.awt.Color(58, 59, 60));
-        containerImage.setLayout(new java.awt.BorderLayout());
-
-        user2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/camera.png"))); // NOI18N
-        user2.setContentAreaFilled(false);
-        user2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        user2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                user2MouseMoved(evt);
-            }
-        });
-        user2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                user2MouseExited(evt);
-            }
-        });
-        user2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user2ActionPerformed(evt);
-            }
-        });
-        containerImage.add(user2, java.awt.BorderLayout.CENTER);
-
-        topUser.add(containerImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 40, 40));
-
-        Title2.setBackground(new java.awt.Color(228, 230, 235));
-        Title2.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
-        Title2.setForeground(new java.awt.Color(228, 230, 235));
-        Title2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Title2.setText("USUARIO");
-        topUser.add(Title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 145, 35));
-
-        profileImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        profileImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Profile-final.png"))); // NOI18N
-        topUser.add(profileImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 140, 120));
-
-        jPanel1.setBackground(new java.awt.Color(24, 25, 27));
-        jPanel1.setForeground(new java.awt.Color(24, 25, 27));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-
-        topUser.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, -10, 760, 220));
-
-        About.setBackground(new java.awt.Color(23, 24, 26));
-
-        addPost1.setBackground(new java.awt.Color(35, 36, 37));
-        addPost1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/placeholder.png"))); // NOI18N
-        addPost1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 180, -1, 30));
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(196, 198, 202));
-        jLabel2.setText("From");
-        addPost1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 60, -1));
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(196, 198, 202));
-        jLabel3.setText("Intro");
-        addPost1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/suitcase.png"))); // NOI18N
-        addPost1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 30, 30));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(196, 198, 202));
-        jLabel5.setText("Worked");
-        addPost1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 60, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/graduation-hat.png"))); // NOI18N
-        addPost1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 30, 30));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(196, 198, 202));
-        jLabel7.setText("Studied");
-        addPost1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 60, -1));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/home-profile.png"))); // NOI18N
-        addPost1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 30, 30));
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(196, 198, 202));
-        jLabel9.setText("Lives");
-        addPost1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 60, -1));
-
-        javax.swing.GroupLayout AboutLayout = new javax.swing.GroupLayout(About);
-        About.setLayout(AboutLayout);
-        AboutLayout.setHorizontalGroup(
-            AboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AboutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(addPost1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        AboutLayout.setVerticalGroup(
-            AboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AboutLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(addPost1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(327, Short.MAX_VALUE))
-        );
-
-        topUser.add(About, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 327, 630));
-
-        jScrollPane1.setBackground(new java.awt.Color(23, 24, 26));
-        jScrollPane1.setBorder(null);
-
-        scrollPosts.setBackground(new java.awt.Color(23, 24, 26));
-        scrollPosts.setPreferredSize(new java.awt.Dimension(738, 2000));
-        scrollPosts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        addPost.setBackground(new java.awt.Color(35, 36, 37));
-        addPost.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        containerUser1.setBackground(new java.awt.Color(58, 59, 60));
-        containerUser1.setLayout(new java.awt.BorderLayout());
-
-        user1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        user1.setContentAreaFilled(false);
-        user1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        containerUser1.add(user1, java.awt.BorderLayout.CENTER);
-
-        addPost.add(containerUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
-
-        containerPost.setBackground(new java.awt.Color(58, 59, 60));
-        containerPost.setForeground(new java.awt.Color(204, 204, 204));
-        containerPost.setLayout(new java.awt.BorderLayout());
-
-        postButton.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        postButton.setForeground(new java.awt.Color(153, 153, 153));
-        postButton.setText("¿Qué estás pensando?");
-        postButton.setContentAreaFilled(false);
-        postButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        postButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        postButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                postButtonMouseMoved(evt);
-            }
-        });
-        postButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                postButtonMouseExited(evt);
-            }
-        });
-        postButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                postButtonActionPerformed(evt);
-            }
-        });
-        containerPost.add(postButton, java.awt.BorderLayout.CENTER);
-
-        addPost.add(containerPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 644, 40));
-
-        containerPhoto.setBackground(new java.awt.Color(35, 36, 37));
-        containerPhoto.setLayout(new java.awt.BorderLayout());
-
-        addPhoto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        addPhoto.setForeground(new java.awt.Color(153, 153, 153));
-        addPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/insertPhoto.png"))); // NOI18N
-        addPhoto.setText("Foto");
-        addPhoto.setContentAreaFilled(false);
-        addPhoto.setIconTextGap(10);
-        addPhoto.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                addPhotoMouseMoved(evt);
-            }
-        });
-        addPhoto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                addPhotoMouseExited(evt);
-            }
-        });
-        containerPhoto.add(addPhoto, java.awt.BorderLayout.CENTER);
-
-        addPost.add(containerPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 216, 40));
-        addPost.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
-
-        scrollPosts.add(addPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 20, 730, 120));
-        scrollPosts.add(post1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 160, 730, -1));
-        scrollPosts.add(post2, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 460, 730, -1));
-
-        jScrollPane1.setViewportView(scrollPosts);
-
-        topUser.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 754, 630));
-
-        jScrollPane2.setViewportView(topUser);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(topMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
-                    .addComponent(topBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(topBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(topMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
+        getContentPane().add(topMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 1024, 57));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DisposeButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseMoved
-        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton2.png")));
-    }//GEN-LAST:event_DisposeButtonWMouseMoved
+    private void topBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBarMousePressed
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_topBarMousePressed
 
-    private void DisposeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseExited
-        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png")));
-    }//GEN-LAST:event_DisposeButtonWMouseExited
-
-    private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_DisposeButtonWMousePressed
-
-    private void MinimizeButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMouseMoved
-        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton2.png")));
-    }//GEN-LAST:event_MinimizeButtonWMouseMoved
-
-    private void MinimizeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMouseExited
-        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png")));
-    }//GEN-LAST:event_MinimizeButtonWMouseExited
-
-    private void MinimizeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setExtendedState(1);
-        }
-    }//GEN-LAST:event_MinimizeButtonWMousePressed
-
-    private void FullScreenButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonWMouseMoved
-        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton2.png")));
-    }//GEN-LAST:event_FullScreenButtonWMouseMoved
-
-    private void FullScreenButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonWMouseExited
-        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png")));
-    }//GEN-LAST:event_FullScreenButtonWMouseExited
-
-    private void DisposeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMouseMoved
-        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW2.png")));
-    }//GEN-LAST:event_DisposeButtonMouseMoved
-
-    private void DisposeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMouseExited
-        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png")));
-    }//GEN-LAST:event_DisposeButtonMouseExited
-
-    private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_DisposeButtonMousePressed
-
-    private void FullScreenButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonMouseMoved
-        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW2.png")));
-    }//GEN-LAST:event_FullScreenButtonMouseMoved
-
-    private void FullScreenButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonMouseExited
-        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW.png")));
-    }//GEN-LAST:event_FullScreenButtonMouseExited
-
-    private void MinimizeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseMoved
-        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW2.png")));
-    }//GEN-LAST:event_MinimizeButtonMouseMoved
-
-    private void MinimizeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseExited
-        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png")));
-    }//GEN-LAST:event_MinimizeButtonMouseExited
-
-    private void MinimizeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setExtendedState(1);
-        }
-    }//GEN-LAST:event_MinimizeButtonMousePressed
-
-    private void topBar1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBar1MouseDragged
+    private void topBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBarMouseDragged
         int X = evt.getXOnScreen();
         int Y = evt.getYOnScreen();
 
         setLocation(X - mouseX, Y - mouseY + 1);
-    }//GEN-LAST:event_topBar1MouseDragged
+    }//GEN-LAST:event_topBarMouseDragged
 
-    private void topBar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBar1MousePressed
-        mouseX = evt.getX();
-        mouseY = evt.getY();
-    }//GEN-LAST:event_topBar1MousePressed
+    private void DisposeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMouseMoved
+        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton2.png")));
+    }//GEN-LAST:event_DisposeButtonMouseMoved
+
+    private void DisposeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMouseExited
+        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png")));
+    }//GEN-LAST:event_DisposeButtonMouseExited
+
+    private void MinimizeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseMoved
+        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton2.png")));
+    }//GEN-LAST:event_MinimizeButtonMouseMoved
+
+    private void MinimizeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseExited
+        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png")));
+    }//GEN-LAST:event_MinimizeButtonMouseExited
+
+    private void FullScreenButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonMouseMoved
+        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton2.png")));
+    }//GEN-LAST:event_FullScreenButtonMouseMoved
+
+    private void FullScreenButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonMouseExited
+        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png")));
+    }//GEN-LAST:event_FullScreenButtonMouseExited
+
+    private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
+        if (evt.getClickCount() >= 0) {
+            this.dispose();
+        } 
+    }//GEN-LAST:event_DisposeButtonMousePressed
+
+    private void MinimizeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMousePressed
+        if (evt.getClickCount() >= 0) {
+            this.setExtendedState(1);  
+        } 
+    }//GEN-LAST:event_MinimizeButtonMousePressed
+
+    private void DisposeButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseMoved
+        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW2.png")));
+    }//GEN-LAST:event_DisposeButtonWMouseMoved
+
+    private void DisposeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseExited
+        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png")));
+    }//GEN-LAST:event_DisposeButtonWMouseExited
+
+    private void FullScreenButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonWMouseMoved
+        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW2.png")));
+    }//GEN-LAST:event_FullScreenButtonWMouseMoved
+
+    private void FullScreenButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonWMouseExited
+        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW.png")));
+    }//GEN-LAST:event_FullScreenButtonWMouseExited
+
+    private void MinimizeButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMouseMoved
+        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW2.png")));
+    }//GEN-LAST:event_MinimizeButtonWMouseMoved
+
+    private void MinimizeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMouseExited
+         MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png")));
+    }//GEN-LAST:event_MinimizeButtonWMouseExited
+
+    private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
+        if (evt.getClickCount() >= 0) {
+            this.dispose();
+        } 
+    }//GEN-LAST:event_DisposeButtonWMousePressed
+
+    private void MinimizeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMousePressed
+        if (evt.getClickCount() >= 0) {
+            this.setExtendedState(1);  
+        } 
+    }//GEN-LAST:event_MinimizeButtonWMousePressed
 
     private void homeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonMouseMoved
         containerHome.setBackground(new Color(58,59,60));
@@ -673,13 +691,13 @@ public class Profile extends javax.swing.JFrame {
         containerHome.setBackground(new Color(31,32,36));
     }//GEN-LAST:event_homeButtonMouseExited
 
-    private void settingsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseMoved
-        containerSettings.setBackground(new Color(84,86,86));
-    }//GEN-LAST:event_settingsMouseMoved
+    private void userMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseMoved
+        containerUser.setBackground(new Color(84,86,86));
+    }//GEN-LAST:event_userMouseMoved
 
-    private void settingsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseExited
-        containerSettings.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_settingsMouseExited
+    private void userMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseExited
+        containerUser.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_userMouseExited
 
     private void notificationsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationsMouseMoved
         containerNotifications.setBackground(new Color(84,86,86));
@@ -689,13 +707,34 @@ public class Profile extends javax.swing.JFrame {
         containerNotifications.setBackground(new Color(58,59,60));
     }//GEN-LAST:event_notificationsMouseExited
 
-    private void userMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseMoved
-        containerUser.setBackground(new Color(84,86,86));
-    }//GEN-LAST:event_userMouseMoved
+    private void settingsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseMoved
+        containerSettings.setBackground(new Color(84,86,86));
+    }//GEN-LAST:event_settingsMouseMoved
 
-    private void userMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseExited
-        containerUser.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_userMouseExited
+    private void settingsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseExited
+        containerSettings.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_settingsMouseExited
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        PostOffset = 0;
+        App.GetSingleton().Client.DoFetchPosts(PostOffset);
+    }//GEN-LAST:event_formComponentShown
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        App.GetSingleton().SetState(AppState.Profile);
+    }//GEN-LAST:event_userActionPerformed
+
+    private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
+        App.GetSingleton().SetState(AppState.Settings);
+    }//GEN-LAST:event_settingsActionPerformed
+
+    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_logoMouseClicked
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     private void postButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseMoved
         containerPost.setBackground(new Color(78,78,79));
@@ -704,6 +743,10 @@ public class Profile extends javax.swing.JFrame {
     private void postButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseExited
         containerPost.setBackground(new Color(58,59,60));
     }//GEN-LAST:event_postButtonMouseExited
+
+    private void postButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postButtonActionPerformed
+        App.GetSingleton().SetState(AppState.CreatePost);
+    }//GEN-LAST:event_postButtonActionPerformed
 
     private void addPhotoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPhotoMouseMoved
         containerPhoto.setBackground(new Color(58,59,60));
@@ -724,43 +767,19 @@ public class Profile extends javax.swing.JFrame {
     private void user2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_user2ActionPerformed
-
-    private void notificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_notificationsActionPerformed
-
-    private void postButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_postButtonActionPerformed
-
-    private void homeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonMouseClicked
-        // TODO add your handling code here:
-        App.GetSingleton().SetState(AppState.Home);
-    }//GEN-LAST:event_homeButtonMouseClicked
-
-    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-        // TODO add your handling code here:
-        App.GetSingleton().SetState(AppState.Profile);
-    }//GEN-LAST:event_userActionPerformed
-
-    private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
-        // TODO add your handling code here:
-        App.GetSingleton().SetState(AppState.Settings);
-    }//GEN-LAST:event_settingsActionPerformed
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel About;
     private javax.swing.JLabel DisposeButton;
     private javax.swing.JLabel DisposeButtonW;
     private javax.swing.JLabel FullScreenButton;
     private javax.swing.JLabel FullScreenButtonW;
     private javax.swing.JLabel MinimizeButton;
     private javax.swing.JLabel MinimizeButtonW;
-    private javax.swing.JLabel Title1;
-    private javax.swing.JLabel Title2;
+    private javax.swing.JLabel Title;
     private javax.swing.JButton addPhoto;
-    private View.Components.RoundedPanel addPost;
-    private View.Components.RoundedPanel addPost1;
+    private javax.swing.JPanel addPost;
+    private View.Components.RoundedPanel addPostRoundedPane;
     private View.Components.RoundedPanel containerHome;
     private View.Components.RoundPanelText containerImage;
     private View.Components.RoundPanelText containerNotifications;
@@ -770,8 +789,11 @@ public class Profile extends javax.swing.JFrame {
     private View.Components.RoundPanelText containerSettings;
     private View.Components.RoundPanelText containerUser;
     private View.Components.RoundPanelText containerUser1;
+    private javax.swing.JPanel content;
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -780,23 +802,23 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private View.Components.Post post1;
-    private View.Components.Post post2;
+    private View.Components.Post post3;
     private javax.swing.JButton postButton;
-    private javax.swing.JLabel profileImage;
+    private javax.swing.JPanel posts;
+    private View.Components.RoundPanelText roundPanelText1;
+    private View.Components.RoundedPanel roundedPanel4;
+    private View.Components.RoundedPanel roundedPanel5;
     private javax.swing.JPanel scrollPosts;
     private javax.swing.JTextField search;
     private javax.swing.JLabel searchIcon;
     private javax.swing.JButton settings;
-    private javax.swing.JPanel topBar1;
+    private javax.swing.JPanel topBar;
     private javax.swing.JPanel topMenu;
-    private javax.swing.JPanel topUser;
     private javax.swing.JButton user;
     private javax.swing.JButton user1;
     private javax.swing.JButton user2;

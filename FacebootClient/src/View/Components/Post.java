@@ -147,7 +147,7 @@ public class Post extends javax.swing.JPanel {
 
         post.add(containerLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 200, 30));
 
-        add(post, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 31, 734, 280));
+        add(post, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 734, 280));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCommentMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCommentMouseMoved
