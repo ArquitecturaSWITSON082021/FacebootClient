@@ -34,7 +34,8 @@ public class App {
     public Controllers.HomeController HomeController;
     public Controllers.RegisterController RegisterController;
     public View.Home HomeView;
-    public View.Register RegisterView;
+    public View.Components.RegisterModal RegisterModal;
+    public View.Components.CreatePostModal CreatePostModal;
     public View.Profile ProfileView;
     public View.Settings SettingsView;
     public View.SettingsAccounts SettingsAccountsView;
@@ -54,7 +55,8 @@ public class App {
         LoginController = new Controllers.LoginController(this);
         HomeView = new View.Home();
         HomeController = new Controllers.HomeController(this);
-        RegisterView = new View.Register();
+        RegisterModal = new View.Components.RegisterModal(LoginView, true);
+        CreatePostModal = new View.Components.CreatePostModal(HomeView, true);
         RegisterController = new Controllers.RegisterController(this);
         ProfileView = new View.Profile();
         SettingsView = new View.Settings();
@@ -89,11 +91,12 @@ public class App {
     public void SetState(AppState newState){
         // Update the application state.
         State = newState;
-        
+
         // Hide and show the necessary views, given the state.
-        LoginView.setVisible(State == AppState.Login);
-        HomeView.setVisible(State == AppState.Home);
-        RegisterView.setVisible(State == AppState.Register);
+        LoginView.setVisible(State == AppState.Login || State == AppState.Register);
+        HomeView.setVisible(State == AppState.Home || State == AppState.CreatePost);
+        RegisterModal.setVisible(State == AppState.Register);
+        CreatePostModal.setVisible(State == AppState.CreatePost);
         ProfileView.setVisible(State == AppState.Profile);
         SettingsView.setVisible(State == AppState.Settings);      
         SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
@@ -171,7 +174,6 @@ public class App {
         }
         //</editor-fold>
 
-        
         new App();
     }
     
