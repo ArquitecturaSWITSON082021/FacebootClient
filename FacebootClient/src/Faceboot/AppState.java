@@ -14,6 +14,7 @@ public enum AppState {
     Login,
     Register,
     Home,
+    CreatePost,
     Profile,
     Settings,
     LinkedAccounts
