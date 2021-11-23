@@ -3,20 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View.Components;
+package View.panels;
 
 import Faceboot.App;
+import View.Components.TextPrompt;
 import java.awt.Color;
-import java.awt.geom.RoundRectangle2D;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -25,34 +20,25 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author orlandocamacho
  */
-public class RegisterModal extends javax.swing.JDialog {
+public class RegisterPanel extends javax.swing.JPanel {
 
     ButtonGroup group = new ButtonGroup();
     
     /**
-     * Creates new form RegisterModal
-     * @param parent
-     * @param modal
+     * Creates new form LogInPanel
      */
-    public RegisterModal(java.awt.Frame parent, boolean modal) {
-        
-        super(parent, modal);
-        
-        this.setUndecorated(true);
-        super.setUndecorated(true);
-        
-        setShape(new RoundRectangle2D.Double(0, 0, 430, 641,22,22));
+    public RegisterPanel() {
         initComponents();
-        
+
         new TextPrompt("Nombre", name);
         new TextPrompt("Apellido", lastname);
         new TextPrompt("Correo electrónico", email);
         new TextPrompt("Telefono", phone);
         new TextPrompt("Contraseña", password1);
         new TextPrompt("Confirmar contraseña", confirmPassword);
-        
-        setLocationRelativeTo(null);
 
+        comboboxSetInvisible();
+        
         male.setActionCommand("male");
         female.setActionCommand("female");
         personalized.setActionCommand("Personalized");
@@ -121,8 +107,9 @@ public class RegisterModal extends javax.swing.JDialog {
         containerName87 = new View.Components.RoundedPanel();
         confirmPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
+        setBackground(new java.awt.Color(23, 24, 26));
+        setPreferredSize(new java.awt.Dimension(1024, 685));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         roundedPanel.setBackground(new java.awt.Color(35, 36, 37));
         roundedPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -185,7 +172,6 @@ public class RegisterModal extends javax.swing.JDialog {
         female.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/RadioButtonHover.png"))); // NOI18N
         female.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/RadioButtonSelected.png"))); // NOI18N
         containerName81.add(female, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 80, 40));
-        female.getAccessibleContext().setAccessibleName("Female");
 
         roundedPanel.add(containerName81, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 100, 40));
 
@@ -203,7 +189,6 @@ public class RegisterModal extends javax.swing.JDialog {
         personalized.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/RadioButtonHover.png"))); // NOI18N
         personalized.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/RadioButtonSelected.png"))); // NOI18N
         containerName82.add(personalized, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 130, 40));
-        personalized.getAccessibleContext().setAccessibleName("Perzonalized");
 
         roundedPanel.add(containerName82, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 150, 40));
 
@@ -218,8 +203,8 @@ public class RegisterModal extends javax.swing.JDialog {
 
         cDay.setBackground(new java.awt.Color(58, 59, 60));
         cDay.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cDay.setForeground(new java.awt.Color(204, 204, 204));
-        cDay.setMaximumRowCount(12);
+        cDay.setForeground(new java.awt.Color(255, 255, 255));
+        cDay.setMaximumRowCount(10);
         cDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cDay.setBorder(null);
         containerName83.add(cDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, 40));
@@ -259,7 +244,6 @@ public class RegisterModal extends javax.swing.JDialog {
         male.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/RadioButtonHover.png"))); // NOI18N
         male.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/RadioButtonSelected.png"))); // NOI18N
         containerName85.add(male, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, 40));
-        male.getAccessibleContext().setAccessibleName("Male");
 
         roundedPanel.add(containerName85, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, 120, 40));
 
@@ -299,11 +283,6 @@ public class RegisterModal extends javax.swing.JDialog {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 phoneFocusLost(evt);
-            }
-        });
-        phone.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                phoneKeyTyped(evt);
             }
         });
 
@@ -509,28 +488,17 @@ public class RegisterModal extends javax.swing.JDialog {
 
         roundedPanel.add(containerName87, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 390, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        pack();
+        add(roundedPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 22, -1, 640));
     }// </editor-fold>//GEN-END:initComponents
 
     private void closecloseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closecloseMousePressed
         if (evt.getClickCount() >= 0) {
-            this.dispose();
+
         }
     }//GEN-LAST:event_closecloseMousePressed
 
     private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed
-        
+
         String name = this.name.getText();
         String lastName = this.lastname.getText();
         String email = this.email.getText();
@@ -540,55 +508,55 @@ public class RegisterModal extends javax.swing.JDialog {
         String birthday = this.cDay.getSelectedItem() + "/" + this.cMonth.getSelectedItem() + "/" + this.cYear.getSelectedItem();
         String gender = this.group.getSelection().getActionCommand();
 
-        App.GetSingleton().RegisterController.AttemptRegister(name, lastName, email, phone, password, confirmPassword, birthday, gender);      
+        App.GetSingleton().RegisterController.AttemptRegister(name, lastName, email, phone, password, confirmPassword, birthday, gender);
     }//GEN-LAST:event_signUpActionPerformed
 
-    private void lastnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastnameFocusGained
-        lastname.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37,119,241)));
-    }//GEN-LAST:event_lastnameFocusGained
-
-    private void lastnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastnameFocusLost
-        lastname.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58,59,60)));
-    }//GEN-LAST:event_lastnameFocusLost
-
-    private void emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusGained
-        email.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37,119,241)));
-    }//GEN-LAST:event_emailFocusGained
-
-    private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
-        email.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58,59,60)));
-    }//GEN-LAST:event_emailFocusLost
-
-    private void nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusGained
-        name.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37,119,241)));
-    }//GEN-LAST:event_nameFocusGained
-
-    private void nameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusLost
-        name.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58,59,60)));
-    }//GEN-LAST:event_nameFocusLost
-
-    private void password1passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password1passwordFocusGained
-        password1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37,119,241)));
-    }//GEN-LAST:event_password1passwordFocusGained
-
-    private void password1passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password1passwordFocusLost
-        password1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58,59,60)));
-    }//GEN-LAST:event_password1passwordFocusLost
-
     private void phoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusGained
-        phone.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37,119,241)));
+        phone.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37, 119, 241)));
     }//GEN-LAST:event_phoneFocusGained
 
     private void phoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusLost
-        phone.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58,59,60)));
+        phone.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58, 59, 60)));
     }//GEN-LAST:event_phoneFocusLost
 
+    private void lastnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastnameFocusGained
+        lastname.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37, 119, 241)));
+    }//GEN-LAST:event_lastnameFocusGained
+
+    private void lastnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastnameFocusLost
+        lastname.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58, 59, 60)));
+    }//GEN-LAST:event_lastnameFocusLost
+
+    private void emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusGained
+        email.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37, 119, 241)));
+    }//GEN-LAST:event_emailFocusGained
+
+    private void emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusLost
+        email.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58, 59, 60)));
+    }//GEN-LAST:event_emailFocusLost
+
+    private void nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusGained
+        name.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37, 119, 241)));
+    }//GEN-LAST:event_nameFocusGained
+
+    private void nameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusLost
+        name.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58, 59, 60)));
+    }//GEN-LAST:event_nameFocusLost
+
+    private void password1passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password1passwordFocusGained
+        password1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37, 119, 241)));
+    }//GEN-LAST:event_password1passwordFocusGained
+
+    private void password1passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password1passwordFocusLost
+        password1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58, 59, 60)));
+    }//GEN-LAST:event_password1passwordFocusLost
+
     private void confirmPasswordpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmPasswordpasswordFocusGained
-        confirmPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37,119,241)));
+        confirmPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37, 119, 241)));
     }//GEN-LAST:event_confirmPasswordpasswordFocusGained
 
     private void confirmPasswordpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmPasswordpasswordFocusLost
-        confirmPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58,59,60)));
+        confirmPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(58, 59, 60)));
     }//GEN-LAST:event_confirmPasswordpasswordFocusLost
 
     private void cMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cMonthActionPerformed
@@ -621,24 +589,14 @@ public class RegisterModal extends javax.swing.JDialog {
         } 
     }//GEN-LAST:event_cYearActionPerformed
 
-    private void phoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyTyped
-        char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
-            evt.consume();
-        }
-
-        if (phone.getText().length() == 10)
-            evt.consume();
-    }//GEN-LAST:event_phoneKeyTyped
-
-    private void comboboxSetInvisible(){
+    public void comboboxSetInvisible() {
         cDay.setOpaque(false);
-        cDay.setBackground(new Color(0,0,0,0));
+        cDay.setBackground(new Color(0, 0, 0, 0));
         cDay.setForeground(Color.WHITE);
         cMonth.setOpaque(false);
-        cMonth.setBackground(new Color(0,0,0,0));
+        cMonth.setBackground(new Color(0, 0, 0, 0));
         cYear.setOpaque(false);
-        cYear.setBackground(new Color(0,0,0,0));
+        cYear.setBackground(new Color(0, 0, 0, 0));
     }
     
     private void fillComboBoxDay(int month, int year){
@@ -672,7 +630,7 @@ public class RegisterModal extends javax.swing.JDialog {
         cMonth.setModel(new DefaultComboBoxModel<String>(months.toArray(new String[0])));
         cYear.setModel(new DefaultComboBoxModel<String>(years.toArray(new String[0])));
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cDay;
