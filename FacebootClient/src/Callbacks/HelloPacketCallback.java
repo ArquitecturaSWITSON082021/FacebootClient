@@ -7,13 +7,13 @@ package Callbacks;
 
 import Faceboot.App;
 import FacebootNet.FacebootNetCallback;
-import FacebootNet.Packets.Server.SHelloPacket;
+import FacebootNet.Packets.Server.SHandshakePacket;
 
 /**
  * HelloPacketCallback, may get called if given on FacebootNet.Client.
  * @author Ivy
  */
-public class HelloPacketCallback extends FacebootNetCallback<SHelloPacket> {
+public class HelloPacketCallback extends FacebootNetCallback<SHandshakePacket> {
 
     private App app;
     
@@ -24,7 +24,7 @@ public class HelloPacketCallback extends FacebootNetCallback<SHelloPacket> {
     
     @Override
     public Object call(){
-        app.OnHello((SHelloPacket)GetRequest());
+        app.OnHello((SHandshakePacket)GetRequest());
         return null;
     }
     

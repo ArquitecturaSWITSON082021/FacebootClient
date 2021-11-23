@@ -6,12 +6,14 @@ import FacebootNet.Engine.Opcodes;
 import FacebootNet.Engine.PacketBuffer;
 import FacebootNet.FacebootNetClient;
 import FacebootNet.Packets.Server.SFetchPostsPacket;
-import FacebootNet.Packets.Server.SHelloPacket;
+import FacebootNet.Packets.Server.SHandshakePacket;
 import FacebootNet.Packets.Server.SLoginPacket;
+import FacebootNet.Packets.Server.SRegisterPacket;
 import View.Home;
 import View.Login;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,6 +42,11 @@ public class App {
     public View.Settings SettingsView;
     public View.SettingsAccounts SettingsAccountsView;
     private AppState State;
+    
+    // TODO: DELETE THIS AFTER
+    public String UserName;
+    public int UserId;
+    // END
     
     // Entry point of Faceboot app.
     public App(){
@@ -100,13 +107,14 @@ public class App {
         ProfileView.setVisible(State == AppState.Profile);
         SettingsView.setVisible(State == AppState.Settings);      
         SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
+
     }
     
     /**
      * OnHelloPacket callback. Returns the server application version, services running, etc.
      * @param request 
      */
-    public void OnHello(SHelloPacket request){
+    public void OnHello(SHandshakePacket request){
         // Print hello response from server for debugging purposes.
         System.out.printf("[+] Got hello response from server. ApplicationVersion=%d, IsAuthServiceRunning=%b.\n",
                 request.ApplicationVersion,
@@ -141,6 +149,8 @@ public class App {
                 LoginController.OnLogin(SLoginPacket.Deserialize(data));
             else if (packet.GetOpcode() == Opcodes.FetchPosts)
                 HomeController.OnFetchPosts(SFetchPostsPacket.Deserialize(data));
+            else if (packet.GetOpcode() == Opcodes.DoRegister)
+                RegisterController.OnRegister(SRegisterPacket.Deserialize(data));
             
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

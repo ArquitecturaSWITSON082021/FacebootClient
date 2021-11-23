@@ -67,5 +67,7 @@ public class LoginController extends BaseController {
                 request.TokenId);
 
         app.SetState(AppState.Home);
+        app.UserId = request.UserId;
+        app.UserName = request.UserName;
     }
 }

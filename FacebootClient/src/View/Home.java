@@ -668,6 +668,7 @@ public class Home extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         PostOffset = 0;
         App.GetSingleton().Client.DoFetchPosts(PostOffset);
+        postButton.setText("¿Qué estás pensando, " + App.GetSingleton().UserName + "?");
     }//GEN-LAST:event_formComponentShown
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
