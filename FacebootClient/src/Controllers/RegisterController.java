@@ -9,6 +9,12 @@ import Faceboot.App;
 import Faceboot.AppState;
 import Faceboot.Utils;
 import FacebootNet.Packets.Server.SLoginPacket;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * RegisterController, may get called when client receives packets with
@@ -33,7 +39,7 @@ public class RegisterController extends BaseController {
      * @param email
      * @param password
      */
-    public void AttemptRegister(String Name, String LastName, String Email, String Password) {
+    public void AttemptRegister(String Name, String LastName, String Email, String Phone, String Password, String ConfirmPassword, String Birthday, String Gender){
         try {
             
             if (Name.length() <= 0) {
@@ -47,11 +53,27 @@ public class RegisterController extends BaseController {
             if (!Utils.IsEmail(Email)) {
                 throw new Exception("El correo proporcionado es inválido.");
             }
-
+            
+            if (Phone.length() <= 0){
+                throw new Exception("El numero de telefono no puede estar vacio.");
+            }
+            
             if (Password.length() <= 0) {
                 throw new Exception("La contraseña no puede estar vacía.");
             }
-
+            
+            if (!Password.equalsIgnoreCase(ConfirmPassword)){
+                throw new Exception("Lascontraseñas no coinciden.");
+            }
+            
+            Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(Birthday);
+            Date today = new Date();
+            
+            Period period = Period.between(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), today.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            if (period.getYears() < 18){
+                throw new Exception("Es necesario ser mayor de edad para completar el registro.");
+            }
+            
             // If everything is valid, attempt to register with server.
             app.SetState(AppState.Login);
             Utils.ShowInfoMessage("Registro exitoso");

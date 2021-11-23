@@ -3,50 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package View.panels;
 
 import Faceboot.App;
 import Faceboot.AppState;
-import View.Components.CustomScrollBarUI;
 import View.Components.TextPrompt;
 import java.awt.Color;
-import java.awt.geom.RoundRectangle2D;
-import java.io.File;
-
 
 /**
  *
  * @author orlandocamacho
  */
-public class Settings extends javax.swing.JFrame {
-    
-    private int mouseX;
-    private int mouseY;
-    private int PostOffset;
+public class SettingsPanel extends javax.swing.JPanel {
 
+     private int PostOffset;
+    
     /**
-     * Creates new form Login
+     * Creates new form LogInPanel
      */
-    public Settings() {
+    public SettingsPanel() {
         initComponents();
         
         new TextPrompt("Buscar en faceboot", search);
-        
-        
-        String separator = File.separator;
-        
-        if (separator.equals("/")) {
-            setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 22, 22));
-            this.DisposeButtonW.setVisible(false);
-            this.MinimizeButtonW.setVisible(false);
-            this.FullScreenButtonW.setVisible(false);
-        } else {
-            setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 0, 0));
-            this.DisposeButton.setVisible(false);
-            this.MinimizeButton.setVisible(false);
-            this.FullScreenButton.setVisible(false);
-        }
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -58,14 +36,6 @@ public class Settings extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        topBar = new javax.swing.JPanel();
-        DisposeButton = new javax.swing.JLabel();
-        MinimizeButton = new javax.swing.JLabel();
-        FullScreenButton = new javax.swing.JLabel();
-        Title = new javax.swing.JLabel();
-        DisposeButtonW = new javax.swing.JLabel();
-        FullScreenButtonW = new javax.swing.JLabel();
-        MinimizeButtonW = new javax.swing.JLabel();
         topMenu = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         containerSearch = new View.Components.RoundPanelText();
@@ -115,140 +85,13 @@ public class Settings extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
+        setBackground(new java.awt.Color(23, 24, 26));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        topBar.setBackground(new java.awt.Color(31, 32, 36));
-        topBar.setPreferredSize(new java.awt.Dimension(0, 35));
-        topBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                topBarMouseDragged(evt);
-            }
-        });
-        topBar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                topBarMousePressed(evt);
-            }
-        });
-        topBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        DisposeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png"))); // NOI18N
-        DisposeButton.setMaximumSize(new java.awt.Dimension(14, 14));
-        DisposeButton.setMinimumSize(new java.awt.Dimension(14, 14));
-        DisposeButton.setPreferredSize(new java.awt.Dimension(14, 14));
-        DisposeButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                DisposeButtonMouseMoved(evt);
-            }
-        });
-        DisposeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                DisposeButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DisposeButtonMousePressed(evt);
-            }
-        });
-        topBar.add(DisposeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        MinimizeButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png"))); // NOI18N
-        MinimizeButton.setMaximumSize(new java.awt.Dimension(14, 14));
-        MinimizeButton.setMinimumSize(new java.awt.Dimension(14, 14));
-        MinimizeButton.setPreferredSize(new java.awt.Dimension(14, 14));
-        MinimizeButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                MinimizeButtonMouseMoved(evt);
-            }
-        });
-        MinimizeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                MinimizeButtonMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MinimizeButtonMousePressed(evt);
-            }
-        });
-        topBar.add(MinimizeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
-
-        FullScreenButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png"))); // NOI18N
-        FullScreenButton.setMaximumSize(new java.awt.Dimension(14, 14));
-        FullScreenButton.setMinimumSize(new java.awt.Dimension(14, 14));
-        FullScreenButton.setPreferredSize(new java.awt.Dimension(14, 14));
-        FullScreenButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                FullScreenButtonMouseMoved(evt);
-            }
-        });
-        FullScreenButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                FullScreenButtonMouseExited(evt);
-            }
-        });
-        topBar.add(FullScreenButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
-
-        Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/Faceboot.png"))); // NOI18N
-        topBar.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(439, 0, 145, 35));
-
-        DisposeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png"))); // NOI18N
-        DisposeButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                DisposeButtonWMouseMoved(evt);
-            }
-        });
-        DisposeButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                DisposeButtonWMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                DisposeButtonWMousePressed(evt);
-            }
-        });
-        topBar.add(DisposeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(968, 0, 55, 33));
-
-        FullScreenButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW.png"))); // NOI18N
-        FullScreenButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                FullScreenButtonWMouseMoved(evt);
-            }
-        });
-        FullScreenButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                FullScreenButtonWMouseExited(evt);
-            }
-        });
-        topBar.add(FullScreenButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(911, 0, 55, 33));
-
-        MinimizeButtonW.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png"))); // NOI18N
-        MinimizeButtonW.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                MinimizeButtonWMouseMoved(evt);
-            }
-        });
-        MinimizeButtonW.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                MinimizeButtonWMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                MinimizeButtonWMousePressed(evt);
-            }
-        });
-        topBar.add(MinimizeButtonW, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 0, 55, 33));
-
-        getContentPane().add(topBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1024, -1));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         topMenu.setBackground(new java.awt.Color(31, 32, 36));
         topMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -392,7 +235,7 @@ public class Settings extends javax.swing.JFrame {
 
         topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
 
-        getContentPane().add(topMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 1024, 57));
+        add(topMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1024, 57));
 
         content.setBackground(new java.awt.Color(23, 24, 26));
 
@@ -671,94 +514,12 @@ public class Settings extends javax.swing.JFrame {
                 .addGap(11, 11, 11))
         );
 
-        getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1024, 630));
-
-        pack();
+        add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 57, 1024, 630));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void topBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBarMousePressed
-        mouseX = evt.getX();
-        mouseY = evt.getY();
-    }//GEN-LAST:event_topBarMousePressed
-
-    private void topBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topBarMouseDragged
-        int X = evt.getXOnScreen();
-        int Y = evt.getYOnScreen();
-
-        setLocation(X - mouseX, Y - mouseY + 1);
-    }//GEN-LAST:event_topBarMouseDragged
-
-    private void DisposeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMouseMoved
-        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton2.png")));
-    }//GEN-LAST:event_DisposeButtonMouseMoved
-
-    private void DisposeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMouseExited
-        DisposeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png")));
-    }//GEN-LAST:event_DisposeButtonMouseExited
-
-    private void MinimizeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseMoved
-        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton2.png")));
-    }//GEN-LAST:event_MinimizeButtonMouseMoved
-
-    private void MinimizeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMouseExited
-        MinimizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButton.png")));
-    }//GEN-LAST:event_MinimizeButtonMouseExited
-
-    private void FullScreenButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonMouseMoved
-        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton2.png")));
-    }//GEN-LAST:event_FullScreenButtonMouseMoved
-
-    private void FullScreenButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonMouseExited
-        FullScreenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButton.png")));
-    }//GEN-LAST:event_FullScreenButtonMouseExited
-
-    private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.dispose();
-        } 
-    }//GEN-LAST:event_DisposeButtonMousePressed
-
-    private void MinimizeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setExtendedState(1);  
-        } 
-    }//GEN-LAST:event_MinimizeButtonMousePressed
-
-    private void DisposeButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseMoved
-        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW2.png")));
-    }//GEN-LAST:event_DisposeButtonWMouseMoved
-
-    private void DisposeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMouseExited
-        DisposeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButtonW.png")));
-    }//GEN-LAST:event_DisposeButtonWMouseExited
-
-    private void FullScreenButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonWMouseMoved
-        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW2.png")));
-    }//GEN-LAST:event_FullScreenButtonWMouseMoved
-
-    private void FullScreenButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FullScreenButtonWMouseExited
-        FullScreenButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/FullScreenButtonW.png")));
-    }//GEN-LAST:event_FullScreenButtonWMouseExited
-
-    private void MinimizeButtonWMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMouseMoved
-        MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW2.png")));
-    }//GEN-LAST:event_MinimizeButtonWMouseMoved
-
-    private void MinimizeButtonWMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMouseExited
-         MinimizeButtonW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/MinimizeButtonW.png")));
-    }//GEN-LAST:event_MinimizeButtonWMouseExited
-
-    private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.dispose();
-        } 
-    }//GEN-LAST:event_DisposeButtonWMousePressed
-
-    private void MinimizeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimizeButtonWMousePressed
-        if (evt.getClickCount() >= 0) {
-            this.setExtendedState(1);  
-        } 
-    }//GEN-LAST:event_MinimizeButtonWMousePressed
+    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_logoMouseClicked
 
     private void homeButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonMouseMoved
         containerHome.setBackground(new Color(58,59,60));
@@ -768,21 +529,9 @@ public class Settings extends javax.swing.JFrame {
         containerHome.setBackground(new Color(31,32,36));
     }//GEN-LAST:event_homeButtonMouseExited
 
-    private void userMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseMoved
-        containerUser.setBackground(new Color(84,86,86));
-    }//GEN-LAST:event_userMouseMoved
-
-    private void userMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseExited
-        containerUser.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_userMouseExited
-
-    private void notificationsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationsMouseMoved
-        containerNotifications.setBackground(new Color(84,86,86));
-    }//GEN-LAST:event_notificationsMouseMoved
-
-    private void notificationsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationsMouseExited
-        containerNotifications.setBackground(new Color(58,59,60));
-    }//GEN-LAST:event_notificationsMouseExited
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        App.GetSingleton().SetState(AppState.Home);
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     private void settingsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseMoved
         containerSettings.setBackground(new Color(84,86,86));
@@ -792,26 +541,29 @@ public class Settings extends javax.swing.JFrame {
         containerSettings.setBackground(new Color(58,59,60));
     }//GEN-LAST:event_settingsMouseExited
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        PostOffset = 0;
-        App.GetSingleton().Client.DoFetchPosts(PostOffset);
-    }//GEN-LAST:event_formComponentShown
-
-    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-        App.GetSingleton().SetState(AppState.Profile);
-    }//GEN-LAST:event_userActionPerformed
-
     private void settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsActionPerformed
         App.GetSingleton().SetState(AppState.Settings);
     }//GEN-LAST:event_settingsActionPerformed
 
-    private void logoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoMouseClicked
-        App.GetSingleton().SetState(AppState.Home);
-    }//GEN-LAST:event_logoMouseClicked
+    private void notificationsMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationsMouseMoved
+        containerNotifications.setBackground(new Color(84,86,86));
+    }//GEN-LAST:event_notificationsMouseMoved
 
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        App.GetSingleton().SetState(AppState.Home);
-    }//GEN-LAST:event_homeButtonActionPerformed
+    private void notificationsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notificationsMouseExited
+        containerNotifications.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_notificationsMouseExited
+
+    private void userMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseMoved
+        containerUser.setBackground(new Color(84,86,86));
+    }//GEN-LAST:event_userMouseMoved
+
+    private void userMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseExited
+        containerUser.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_userMouseExited
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        App.GetSingleton().SetState(AppState.Profile);
+    }//GEN-LAST:event_userActionPerformed
 
     private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
         // TODO add your handling code here:
@@ -860,16 +612,14 @@ public class Settings extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
-    
-    
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        PostOffset = 0;
+        App.GetSingleton().Client.DoFetchPosts(PostOffset);
+    }//GEN-LAST:event_formComponentShown
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel DisposeButton;
-    private javax.swing.JLabel DisposeButtonW;
-    private javax.swing.JLabel FullScreenButton;
-    private javax.swing.JLabel FullScreenButtonW;
-    private javax.swing.JLabel MinimizeButton;
-    private javax.swing.JLabel MinimizeButtonW;
-    private javax.swing.JLabel Title;
     private View.Components.RoundedPanel containerHome;
     private View.Components.RoundPanelText containerLink;
     private View.Components.RoundPanelText containerNotifications;
@@ -910,7 +660,6 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JTextField search;
     private javax.swing.JLabel searchIcon;
     private javax.swing.JButton settings;
-    private javax.swing.JPanel topBar;
     private javax.swing.JPanel topMenu;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtBirth;

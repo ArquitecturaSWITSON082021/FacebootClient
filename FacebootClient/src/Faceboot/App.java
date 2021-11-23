@@ -12,6 +12,7 @@ import View.Home;
 import View.Login;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -100,6 +101,7 @@ public class App {
         ProfileView.setVisible(State == AppState.Profile);
         SettingsView.setVisible(State == AppState.Settings);      
         SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
+
     }
     
     /**
