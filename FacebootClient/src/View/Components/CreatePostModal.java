@@ -5,8 +5,20 @@
  */
 package View.Components;
 
+import Faceboot.App;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -14,19 +26,20 @@ import java.awt.geom.RoundRectangle2D;
  */
 public class CreatePostModal extends javax.swing.JDialog {
 
+    private static byte[] pickedImage;
     /**
      * Creates new form CreatePostModal
      */
     public CreatePostModal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
+
         this.setUndecorated(true);
         super.setUndecorated(true);
-        
-        setShape(new RoundRectangle2D.Double(0, 0, 500, 400,22,22));
-        
+
+        setShape(new RoundRectangle2D.Double(0, 0, 500, 400, 22, 22));
+
         initComponents();
-            
+
         setLocationRelativeTo(null);
     }
 
@@ -50,7 +63,7 @@ public class CreatePostModal extends javax.swing.JDialog {
         roundedPanel2 = new View.Components.RoundedPanel();
         jLabel3 = new javax.swing.JLabel();
         scrollText = new javax.swing.JScrollPane();
-        Text = new javax.swing.JTextArea();
+        postContents = new javax.swing.JTextArea();
         containerBtn = new View.Components.RoundedPanel();
         CreateAccountBt = new javax.swing.JButton();
         roundedPanel5 = new View.Components.RoundedPanel();
@@ -141,13 +154,13 @@ public class CreatePostModal extends javax.swing.JDialog {
         scrollText.setBackground(new java.awt.Color(23, 24, 26));
         scrollText.setBorder(null);
 
-        Text.setBackground(new java.awt.Color(35, 36, 37));
-        Text.setColumns(20);
-        Text.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        Text.setForeground(new java.awt.Color(204, 204, 204));
-        Text.setRows(5);
-        Text.setText("¿Qué estás pensando?");
-        scrollText.setViewportView(Text);
+        postContents.setBackground(new java.awt.Color(35, 36, 37));
+        postContents.setColumns(20);
+        postContents.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        postContents.setForeground(new java.awt.Color(204, 204, 204));
+        postContents.setRows(5);
+        postContents.setText("¿Qué estás pensando?");
+        scrollText.setViewportView(postContents);
 
         roundedPanel1.add(scrollText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 460, 100));
 
@@ -167,6 +180,11 @@ public class CreatePostModal extends javax.swing.JDialog {
         CreateAccountBt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 CreateAccountBtMouseExited(evt);
+            }
+        });
+        CreateAccountBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateAccountBtActionPerformed(evt);
             }
         });
         containerBtn.add(CreateAccountBt, java.awt.BorderLayout.CENTER);
@@ -196,6 +214,11 @@ public class CreatePostModal extends javax.swing.JDialog {
         addPhoto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 addPhotoMouseExited(evt);
+            }
+        });
+        addPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPhotoActionPerformed(evt);
             }
         });
         addPhotoContainer.add(addPhoto, java.awt.BorderLayout.CENTER);
@@ -259,11 +282,11 @@ public class CreatePostModal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CreateAccountBtMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateAccountBtMouseMoved
-        containerBtn.setBackground(new Color(53,163,31));
+        containerBtn.setBackground(new Color(53, 163, 31));
     }//GEN-LAST:event_CreateAccountBtMouseMoved
 
     private void CreateAccountBtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateAccountBtMouseExited
-        containerBtn.setBackground(new Color(65,183,41));
+        containerBtn.setBackground(new Color(65, 183, 41));
     }//GEN-LAST:event_CreateAccountBtMouseExited
 
     private void cancelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMousePressed
@@ -273,33 +296,65 @@ public class CreatePostModal extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelMousePressed
 
     private void cancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseExited
-        cancelContainer.setBackground(new Color(58,59,60));
+        cancelContainer.setBackground(new Color(58, 59, 60));
     }//GEN-LAST:event_cancelMouseExited
 
     private void cancelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseMoved
-        cancelContainer.setBackground(new Color(84,86,86));
+        cancelContainer.setBackground(new Color(84, 86, 86));
     }//GEN-LAST:event_cancelMouseMoved
 
     private void addPhotoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPhotoMouseExited
-        addPhotoContainer.setBackground(new Color(35,36,37));
+        addPhotoContainer.setBackground(new Color(35, 36, 37));
     }//GEN-LAST:event_addPhotoMouseExited
 
     private void addPhotoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPhotoMouseMoved
-        addPhotoContainer.setBackground(new Color(58,59,60));
+        addPhotoContainer.setBackground(new Color(58, 59, 60));
     }//GEN-LAST:event_addPhotoMouseMoved
 
     private void tagUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tagUserMouseExited
-       tagUserContainer.setBackground(new Color(35,36,37));
+        tagUserContainer.setBackground(new Color(35, 36, 37));
     }//GEN-LAST:event_tagUserMouseExited
 
     private void tagUserMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tagUserMouseMoved
-        tagUserContainer.setBackground(new Color(58,59,60));
+        tagUserContainer.setBackground(new Color(58, 59, 60));
     }//GEN-LAST:event_tagUserMouseMoved
+
+    private void CreateAccountBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountBtActionPerformed
+        // TODO add your handling code here:
+        App.GetSingleton().PostsController.AttemptPost(postContents.getText(), CreatePostModal.pickedImage);
+    }//GEN-LAST:event_CreateAccountBtActionPerformed
+
+    private void addPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPhotoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser c = new JFileChooser();
+        
+        //Setting Up The Filter
+        FileFilter imageFilter = new FileNameExtensionFilter(
+                "Image files", ImageIO.getReaderFileSuffixes());
+
+        //Attaching Filter to JFileChooser object
+        c.setFileFilter(imageFilter);
+
+        //Displaying Filechooser
+        this.setVisible(false);
+        int rVal = c.showOpenDialog(new JPanel());
+        if (rVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                CreatePostModal.pickedImage = Files.readAllBytes(c.getSelectedFile().toPath());
+                if (CreatePostModal.pickedImage == null)
+                    throw new Exception("Invalid image.");
+            } catch (Exception ex) {
+                App.GetSingleton().DisplayErrorMessage("Error", "IO error");
+            }
+        } else {
+            CreatePostModal.pickedImage = null;
+        }
+        this.setVisible(true);
+    }//GEN-LAST:event_addPhotoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CreateAccountBt;
-    private javax.swing.JTextArea Text;
     private javax.swing.JButton addPhoto;
     private View.Components.RoundPanelText addPhotoContainer;
     private javax.swing.JButton cancel;
@@ -311,6 +366,7 @@ public class CreatePostModal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea postContents;
     private View.Components.RoundedPanel roundedPanel1;
     private View.Components.RoundedPanel roundedPanel2;
     private View.Components.RoundedPanel roundedPanel4;

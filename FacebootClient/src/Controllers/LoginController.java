@@ -48,7 +48,7 @@ public class LoginController extends BaseController {
             // If everything is valid, attempt to login with server.
             app.Client.DoLogin(Email, Password);
         } catch (Exception e) {
-            App.GetSingleton().DisplayErrorMessage("Error al iniciar sesión",e.getMessage());
+            app.DisplayErrorMessage("Error al iniciar sesión", e.getMessage());
         }
     }
 
@@ -66,9 +66,10 @@ public class LoginController extends BaseController {
                 request.UserEmail,
                 request.UserGender,
                 request.TokenId);
-        
-        if (request.ErrorCode != ErrorCode.NoError){
-            
+
+        if (request.ErrorCode != ErrorCode.NoError) {
+            app.DisplayErrorMessage(request.ErrorCode);
+            return;
         }
 
         app.SetState(AppState.Home);
