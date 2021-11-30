@@ -8,6 +8,7 @@ package Controllers;
 import Faceboot.App;
 import Faceboot.AppState;
 import Faceboot.Utils;
+import FacebootNet.Engine.ErrorCode;
 import FacebootNet.Packets.Server.SLoginPacket;
 
 /**
@@ -47,7 +48,7 @@ public class LoginController extends BaseController {
             // If everything is valid, attempt to login with server.
             app.Client.DoLogin(Email, Password);
         } catch (Exception e) {
-            Utils.ShowErrorMessage("Error al iniciar sesión: " + e.getMessage());
+            App.GetSingleton().DisplayErrorMessage("Error al iniciar sesión",e.getMessage());
         }
     }
 
@@ -65,6 +66,10 @@ public class LoginController extends BaseController {
                 request.UserEmail,
                 request.UserGender,
                 request.TokenId);
+        
+        if (request.ErrorCode != ErrorCode.NoError){
+            
+        }
 
         app.SetState(AppState.Home);
         app.UserId = request.UserId;

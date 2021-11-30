@@ -36,7 +36,7 @@ public class InternalController extends BaseController {
     }
 
     public void OnSocketError(SConnectionErrorPacket packet){
-            Utils.ShowErrorMessage(String.format(
+            App.GetSingleton().DisplayErrorMessage("Error de conexión", String.format(
                     "No ha sido posible conectarse al servidor de Faceboot. Por favor reintente de nuevo más tarde. "
                     + "Código de error: %d\n"
                     + "Error interno de la biblioteca de red: \"%s\".", packet.ErrorCode, packet.Message));

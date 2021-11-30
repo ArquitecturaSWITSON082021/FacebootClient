@@ -64,7 +64,7 @@ public class RegisterController extends BaseController {
             }
             
             if (!Password.equalsIgnoreCase(ConfirmPassword)){
-                throw new Exception("Lascontraseñas no coinciden.");
+                throw new Exception("Las contraseñas no coinciden.");
             }
             
             Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(Birthday);
@@ -88,7 +88,7 @@ public class RegisterController extends BaseController {
             );
             /**/
         } catch (Exception e) {
-            Utils.ShowErrorMessage("Error al registrarse: " + e.getMessage());
+            App.GetSingleton().DisplayErrorMessage("Error al registrarse", e.getMessage());
         }
     }
 
@@ -112,7 +112,7 @@ public class RegisterController extends BaseController {
             app.UserName = request.UserName;
             app.SetState(AppState.Home);
         }else {
-            Utils.ShowErrorMessage("Ha ocurrido un problema al intentar iniciar sesión, verifique que sus datos sean correctos. Error: " + request.ErrorCode); 
+            App.GetSingleton().DisplayErrorMessage("Error", "Ha ocurrido un problema al intentar iniciar sesión, verifique que sus datos sean correctos. Error: " + request.ErrorCode); 
             return;
         }
         
@@ -135,7 +135,7 @@ public class RegisterController extends BaseController {
             Utils.ShowInfoMessage("Registro exitoso."); 
             return;
         }else {
-            Utils.ShowErrorMessage("Ha ocurrido un problema al intentar registrarse, verifique su correo y teléfono. Error: " + request.ErrorCode); 
+            App.GetSingleton().DisplayErrorMessage("Error", "Ha ocurrido un problema al intentar registrarse, verifique su correo y teléfono. Error: " + request.ErrorCode); 
             return;
         }
     }

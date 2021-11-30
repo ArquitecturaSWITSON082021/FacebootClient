@@ -82,7 +82,7 @@ public class App {
             // Attempt to start the network client.
             Client.Start();
         } catch (Exception ex) {
-            Utils.ShowErrorMessage("FacebootNetClient error: " + ex.getMessage() + "\n\n" + ex.getStackTrace());
+            App.GetSingleton().DisplayErrorMessage("FacebootNetClient error", ex.getMessage() + "\n\n" + ex.getStackTrace());
         }
     }
     
@@ -125,12 +125,13 @@ public class App {
         
         // If server says that auth service is not running, throw an error and return.
         if (!request.IsAuthServiceRunning){
-            Utils.ShowErrorMessage("El servicio de autentiación se encuentra deshabilitado.");
+            App.GetSingleton().DisplayErrorMessage("Error", "El servicio de autenticación se encuentra deshabilitado.");
             return;
         }
         
         // If everything is okay, then switch to Login view state.
         SetState(AppState.Login);
+        LoginController.AttemptLogin("test@gmail.com", "123");
     }
     
     /**
@@ -198,5 +199,9 @@ public class App {
      */
     public static App GetSingleton(){
         return AppSingleton;
+    }
+    
+    public void DisplayErrorMessage(String title, String error){
+        Utils.ShowErrorMessage(title, error);
     }
 }
