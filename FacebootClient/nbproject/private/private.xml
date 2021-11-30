@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/Faceboot/App.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/Controllers/RegisterController.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/Controllers/InternalController.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/Controllers/LoginController.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/View/Login.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/Callbacks/HelloPacketCallback.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/Controllers/BaseController.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/View/Home.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/View/Components/CreatePostModal.java</file>
+            <file>file:/C:/Users/Ivy/Documents/NetBeansProjects/FacebootClient/FacebootClient/src/Controllers/PostsController.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -1,10 +1,13 @@
 package Faceboot;
+
 import Callbacks.HelloPacketCallback;
 import Callbacks.MessageRouterCallback;
 import FacebootNet.Engine.AbstractPacket;
+import FacebootNet.Engine.ErrorCode;
 import FacebootNet.Engine.Opcodes;
 import FacebootNet.Engine.PacketBuffer;
 import FacebootNet.FacebootNetClient;
+import FacebootNet.Packets.Server.SConnectionErrorPacket;
 import FacebootNet.Packets.Server.SFetchPostsPacket;
 import FacebootNet.Packets.Server.SHandshakePacket;
 import FacebootNet.Packets.Server.SLoginPacket;
@@ -20,21 +23,22 @@ import javax.swing.JPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Ivy
  */
 public class App {
-    
+
     private static App AppSingleton;
-    
+
     public FacebootNetClient Client;
-    
+
     public View.Login LoginView;
     public Controllers.LoginController LoginController;
     public Controllers.HomeController HomeController;
     public Controllers.RegisterController RegisterController;
+    public Controllers.InternalController InternalController;
+    public Controllers.PostsController PostsController;
     public View.Home HomeView;
     public View.Components.RegisterModal RegisterModal;
     public View.Components.CreatePostModal CreatePostModal;
@@ -42,21 +46,21 @@ public class App {
     public View.Settings SettingsView;
     public View.SettingsAccounts SettingsAccountsView;
     private AppState State;
-    
+
     // TODO: DELETE THIS AFTER
     public String UserName;
     public int UserId;
     // END
-    
+
     // Entry point of Faceboot app.
-    public App(){
-        
+    public App() {
+
         // Define the static application singleton to this one.
         App.AppSingleton = this;
-        
+
         // Set the initial application state.
         State = AppState.Initializing;
-        
+
         // Create all application views and hide them by default.
         LoginView = new View.Login();
         LoginController = new Controllers.LoginController(this);
@@ -65,13 +69,15 @@ public class App {
         RegisterModal = new View.Components.RegisterModal(LoginView, true);
         CreatePostModal = new View.Components.CreatePostModal(HomeView, true);
         RegisterController = new Controllers.RegisterController(this);
+        InternalController = new Controllers.InternalController(this);
+        PostsController = new Controllers.PostsController(this);
         ProfileView = new View.Profile();
         SettingsView = new View.Settings();
         SettingsAccountsView = new View.SettingsAccounts();
-        
+
         // Create network client.
         Client = new FacebootNetClient("127.0.0.1", 3400);
-        
+
         // Map all client callbacks.
         Client.OnHelloMessage = new HelloPacketCallback(this);
         Client.OnMessage = new MessageRouterCallback(this);
@@ -79,23 +85,25 @@ public class App {
             // Attempt to start the network client.
             Client.Start();
         } catch (Exception ex) {
-            Utils.ShowErrorMessage("FacebootNetClient error: " + ex.getMessage() + "\n\n" + ex.getStackTrace());
+            DisplayErrorMessage("FacebootNetClient error", ex.getMessage() + "\n\n" + ex.getStackTrace());
         }
     }
-    
+
     /**
      * Returns the current application state.
-     * @return 
+     *
+     * @return
      */
-    public AppState GetState(){
+    public AppState GetState() {
         return State;
     }
-    
+
     /**
      * Changes the application state to the one provided, if given.
-     * @param newState 
+     *
+     * @param newState
      */
-    public void SetState(AppState newState){
+    public void SetState(AppState newState) {
         // Update the application state.
         State = newState;
 
@@ -105,58 +113,65 @@ public class App {
         RegisterModal.setVisible(State == AppState.Register);
         CreatePostModal.setVisible(State == AppState.CreatePost);
         ProfileView.setVisible(State == AppState.Profile);
-        SettingsView.setVisible(State == AppState.Settings);      
+        SettingsView.setVisible(State == AppState.Settings);
         SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
 
     }
-    
+
     /**
-     * OnHelloPacket callback. Returns the server application version, services running, etc.
-     * @param request 
+     * OnHelloPacket callback. Returns the server application version, services
+     * running, etc.
+     *
+     * @param request
      */
-    public void OnHello(SHandshakePacket request){
+    public void OnHello(SHandshakePacket request) {
         // Print hello response from server for debugging purposes.
         System.out.printf("[+] Got hello response from server. ApplicationVersion=%d, IsAuthServiceRunning=%b.\n",
                 request.ApplicationVersion,
                 request.IsAuthServiceRunning);
-        
+
         // If server says that auth service is not running, throw an error and return.
-        if (!request.IsAuthServiceRunning){
-            Utils.ShowErrorMessage("El servicio de autentiación se encuentra deshabilitado.");
+        if (!request.IsAuthServiceRunning) {
+            DisplayErrorMessage("Error", "El servicio de autenticación se encuentra deshabilitado.");
             return;
         }
-        
+
         // If everything is okay, then switch to Login view state.
         SetState(AppState.Login);
+        LoginController.AttemptLogin("test@gmail.com", "123");
     }
-    
+
     /**
-     * OnMessageRouter callback.
-     * This function gets called when server replies with a valid packet, if given.
-     * @param packet 
+     * OnMessageRouter callback. This function gets called when server replies
+     * with a valid packet, if given.
+     *
+     * @param packet
      */
-    public void OnMessageRouter(PacketBuffer packet){
+    public void OnMessageRouter(PacketBuffer packet) {
         try {
             // Get the binary buffer from packet.
             byte[] data = packet.Serialize();
-            
+
             // Print the hex representation of packet, for debugging purposes.
             String hex = Utils.BytesToHex(data);
             System.out.println("[+] Got packet from server: " + hex);
-            
+
             // Packet router. If opcode is valid, then call controllers... if valid.
-            if (packet.GetOpcode() == Opcodes.Login)
+            if (packet.GetOpcode() == Opcodes.Login) {
                 LoginController.OnLogin(SLoginPacket.Deserialize(data));
-            else if (packet.GetOpcode() == Opcodes.FetchPosts)
+            } else if (packet.GetOpcode() == Opcodes.FetchPosts) {
                 HomeController.OnFetchPosts(SFetchPostsPacket.Deserialize(data));
-            else if (packet.GetOpcode() == Opcodes.DoRegister)
+            } else if (packet.GetOpcode() == Opcodes.DoRegister) {
                 RegisterController.OnRegister(SRegisterPacket.Deserialize(data));
-            
+            } else if (packet.GetOpcode() == Opcodes.SocketError) {
+                InternalController.OnSocketError(SConnectionErrorPacket.Deserialize(data));
+            } 
+
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -186,12 +201,24 @@ public class App {
 
         new App();
     }
-    
+
     /**
      * Returns the application singleton.
-     * @return 
+     *
+     * @return
      */
-    public static App GetSingleton(){
+    public static App GetSingleton() {
         return AppSingleton;
+    }
+    
+    public void DisplayErrorMessage(int errorCode) {
+        Utils.ShowErrorMessage("Error", String.format("%s Código de error: %d", 
+                ErrorCode.Format(errorCode),
+                errorCode
+        ));
+    }
+
+    public void DisplayErrorMessage(String title, String error) {
+        Utils.ShowErrorMessage(title, error);
     }
 }
