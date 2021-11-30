@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class CreatePostModal extends javax.swing.JDialog {
 
+    private static String pickedImageFilename;
     private static byte[] pickedImage;
     /**
      * Creates new form CreatePostModal
@@ -321,7 +322,7 @@ public class CreatePostModal extends javax.swing.JDialog {
 
     private void CreateAccountBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountBtActionPerformed
         // TODO add your handling code here:
-        App.GetSingleton().PostsController.AttemptPost(postContents.getText(), CreatePostModal.pickedImage);
+        App.GetSingleton().PostsController.AttemptPost(postContents.getText(), CreatePostModal.pickedImageFilename, CreatePostModal.pickedImage);
     }//GEN-LAST:event_CreateAccountBtActionPerformed
 
     private void addPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPhotoActionPerformed
@@ -343,11 +344,13 @@ public class CreatePostModal extends javax.swing.JDialog {
                 CreatePostModal.pickedImage = Files.readAllBytes(c.getSelectedFile().toPath());
                 if (CreatePostModal.pickedImage == null)
                     throw new Exception("Invalid image.");
+                CreatePostModal.pickedImageFilename = c.getSelectedFile().getName();
             } catch (Exception ex) {
                 App.GetSingleton().DisplayErrorMessage("Error", "IO error");
             }
         } else {
             CreatePostModal.pickedImage = null;
+            CreatePostModal.pickedImageFilename = null;
         }
         this.setVisible(true);
     }//GEN-LAST:event_addPhotoActionPerformed

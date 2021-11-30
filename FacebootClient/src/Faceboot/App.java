@@ -165,7 +165,7 @@ public class App {
                 RegisterController.OnRegister(SRegisterPacket.Deserialize(data));
             } else if (packet.GetOpcode() == Opcodes.SocketError) {
                 InternalController.OnSocketError(SConnectionErrorPacket.Deserialize(data));
-            }
+            } 
 
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

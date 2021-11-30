@@ -24,12 +24,18 @@ public class PostsController extends BaseController {
         super(app);
     }
     
-    public void AttemptPost(String contents, byte[] picture){
+    public void AttemptPost(String contents, String filename, byte[] picture){
         if (picture == null)
             picture = new byte[0];
         
+        if (filename == null || filename.length() <= 0)
+            filename = "";
+        
+        if (picture == null || picture.length <= 0)
+            picture = new byte[0];
+        
         try {
-            app.Client.DoPost(contents, picture);
+            app.Client.DoPost(contents, filename, picture);
         } catch (Exception ex) {
             ex.printStackTrace();
             app.DisplayErrorMessage("Error al postear", ex.getMessage());

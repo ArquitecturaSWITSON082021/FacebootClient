@@ -5,7 +5,9 @@
  */
 package View.Components;
 
+import FacebootNet.Packets.Server.EPostStruct;
 import java.awt.Color;
+import java.util.Date;
 
 /**
  *
@@ -21,6 +23,14 @@ public class Post extends javax.swing.JPanel {
         this.setOpaque(false);
         initComponents();
     }
+    
+    public void mapPost(EPostStruct post){
+        this.username.setText(post.UserName);
+        this.time.setText(new Date(post.PostTime).toString());
+        this.text.setText(post.PostBody);
+        this.totalComments.setText(post.TotalComments + " comentarios");
+        this.totalReactions.setText(String.valueOf(post.TotalLikes));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,12 +44,12 @@ public class Post extends javax.swing.JPanel {
         post = new View.Components.RoundedPanel();
         containerUser2 = new View.Components.RoundPanelText();
         user2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
+        text = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        totalReactions = new javax.swing.JLabel();
+        totalComments = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         containerComment = new View.Components.RoundedPanel();
         addComment = new javax.swing.JButton();
@@ -62,35 +72,35 @@ public class Post extends javax.swing.JPanel {
 
         post.add(containerUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 40));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Usuario #1");
-        post.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, 20));
+        username.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setText("Usuario #1");
+        post.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, 20));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("11 h");
-        post.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 20));
+        time.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        time.setForeground(new java.awt.Color(153, 153, 153));
+        time.setText("11 h");
+        post.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 20));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, suscipit malesuada suscipit id, rhoncus a nunc. Curabitur nec nunc eget odio vehicula cursus. Duis at accumsan purus. Sed odio risus, ultrices eget nunc at, varius auctor nisi. Morbi sed posuere ipsum, id tempor neque. Morbi pretium ex risus, sed imperdiet eros rhoncus a. Nulla facilisi. Fusce tincidunt tortor ut est aliquet, ac mattis libero pharetra. Integer quis faucibus turpis, sit amet tincidunt eros. </html>");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        post.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 694, 90));
+        text.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        text.setForeground(new java.awt.Color(255, 255, 255));
+        text.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        text.setText("<html> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, suscipit malesuada suscipit id, rhoncus a nunc. Curabitur nec nunc eget odio vehicula cursus. Duis at accumsan purus. Sed odio risus, ultrices eget nunc at, varius auctor nisi. Morbi sed posuere ipsum, id tempor neque. Morbi pretium ex risus, sed imperdiet eros rhoncus a. Nulla facilisi. Fusce tincidunt tortor ut est aliquet, ac mattis libero pharetra. Integer quis faucibus turpis, sit amet tincidunt eros. </html>");
+        text.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        post.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 694, 90));
         post.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 694, 3));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/likes.png"))); // NOI18N
-        jLabel7.setText("2");
-        jLabel7.setIconTextGap(10);
-        post.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        totalReactions.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        totalReactions.setForeground(new java.awt.Color(153, 153, 153));
+        totalReactions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/likes.png"))); // NOI18N
+        totalReactions.setText("2");
+        totalReactions.setIconTextGap(10);
+        post.add(totalReactions, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setText("2 comentarios");
-        post.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 190, 90, -1));
+        totalComments.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        totalComments.setForeground(new java.awt.Color(153, 153, 153));
+        totalComments.setText("2 comentarios");
+        post.add(totalComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 190, 90, -1));
         post.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 225, 694, 3));
 
         containerComment.setBackground(new java.awt.Color(35, 36, 37));
@@ -180,15 +190,15 @@ public class Post extends javax.swing.JPanel {
     private View.Components.RoundedPanel containerComment;
     private View.Components.RoundedPanel containerLike;
     private View.Components.RoundPanelText containerUser2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToggleButton likeButton;
     private View.Components.RoundedPanel post;
+    private javax.swing.JLabel text;
+    private javax.swing.JLabel time;
+    private javax.swing.JLabel totalComments;
+    private javax.swing.JLabel totalReactions;
     private javax.swing.JButton user2;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
