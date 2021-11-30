@@ -5,6 +5,7 @@ import FacebootNet.Engine.AbstractPacket;
 import FacebootNet.Engine.Opcodes;
 import FacebootNet.Engine.PacketBuffer;
 import FacebootNet.FacebootNetClient;
+import FacebootNet.Packets.Server.SConnectionErrorPacket;
 import FacebootNet.Packets.Server.SFetchPostsPacket;
 import FacebootNet.Packets.Server.SHandshakePacket;
 import FacebootNet.Packets.Server.SLoginPacket;
@@ -35,6 +36,7 @@ public class App {
     public Controllers.LoginController LoginController;
     public Controllers.HomeController HomeController;
     public Controllers.RegisterController RegisterController;
+    public Controllers.InternalController InternalController;
     public View.Home HomeView;
     public View.Components.RegisterModal RegisterModal;
     public View.Components.CreatePostModal CreatePostModal;
@@ -65,6 +67,7 @@ public class App {
         RegisterModal = new View.Components.RegisterModal(LoginView, true);
         CreatePostModal = new View.Components.CreatePostModal(HomeView, true);
         RegisterController = new Controllers.RegisterController(this);
+        InternalController = new Controllers.InternalController(this);
         ProfileView = new View.Profile();
         SettingsView = new View.Settings();
         SettingsAccountsView = new View.SettingsAccounts();
@@ -151,6 +154,8 @@ public class App {
                 HomeController.OnFetchPosts(SFetchPostsPacket.Deserialize(data));
             else if (packet.GetOpcode() == Opcodes.DoRegister)
                 RegisterController.OnRegister(SRegisterPacket.Deserialize(data));
+            else if (packet.GetOpcode() == Opcodes.SocketError)
+                InternalController.OnSocketError(SConnectionErrorPacket.Deserialize(data));
             
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
