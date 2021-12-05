@@ -38,6 +38,10 @@ public static String BytesToHex(byte[] bytes) {
         JOptionPane.showMessageDialog(null, Error, "Error", ERROR_MESSAGE);
     }
     
+    public static void ShowErrorMessage(String title, String message){
+        JOptionPane.showMessageDialog(null, message, title, ERROR_MESSAGE);
+    }
+    
     public static boolean IsEmail(String email){
         Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
         Matcher mat = pattern.matcher(email);

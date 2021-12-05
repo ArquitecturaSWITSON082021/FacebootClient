@@ -8,7 +8,10 @@ package Controllers;
 import Faceboot.App;
 import Faceboot.AppState;
 import Faceboot.Utils;
+import FacebootNet.Engine.ErrorCode;
+import FacebootNet.Packets.Server.SAttemptOauthPacket;
 import FacebootNet.Packets.Server.SLoginPacket;
+import java.io.IOException;
 
 /**
  * LoginController, may get called when client receives packets with
@@ -47,8 +50,12 @@ public class LoginController extends BaseController {
             // If everything is valid, attempt to login with server.
             app.Client.DoLogin(Email, Password);
         } catch (Exception e) {
-            Utils.ShowErrorMessage("Error al iniciar sesión: " + e.getMessage());
+            app.DisplayErrorMessage("Error al iniciar sesión", e.getMessage());
         }
+    }
+    
+    public void AttemptOauth(int OauthType){
+        app.Client.DoAttemptOauth(OauthType);
     }
 
     /**
@@ -66,8 +73,21 @@ public class LoginController extends BaseController {
                 request.UserGender,
                 request.TokenId);
 
+        if (request.ErrorCode != ErrorCode.NoError) {
+            app.DisplayErrorMessage(request.ErrorCode);
+            return;
+        }
+
         app.SetState(AppState.Home);
         app.UserId = request.UserId;
         app.UserName = request.UserName;
+    }
+    
+    public void OnAttemptOauth(SAttemptOauthPacket request){
+        Runtime rt = Runtime.getRuntime();
+        try{
+        rt.exec("rundll32 url.dll,FileProtocolHandler " + request.OauthUrl);
+        rt.exec("open " + request.OauthUrl);
+        }catch(Exception e){}
     }
 }

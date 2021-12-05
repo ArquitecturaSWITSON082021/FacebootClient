@@ -7,11 +7,14 @@ package View;
 
 import Faceboot.App;
 import Faceboot.AppState;
+import FacebootNet.Packets.Server.EPostStruct;
 import View.Components.CustomScrollBarUI;
+import View.Components.Post;
 import View.Components.TextPrompt;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
+import java.util.ArrayList;
 
 
 /**
@@ -23,6 +26,7 @@ public class Home extends javax.swing.JFrame {
     private int mouseX;
     private int mouseY;
     private int PostOffset;
+    private int lastTotalRenderedPosts;
 
     /**
      * Creates new form Login
@@ -51,6 +55,26 @@ public class Home extends javax.swing.JFrame {
         usersScrollPane.getVerticalScrollBar().setUI(new CustomScrollBarUI());
  
         setLocationRelativeTo(null);
+    }
+    
+    public void RenderPosts(ArrayList<EPostStruct> posts){
+        int idx = 0;
+        
+        for(int i = 1; i <= lastTotalRenderedPosts; i++){
+            scrollPosts.remove(i);
+        }
+        revalidate();
+        for(EPostStruct post : posts){
+            Post postComponent = new Post();
+            postComponent.mapPost(post);
+            scrollPosts.add(postComponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160 + (300*idx), -1, -1));
+            idx++;
+        }
+        
+        lastTotalRenderedPosts = idx;
+        
+        revalidate();
+        
     }
 
     /**
@@ -86,8 +110,6 @@ public class Home extends javax.swing.JFrame {
         containerPhoto = new View.Components.RoundedPanel();
         addPhoto = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        post4 = new View.Components.Post();
-        post3 = new View.Components.Post();
         topBar = new javax.swing.JPanel();
         DisposeButton = new javax.swing.JLabel();
         MinimizeButton = new javax.swing.JLabel();
@@ -250,8 +272,6 @@ public class Home extends javax.swing.JFrame {
         addPostRoundedPane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
 
         scrollPosts.add(addPostRoundedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 120));
-        scrollPosts.add(post4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
-        scrollPosts.add(post3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         postScrollPane.setViewportView(scrollPosts);
 
@@ -720,8 +740,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton notifications;
-    private View.Components.Post post3;
-    private View.Components.Post post4;
     private javax.swing.JButton postButton;
     private javax.swing.JScrollPane postScrollPane;
     private javax.swing.JPanel posts;
