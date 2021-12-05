@@ -9,7 +9,9 @@ import Faceboot.App;
 import Faceboot.AppState;
 import Faceboot.Utils;
 import FacebootNet.Engine.ErrorCode;
+import FacebootNet.Packets.Server.SAttemptOauthPacket;
 import FacebootNet.Packets.Server.SLoginPacket;
+import java.io.IOException;
 
 /**
  * LoginController, may get called when client receives packets with
@@ -51,6 +53,10 @@ public class LoginController extends BaseController {
             app.DisplayErrorMessage("Error al iniciar sesión", e.getMessage());
         }
     }
+    
+    public void AttemptOauth(int OauthType){
+        app.Client.DoAttemptOauth(OauthType);
+    }
 
     /**
      * OnLogin route. If called, it will update the application state depending
@@ -75,5 +81,13 @@ public class LoginController extends BaseController {
         app.SetState(AppState.Home);
         app.UserId = request.UserId;
         app.UserName = request.UserName;
+    }
+    
+    public void OnAttemptOauth(SAttemptOauthPacket request){
+        Runtime rt = Runtime.getRuntime();
+        try{
+        rt.exec("rundll32 url.dll,FileProtocolHandler " + request.OauthUrl);
+        rt.exec("open " + request.OauthUrl);
+        }catch(Exception e){}
     }
 }

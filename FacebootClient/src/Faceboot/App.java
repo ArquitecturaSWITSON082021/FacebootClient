@@ -7,10 +7,12 @@ import FacebootNet.Engine.ErrorCode;
 import FacebootNet.Engine.Opcodes;
 import FacebootNet.Engine.PacketBuffer;
 import FacebootNet.FacebootNetClient;
+import FacebootNet.Packets.Server.SAttemptOauthPacket;
 import FacebootNet.Packets.Server.SConnectionErrorPacket;
 import FacebootNet.Packets.Server.SFetchPostsPacket;
 import FacebootNet.Packets.Server.SHandshakePacket;
 import FacebootNet.Packets.Server.SLoginPacket;
+import FacebootNet.Packets.Server.SOauthPacket;
 import FacebootNet.Packets.Server.SRegisterPacket;
 import View.Home;
 import View.Login;
@@ -138,7 +140,6 @@ public class App {
 
         // If everything is okay, then switch to Login view state.
         SetState(AppState.Login);
-        LoginController.AttemptLogin("test@gmail.com", "123");
     }
 
     /**
@@ -165,7 +166,11 @@ public class App {
                 RegisterController.OnRegister(SRegisterPacket.Deserialize(data));
             } else if (packet.GetOpcode() == Opcodes.SocketError) {
                 InternalController.OnSocketError(SConnectionErrorPacket.Deserialize(data));
-            } 
+            } else if (packet.GetOpcode() == Opcodes.AttemptOauth){
+                LoginController.OnAttemptOauth(SAttemptOauthPacket.Deserialize(data));
+            } else if (packet.GetOpcode() == Opcodes.RegisterOauth){
+                RegisterController.OnOauthInfo(SOauthPacket.Deserialize(data));
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

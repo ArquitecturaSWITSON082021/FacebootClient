@@ -628,25 +628,15 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_forgotMouseExited
 
     private void btnFacebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacebookActionPerformed
-        // TODO: AGREGAR LOGIN DE FB
-        String email = mail.getText();
-        String password = new String(this.password.getPassword());
-        App.GetSingleton().LoginController.AttemptLogin(email, password);
+        App.GetSingleton().LoginController.AttemptOauth(FacebootNet.Engine.OauthType.Facebook);
     }//GEN-LAST:event_btnFacebookActionPerformed
 
     private void btnTwitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwitterActionPerformed
-        // TODO: AGREGAR LOGIN DE Twitter
-        String email = mail.getText();
-        String password = new String(this.password.getPassword());
-        App.GetSingleton().LoginController.AttemptLogin(email, password);
+        App.GetSingleton().LoginController.AttemptOauth(FacebootNet.Engine.OauthType.Twitter);
     }//GEN-LAST:event_btnTwitterActionPerformed
 
     private void btnGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoogleActionPerformed
-        // TODO add your handling code here:
-        // TODO: AGREGAR LOGIN DE Google
-        String email = mail.getText();
-        String password = new String(this.password.getPassword());
-        App.GetSingleton().LoginController.AttemptLogin(email, password);
+        App.GetSingleton().LoginController.AttemptOauth(FacebootNet.Engine.OauthType.Google);
     }//GEN-LAST:event_btnGoogleActionPerformed
 
     private void forgotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotMouseClicked
