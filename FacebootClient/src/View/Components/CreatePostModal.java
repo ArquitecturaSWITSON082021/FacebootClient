@@ -40,7 +40,8 @@ public class CreatePostModal extends javax.swing.JDialog {
         setShape(new RoundRectangle2D.Double(0, 0, 500, 400, 22, 22));
 
         initComponents();
-
+        this.postContents.setLineWrap(true);
+        this.postContents.setWrapStyleWord(true);
         setLocationRelativeTo(null);
     }
 
@@ -60,7 +61,7 @@ public class CreatePostModal extends javax.swing.JDialog {
         cancel = new javax.swing.JButton();
         containerUser2 = new View.Components.RoundPanelText();
         user2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
         roundedPanel2 = new View.Components.RoundedPanel();
         jLabel3 = new javax.swing.JLabel();
         scrollText = new javax.swing.JScrollPane();
@@ -78,6 +79,11 @@ public class CreatePostModal extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         roundedPanel1.setBackground(new java.awt.Color(35, 36, 37));
         roundedPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,10 +127,10 @@ public class CreatePostModal extends javax.swing.JDialog {
 
         roundedPanel1.add(containerUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 40, 40));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Usuario #1");
-        roundedPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
+        user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        user.setForeground(new java.awt.Color(255, 255, 255));
+        user.setText("Usuario #1");
+        roundedPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
 
         roundedPanel2.setBackground(new java.awt.Color(58, 59, 60));
 
@@ -161,6 +167,19 @@ public class CreatePostModal extends javax.swing.JDialog {
         postContents.setForeground(new java.awt.Color(204, 204, 204));
         postContents.setRows(5);
         postContents.setText("¿Qué estás pensando?");
+        postContents.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                postContentsFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                postContentsFocusLost(evt);
+            }
+        });
+        postContents.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                postContentsKeyTyped(evt);
+            }
+        });
         scrollText.setViewportView(postContents);
 
         roundedPanel1.add(scrollText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 460, 100));
@@ -292,6 +311,7 @@ public class CreatePostModal extends javax.swing.JDialog {
 
     private void cancelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMousePressed
         if (evt.getClickCount() >= 0) {
+            postContents.setText("¿Qué estás pensando?");
             this.dispose();
         }
     }//GEN-LAST:event_cancelMousePressed
@@ -323,6 +343,10 @@ public class CreatePostModal extends javax.swing.JDialog {
     private void CreateAccountBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountBtActionPerformed
         // TODO add your handling code here:
         App.GetSingleton().PostsController.AttemptPost(postContents.getText(), CreatePostModal.pickedImageFilename, CreatePostModal.pickedImage);
+        postContents.setText("¿Qué estás pensando?");
+        //Bug cuando se crea un post con imagen, no actualiza, y no deja crear posts comunes
+        //App.GetSingleton().Client.DoFetchPosts(0);
+        this.dispose();
     }//GEN-LAST:event_CreateAccountBtActionPerformed
 
     private void addPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPhotoActionPerformed
@@ -352,8 +376,30 @@ public class CreatePostModal extends javax.swing.JDialog {
             CreatePostModal.pickedImage = null;
             CreatePostModal.pickedImageFilename = null;
         }
+        this.jLabel4.setText(pickedImageFilename);
         this.setVisible(true);
     }//GEN-LAST:event_addPhotoActionPerformed
+
+    private void postContentsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_postContentsFocusGained
+        if (postContents.getText().equals("¿Qué estás pensando?")) {
+            postContents.setText("");
+        }
+    }//GEN-LAST:event_postContentsFocusGained
+
+    private void postContentsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_postContentsFocusLost
+        if (postContents.getText().equals("")){
+            postContents.setText("¿Qué estás pensando?");
+        }
+    }//GEN-LAST:event_postContentsFocusLost
+
+    private void postContentsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_postContentsKeyTyped
+        if (postContents.getText().length() == 150)
+            evt.consume();
+    }//GEN-LAST:event_postContentsKeyTyped
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        user.setText(App.GetSingleton().UserName);
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -365,7 +411,6 @@ public class CreatePostModal extends javax.swing.JDialog {
     private View.Components.RoundedPanel containerBtn;
     private View.Components.RoundPanelText containerUser2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
@@ -377,6 +422,7 @@ public class CreatePostModal extends javax.swing.JDialog {
     private javax.swing.JScrollPane scrollText;
     private javax.swing.JButton tagUser;
     private View.Components.RoundPanelText tagUserContainer;
+    private javax.swing.JLabel user;
     private javax.swing.JButton user2;
     // End of variables declaration//GEN-END:variables
 }

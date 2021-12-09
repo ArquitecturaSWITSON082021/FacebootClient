@@ -42,8 +42,6 @@ public class SettingsAccounts extends javax.swing.JFrame {
         isfast1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        google = new View.Components.RoundedPanel();
-        jButton3 = new javax.swing.JButton();
         twitter = new View.Components.RoundedPanel();
         jButton2 = new javax.swing.JButton();
         facebook = new View.Components.RoundedPanel();
@@ -52,8 +50,6 @@ public class SettingsAccounts extends javax.swing.JFrame {
         ConnectBtnTw = new javax.swing.JButton();
         containerBtnCntFb = new View.Components.RoundedPanel();
         ConnectBtnFb1 = new javax.swing.JButton();
-        containerBtnCntGo = new View.Components.RoundedPanel();
-        ConnectBtnGo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -104,20 +100,6 @@ public class SettingsAccounts extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(23, 24, 26));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        google.setBackground(new java.awt.Color(255, 255, 255));
-        google.setLayout(new java.awt.BorderLayout());
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/googleLogin.png"))); // NOI18N
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        google.add(jButton3, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(google, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 64, 64));
-
         twitter.setBackground(new java.awt.Color(45, 163, 226));
         twitter.setLayout(new java.awt.BorderLayout());
 
@@ -125,7 +107,7 @@ public class SettingsAccounts extends javax.swing.JFrame {
         jButton2.setContentAreaFilled(false);
         twitter.add(jButton2, java.awt.BorderLayout.CENTER);
 
-        jPanel2.add(twitter, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 64, 64));
+        jPanel2.add(twitter, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 64, 64));
 
         facebook.setBackground(new java.awt.Color(37, 119, 241));
         facebook.setLayout(new java.awt.BorderLayout());
@@ -135,7 +117,7 @@ public class SettingsAccounts extends javax.swing.JFrame {
         jButton1.setPreferredSize(new java.awt.Dimension(64, 64));
         facebook.add(jButton1, java.awt.BorderLayout.PAGE_END);
 
-        jPanel2.add(facebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 62, 63));
+        jPanel2.add(facebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 62, 63));
 
         containerBtnCntTw.setBackground(new java.awt.Color(37, 119, 241));
         containerBtnCntTw.setLayout(new java.awt.BorderLayout());
@@ -161,7 +143,7 @@ public class SettingsAccounts extends javax.swing.JFrame {
         });
         containerBtnCntTw.add(ConnectBtnTw, java.awt.BorderLayout.CENTER);
 
-        jPanel2.add(containerBtnCntTw, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 110, 30));
+        jPanel2.add(containerBtnCntTw, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 110, 30));
 
         containerBtnCntFb.setBackground(new java.awt.Color(37, 119, 241));
         containerBtnCntFb.setLayout(new java.awt.BorderLayout());
@@ -187,33 +169,7 @@ public class SettingsAccounts extends javax.swing.JFrame {
         });
         containerBtnCntFb.add(ConnectBtnFb1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.add(containerBtnCntFb, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 110, 30));
-
-        containerBtnCntGo.setBackground(new java.awt.Color(37, 119, 241));
-        containerBtnCntGo.setLayout(new java.awt.BorderLayout());
-
-        ConnectBtnGo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        ConnectBtnGo.setForeground(new java.awt.Color(255, 255, 255));
-        ConnectBtnGo.setText("Conectar");
-        ConnectBtnGo.setContentAreaFilled(false);
-        ConnectBtnGo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                ConnectBtnGoMouseMoved(evt);
-            }
-        });
-        ConnectBtnGo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ConnectBtnGoMouseExited(evt);
-            }
-        });
-        ConnectBtnGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConnectBtnGoActionPerformed(evt);
-            }
-        });
-        containerBtnCntGo.add(ConnectBtnGo, java.awt.BorderLayout.CENTER);
-
-        jPanel2.add(containerBtnCntGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 110, 30));
+        jPanel2.add(containerBtnCntFb, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,10 +205,6 @@ public class SettingsAccounts extends javax.swing.JFrame {
         mouseY = evt.getY();
     }//GEN-LAST:event_jPanel1MousePressed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void ConnectBtnTwMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBtnTwMouseMoved
         containerBtnCntTw.setBackground(new Color(35,111,229));
     }//GEN-LAST:event_ConnectBtnTwMouseMoved
@@ -279,18 +231,6 @@ public class SettingsAccounts extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ConnectBtnFb1ActionPerformed
 
-    private void ConnectBtnGoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBtnGoMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConnectBtnGoMouseMoved
-
-    private void ConnectBtnGoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBtnGoMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConnectBtnGoMouseExited
-
-    private void ConnectBtnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectBtnGoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConnectBtnGoActionPerformed
-
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
         App.GetSingleton().SetState(AppState.Settings);
@@ -298,19 +238,15 @@ public class SettingsAccounts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConnectBtnFb1;
-    private javax.swing.JButton ConnectBtnGo;
     private javax.swing.JButton ConnectBtnTw;
     private javax.swing.JLabel close;
     private View.Components.RoundedPanel containerBtnCntFb;
-    private View.Components.RoundedPanel containerBtnCntGo;
     private View.Components.RoundedPanel containerBtnCntTw;
     private View.Components.RoundedPanel facebook;
-    private View.Components.RoundedPanel google;
     private javax.swing.JLabel isfast;
     private javax.swing.JLabel isfast1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

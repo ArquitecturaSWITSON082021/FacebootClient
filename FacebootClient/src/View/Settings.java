@@ -73,12 +73,14 @@ public class Settings extends javax.swing.JFrame {
         search = new javax.swing.JTextField();
         containerHome = new View.Components.RoundedPanel();
         homeButton = new javax.swing.JButton();
-        containerSettings = new View.Components.RoundPanelText();
-        settings = new javax.swing.JButton();
-        containerNotifications = new View.Components.RoundPanelText();
-        notifications = new javax.swing.JButton();
         containerUser = new View.Components.RoundPanelText();
         user = new javax.swing.JButton();
+        containerNotifications = new View.Components.RoundPanelText();
+        notifications = new javax.swing.JButton();
+        containerSettings = new View.Components.RoundPanelText();
+        settings = new javax.swing.JButton();
+        containerLogout = new View.Components.RoundPanelText();
+        logoutBtn = new javax.swing.JButton();
         content = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -108,8 +110,6 @@ public class Settings extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jSeparator11 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
@@ -271,6 +271,11 @@ public class Settings extends javax.swing.JFrame {
         search.setForeground(new java.awt.Color(204, 204, 204));
         search.setBorder(null);
         search.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                searchMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout containerSearchLayout = new javax.swing.GroupLayout(containerSearch);
         containerSearch.setLayout(containerSearchLayout);
@@ -321,6 +326,51 @@ public class Settings extends javax.swing.JFrame {
 
         topMenu.add(containerHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 4, 104, 48));
 
+        containerUser.setBackground(new java.awt.Color(58, 59, 60));
+        containerUser.setLayout(new java.awt.BorderLayout());
+
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
+        user.setContentAreaFilled(false);
+        user.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        user.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                userMouseMoved(evt);
+            }
+        });
+        user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                userMouseExited(evt);
+            }
+        });
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+        containerUser.add(user, java.awt.BorderLayout.CENTER);
+
+        topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(814, 7, 40, 40));
+
+        containerNotifications.setBackground(new java.awt.Color(58, 59, 60));
+        containerNotifications.setLayout(new java.awt.BorderLayout());
+
+        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/notifications.png"))); // NOI18N
+        notifications.setContentAreaFilled(false);
+        notifications.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        notifications.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                notificationsMouseMoved(evt);
+            }
+        });
+        notifications.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                notificationsMouseExited(evt);
+            }
+        });
+        containerNotifications.add(notifications, java.awt.BorderLayout.CENTER);
+
+        topMenu.add(containerNotifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
+
         containerSettings.setBackground(new java.awt.Color(58, 59, 60));
         containerSettings.setLayout(new java.awt.BorderLayout());
 
@@ -345,52 +395,32 @@ public class Settings extends javax.swing.JFrame {
         });
         containerSettings.add(settings, java.awt.BorderLayout.CENTER);
 
-        topMenu.add(containerSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(964, 7, 40, 40));
+        topMenu.add(containerSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 7, 40, 40));
 
-        containerNotifications.setBackground(new java.awt.Color(58, 59, 60));
-        containerNotifications.setLayout(new java.awt.BorderLayout());
+        containerLogout.setBackground(new java.awt.Color(58, 59, 60));
+        containerLogout.setLayout(new java.awt.BorderLayout());
 
-        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/notifications.png"))); // NOI18N
-        notifications.setContentAreaFilled(false);
-        notifications.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        notifications.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/logout.png"))); // NOI18N
+        logoutBtn.setContentAreaFilled(false);
+        logoutBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logoutBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                notificationsMouseMoved(evt);
+                logoutBtnMouseMoved(evt);
             }
         });
-        notifications.addMouseListener(new java.awt.event.MouseAdapter() {
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                notificationsMouseExited(evt);
+                logoutBtnMouseExited(evt);
             }
         });
-        containerNotifications.add(notifications, java.awt.BorderLayout.CENTER);
-
-        topMenu.add(containerNotifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 7, 40, 40));
-
-        containerUser.setBackground(new java.awt.Color(58, 59, 60));
-        containerUser.setLayout(new java.awt.BorderLayout());
-
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        user.setContentAreaFilled(false);
-        user.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        user.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                userMouseMoved(evt);
-            }
-        });
-        user.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                userMouseExited(evt);
-            }
-        });
-        user.addActionListener(new java.awt.event.ActionListener() {
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userActionPerformed(evt);
+                logoutBtnActionPerformed(evt);
             }
         });
-        containerUser.add(user, java.awt.BorderLayout.CENTER);
+        containerLogout.add(logoutBtn, java.awt.BorderLayout.CENTER);
 
-        topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
+        topMenu.add(containerLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(964, 7, 40, 40));
 
         getContentPane().add(topMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 1024, 57));
 
@@ -460,23 +490,25 @@ public class Settings extends javax.swing.JFrame {
         jLabel7.setText("Fecha de nacimiento");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 275, -1, 20));
 
+        txtAge.setEditable(false);
         txtAge.setBackground(new java.awt.Color(0, 0, 0));
         txtAge.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtAge.setForeground(new java.awt.Color(102, 102, 102));
         txtAge.setText("19");
         txtAge.setBorder(null);
-        txtAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgeActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 325, 600, 20));
 
+        txtName.setEditable(false);
         txtName.setBackground(new java.awt.Color(0, 0, 0));
         txtName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtName.setForeground(new java.awt.Color(102, 102, 102));
         txtName.setText("Usuario");
         txtName.setBorder(null);
+        txtName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNameFocusLost(evt);
+            }
+        });
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -490,6 +522,11 @@ public class Settings extends javax.swing.JFrame {
         txtEmail.setForeground(new java.awt.Color(102, 102, 102));
         txtEmail.setText("Usuario@hotmail.com");
         txtEmail.setBorder(null);
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
@@ -503,35 +540,32 @@ public class Settings extends javax.swing.JFrame {
         txtNumber.setForeground(new java.awt.Color(102, 102, 102));
         txtNumber.setText("6442574128");
         txtNumber.setBorder(null);
-        txtNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumberActionPerformed(evt);
+        txtNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNumberFocusLost(evt);
+            }
+        });
+        txtNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumberKeyTyped(evt);
             }
         });
         jPanel2.add(txtNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 175, 600, 20));
 
+        txtGender.setEditable(false);
         txtGender.setBackground(new java.awt.Color(0, 0, 0));
         txtGender.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtGender.setForeground(new java.awt.Color(102, 102, 102));
         txtGender.setText("Hombre");
         txtGender.setBorder(null);
-        txtGender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGenderActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 225, 600, 20));
 
+        txtBirth.setEditable(false);
         txtBirth.setBackground(new java.awt.Color(0, 0, 0));
         txtBirth.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtBirth.setForeground(new java.awt.Color(102, 102, 102));
         txtBirth.setText("29 de octubre de 2001");
         txtBirth.setBorder(null);
-        txtBirth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBirthActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 275, 600, 20));
 
         jSeparator8.setBackground(new java.awt.Color(51, 51, 51));
@@ -564,14 +598,14 @@ public class Settings extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 102, 255));
-        jButton3.setText("Editar");
+        jButton3.setText("Guardar");
         jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 325, -1, 20));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 375, -1, 20));
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(51, 102, 255));
@@ -606,28 +640,6 @@ public class Settings extends javax.swing.JFrame {
         });
         jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 175, -1, 20));
 
-        jButton7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(51, 102, 255));
-        jButton7.setText("Editar");
-        jButton7.setContentAreaFilled(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 225, -1, 20));
-
-        jButton8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(51, 102, 255));
-        jButton8.setText("Editar");
-        jButton8.setContentAreaFilled(false);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 275, -1, 20));
-
         jSeparator11.setBackground(new java.awt.Color(51, 51, 51));
         jSeparator11.setForeground(new java.awt.Color(51, 51, 51));
         jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 902, 10));
@@ -636,6 +648,7 @@ public class Settings extends javax.swing.JFrame {
         jSeparator7.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Faceboot - Agosto - Diciembre 2021");
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -662,7 +675,7 @@ public class Settings extends javax.swing.JFrame {
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -714,7 +727,7 @@ public class Settings extends javax.swing.JFrame {
 
     private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
         if (evt.getClickCount() >= 0) {
-            this.dispose();
+            System.exit(0);
         } 
     }//GEN-LAST:event_DisposeButtonMousePressed
 
@@ -750,7 +763,7 @@ public class Settings extends javax.swing.JFrame {
 
     private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
         if (evt.getClickCount() >= 0) {
-            this.dispose();
+            System.exit(0);
         } 
     }//GEN-LAST:event_DisposeButtonWMousePressed
 
@@ -813,10 +826,6 @@ public class Settings extends javax.swing.JFrame {
         App.GetSingleton().SetState(AppState.Home);
     }//GEN-LAST:event_homeButtonActionPerformed
 
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgeActionPerformed
-
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
@@ -825,41 +834,70 @@ public class Settings extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumberActionPerformed
-
-    private void txtGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGenderActionPerformed
-
-    private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBirthActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        // Guardar cambios en los datos del usuario
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        txtName.setEditable(true);
+        txtName.requestFocus();
+        txtName.setForeground(Color.white);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        txtEmail.setEditable(true);
+        txtEmail.requestFocus();
+        txtEmail.setForeground(Color.white);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        txtNumber.setEditable(true);
+        txtNumber.requestFocus();
+        txtNumber.setForeground(Color.white);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void txtNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumberFocusLost
+        txtNumber.setEditable(false);
+        txtNumber.setForeground(Color.gray);
+    }//GEN-LAST:event_txtNumberFocusLost
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        txtEmail.setEditable(false);
+        txtEmail.setForeground(Color.gray);
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
+        txtName.setEditable(false);
+        txtName.setForeground(Color.gray);
+    }//GEN-LAST:event_txtNameFocusLost
+
+    private void txtNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumberKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+
+        if (txtNumber.getText().length() == 10)
+            evt.consume();
+    }//GEN-LAST:event_txtNumberKeyTyped
+
+    private void logoutBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseMoved
+        containerLogout.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_logoutBtnMouseMoved
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        containerLogout.setBackground(new Color(35,36,37));
+    }//GEN-LAST:event_logoutBtnMouseExited
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO logout
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void searchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMousePressed
+        if (evt.getClickCount() >= 0) {
+            App.GetSingleton().SetState(AppState.Home);
+        }
+    }//GEN-LAST:event_searchMousePressed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -872,6 +910,7 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JLabel Title;
     private View.Components.RoundedPanel containerHome;
     private View.Components.RoundPanelText containerLink;
+    private View.Components.RoundPanelText containerLogout;
     private View.Components.RoundPanelText containerNotifications;
     private View.Components.RoundPanelText containerSearch;
     private View.Components.RoundPanelText containerSettings;
@@ -884,8 +923,6 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -906,6 +943,7 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton notifications;
     private javax.swing.JTextField search;
     private javax.swing.JLabel searchIcon;

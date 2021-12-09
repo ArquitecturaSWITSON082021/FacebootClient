@@ -105,16 +105,16 @@ public class App {
      *
      * @param newState
      */
-    public void SetState(AppState newState) {
+    public void SetState(AppState newState) {        
         // Update the application state.
         State = newState;
 
         // Hide and show the necessary views, given the state.
         LoginView.setVisible(State == AppState.Login || State == AppState.Register);
-        HomeView.setVisible(State == AppState.Home || State == AppState.CreatePost);
+        HomeView.setVisible(State == AppState.Home || State == AppState.CreatePostHome);
+        ProfileView.setVisible(State == AppState.Profile || State == AppState.CreatePostProfile);
         RegisterModal.setVisible(State == AppState.Register);
-        CreatePostModal.setVisible(State == AppState.CreatePost);
-        ProfileView.setVisible(State == AppState.Profile);
+        CreatePostModal.setVisible(State == AppState.CreatePostHome || State == AppState.CreatePostProfile);
         SettingsView.setVisible(State == AppState.Settings);
         SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
 
@@ -205,6 +205,7 @@ public class App {
         //</editor-fold>
 
         new App();
+        
     }
 
     /**
@@ -221,6 +222,7 @@ public class App {
                 ErrorCode.Format(errorCode),
                 errorCode
         ));
+        
     }
 
     public void DisplayErrorMessage(String title, String error) {
