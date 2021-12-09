@@ -77,8 +77,6 @@ public class Login extends javax.swing.JFrame {
         btnFacebook = new javax.swing.JButton();
         twitter = new View.Components.RoundedPanel();
         btnTwitter = new javax.swing.JButton();
-        google = new View.Components.RoundedPanel();
-        btnGoogle = new javax.swing.JButton();
         topBar = new javax.swing.JPanel();
         DisposeButton = new javax.swing.JLabel();
         MinimizeButton = new javax.swing.JLabel();
@@ -306,18 +304,6 @@ public class Login extends javax.swing.JFrame {
         });
         twitter.add(btnTwitter, java.awt.BorderLayout.CENTER);
 
-        google.setBackground(new java.awt.Color(255, 255, 255));
-        google.setLayout(new java.awt.BorderLayout());
-
-        btnGoogle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/googleLogin.png"))); // NOI18N
-        btnGoogle.setContentAreaFilled(false);
-        btnGoogle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGoogleActionPerformed(evt);
-            }
-        });
-        google.add(btnGoogle, java.awt.BorderLayout.CENTER);
-
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
@@ -333,9 +319,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(2, 2, 2)
                         .addComponent(facebook, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
-                        .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(google, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(log, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
@@ -352,9 +336,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(IniciarSesionCon)
                         .addGap(21, 21, 21)
                         .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(google, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(facebook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(facebook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(twitter, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(154, Short.MAX_VALUE))
         );
@@ -527,7 +509,7 @@ public class Login extends javax.swing.JFrame {
 
     private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
         if (evt.getClickCount() >= 0) {
-            this.dispose();
+            System.exit(0);
         } 
     }//GEN-LAST:event_DisposeButtonMousePressed
 
@@ -563,7 +545,7 @@ public class Login extends javax.swing.JFrame {
 
     private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
         if (evt.getClickCount() >= 0) {
-            this.dispose();
+            System.exit(0);
         } 
     }//GEN-LAST:event_DisposeButtonWMousePressed
 
@@ -628,26 +610,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_forgotMouseExited
 
     private void btnFacebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacebookActionPerformed
-        // TODO: AGREGAR LOGIN DE FB
-        String email = mail.getText();
-        String password = new String(this.password.getPassword());
-        App.GetSingleton().LoginController.AttemptLogin(email, password);
+        App.GetSingleton().LoginController.AttemptOauth(FacebootNet.Engine.OauthType.Facebook);
     }//GEN-LAST:event_btnFacebookActionPerformed
 
     private void btnTwitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwitterActionPerformed
-        // TODO: AGREGAR LOGIN DE Twitter
-        String email = mail.getText();
-        String password = new String(this.password.getPassword());
-        App.GetSingleton().LoginController.AttemptLogin(email, password);
+        App.GetSingleton().LoginController.AttemptOauth(FacebootNet.Engine.OauthType.Twitter);
     }//GEN-LAST:event_btnTwitterActionPerformed
-
-    private void btnGoogleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoogleActionPerformed
-        // TODO add your handling code here:
-        // TODO: AGREGAR LOGIN DE Google
-        String email = mail.getText();
-        String password = new String(this.password.getPassword());
-        App.GetSingleton().LoginController.AttemptLogin(email, password);
-    }//GEN-LAST:event_btnGoogleActionPerformed
 
     private void forgotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotMouseClicked
     }//GEN-LAST:event_forgotMouseClicked
@@ -702,7 +670,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel MinimizeButtonW;
     private javax.swing.JLabel Title;
     private javax.swing.JButton btnFacebook;
-    private javax.swing.JButton btnGoogle;
     private javax.swing.JButton btnTwitter;
     public View.Components.RoundedPanel containerBtn;
     private View.Components.RoundedPanel containerBtnLog;
@@ -711,7 +678,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel content;
     private View.Components.RoundedPanel facebook;
     private javax.swing.JLabel forgot;
-    private View.Components.RoundedPanel google;
     private javax.swing.JSeparator jSeparator1;
     private View.Components.RoundedPanel log;
     private javax.swing.JTextField mail;

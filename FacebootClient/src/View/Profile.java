@@ -7,11 +7,15 @@ package View;
 
 import Faceboot.App;
 import Faceboot.AppState;
+import FacebootNet.Packets.Server.EPostStruct;
 import View.Components.CustomScrollBarUI;
+import View.Components.Post;
+import View.Components.PostWithAttachments;
 import View.Components.TextPrompt;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
+import java.util.ArrayList;
 
 
 /**
@@ -32,7 +36,6 @@ public class Profile extends javax.swing.JFrame {
         
         new TextPrompt("Buscar en faceboot", search);
         
-        
         String separator = File.separator;
         
         if (separator.equals("/")) {
@@ -52,6 +55,44 @@ public class Profile extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
     }
+    
+    public void RenderPosts(ArrayList<EPostStruct> posts){        
+        int coordinateY = 360;
+        
+        scrollPosts.removeAll();
+        scrollPosts.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        scrollPosts.add(addPostRoundedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
+        scrollPosts.add(roundedPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+            
+        revalidate();
+        for(EPostStruct post : posts){
+            if (post.UserId == App.GetSingleton().UserId){
+                if (post.HasAttachment) {
+                    PostWithAttachments postComponentAtt = new PostWithAttachments();
+                    postComponentAtt.mapPost(post);
+                    scrollPosts.add(postComponentAtt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, coordinateY, -1, -1));
+                    coordinateY += postComponentAtt.getSize().height+20;
+                } else {
+                    Post postComponent = new Post();
+                    postComponent.mapPost(post);
+                    scrollPosts.add(postComponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, coordinateY, -1, -1));
+                    coordinateY += postComponent.getSize().height+20;
+                }
+            }
+        }
+        
+        if (coordinateY < 620){
+            scrollPosts.setSize(738, 620);
+            scrollPosts.setPreferredSize(new java.awt.Dimension(738, 620));
+        } else {
+            scrollPosts.setSize(738, coordinateY);
+            scrollPosts.setPreferredSize(new java.awt.Dimension(738, coordinateY));
+        }
+        
+//        Comment coment = new Comment();
+//        scrollPosts.add(coment, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, coordinateY-30, -1, -1));
+       revalidate();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,14 +107,13 @@ public class Profile extends javax.swing.JFrame {
         posts = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         scrollPosts = new javax.swing.JPanel();
-        addPost = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         containerImage = new View.Components.RoundPanelText();
         user2 = new javax.swing.JButton();
         roundPanelText1 = new View.Components.RoundPanelText();
         jLabel12 = new javax.swing.JLabel();
         roundedPanel4 = new View.Components.RoundedPanel();
-        jLabel2 = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
         addPostRoundedPane = new View.Components.RoundedPanel();
         containerUser1 = new View.Components.RoundPanelText();
         user1 = new javax.swing.JButton();
@@ -92,7 +132,6 @@ public class Profile extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        post3 = new View.Components.Post();
         topBar = new javax.swing.JPanel();
         DisposeButton = new javax.swing.JLabel();
         MinimizeButton = new javax.swing.JLabel();
@@ -108,12 +147,14 @@ public class Profile extends javax.swing.JFrame {
         search = new javax.swing.JTextField();
         containerHome = new View.Components.RoundedPanel();
         homeButton = new javax.swing.JButton();
-        containerSettings = new View.Components.RoundPanelText();
-        settings = new javax.swing.JButton();
-        containerNotifications = new View.Components.RoundPanelText();
-        notifications = new javax.swing.JButton();
         containerUser = new View.Components.RoundPanelText();
         user = new javax.swing.JButton();
+        containerNotifications = new View.Components.RoundPanelText();
+        notifications = new javax.swing.JButton();
+        containerSettings = new View.Components.RoundPanelText();
+        settings = new javax.swing.JButton();
+        containerLogout = new View.Components.RoundPanelText();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -137,13 +178,11 @@ public class Profile extends javax.swing.JFrame {
         jScrollPane1.setBorder(null);
 
         scrollPosts.setBackground(new java.awt.Color(23, 24, 26));
-        scrollPosts.setPreferredSize(new java.awt.Dimension(738, 1000));
-        scrollPosts.setLayout(new javax.swing.BoxLayout(scrollPosts, javax.swing.BoxLayout.Y_AXIS));
-
-        addPost.setBackground(new java.awt.Color(23, 24, 26));
-        addPost.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        scrollPosts.setPreferredSize(new java.awt.Dimension(738, 620));
+        scrollPosts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(35, 36, 37));
+        jPanel4.setPreferredSize(new java.awt.Dimension(1024, 200));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         containerImage.setBackground(new java.awt.Color(58, 59, 60));
@@ -195,17 +234,17 @@ public class Profile extends javax.swing.JFrame {
 
         jPanel4.add(roundedPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 0, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Usuario");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 700, 40));
+        username.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        username.setForeground(new java.awt.Color(204, 204, 204));
+        username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        username.setText("Usuario");
+        jPanel4.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 700, 40));
 
-        addPost.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1031, 200));
+        scrollPosts.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1031, 200));
 
         addPostRoundedPane.setBackground(new java.awt.Color(35, 36, 37));
         addPostRoundedPane.setMinimumSize(new java.awt.Dimension(734, 280));
-        addPostRoundedPane.setPreferredSize(new java.awt.Dimension(734, 110));
+        addPostRoundedPane.setPreferredSize(new java.awt.Dimension(734, 120));
         addPostRoundedPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         containerUser1.setBackground(new java.awt.Color(58, 59, 60));
@@ -266,14 +305,20 @@ public class Profile extends javax.swing.JFrame {
                 addPhotoMouseExited(evt);
             }
         });
+        addPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPhotoActionPerformed(evt);
+            }
+        });
         containerPhoto.add(addPhoto, java.awt.BorderLayout.CENTER);
 
         addPostRoundedPane.add(containerPhoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 216, 40));
         addPostRoundedPane.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 694, 10));
 
-        addPost.add(addPostRoundedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, 120));
+        scrollPosts.add(addPostRoundedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, 120));
 
         roundedPanel5.setBackground(new java.awt.Color(35, 36, 37));
+        roundedPanel5.setPreferredSize(new java.awt.Dimension(230, 220));
         roundedPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -314,10 +359,7 @@ public class Profile extends javax.swing.JFrame {
         jLabel10.setText("From");
         roundedPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 60, -1));
 
-        addPost.add(roundedPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 230, 220));
-        addPost.add(post3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, -1));
-
-        scrollPosts.add(addPost);
+        scrollPosts.add(roundedPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 230, 220));
 
         jScrollPane1.setViewportView(scrollPosts);
 
@@ -473,6 +515,11 @@ public class Profile extends javax.swing.JFrame {
         search.setForeground(new java.awt.Color(204, 204, 204));
         search.setBorder(null);
         search.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                searchMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout containerSearchLayout = new javax.swing.GroupLayout(containerSearch);
         containerSearch.setLayout(containerSearchLayout);
@@ -523,6 +570,51 @@ public class Profile extends javax.swing.JFrame {
 
         topMenu.add(containerHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 4, 104, 48));
 
+        containerUser.setBackground(new java.awt.Color(58, 59, 60));
+        containerUser.setLayout(new java.awt.BorderLayout());
+
+        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
+        user.setContentAreaFilled(false);
+        user.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        user.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                userMouseMoved(evt);
+            }
+        });
+        user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                userMouseExited(evt);
+            }
+        });
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+        containerUser.add(user, java.awt.BorderLayout.CENTER);
+
+        topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(814, 7, 40, 40));
+
+        containerNotifications.setBackground(new java.awt.Color(58, 59, 60));
+        containerNotifications.setLayout(new java.awt.BorderLayout());
+
+        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/notifications.png"))); // NOI18N
+        notifications.setContentAreaFilled(false);
+        notifications.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        notifications.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                notificationsMouseMoved(evt);
+            }
+        });
+        notifications.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                notificationsMouseExited(evt);
+            }
+        });
+        containerNotifications.add(notifications, java.awt.BorderLayout.CENTER);
+
+        topMenu.add(containerNotifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
+
         containerSettings.setBackground(new java.awt.Color(58, 59, 60));
         containerSettings.setLayout(new java.awt.BorderLayout());
 
@@ -547,52 +639,32 @@ public class Profile extends javax.swing.JFrame {
         });
         containerSettings.add(settings, java.awt.BorderLayout.CENTER);
 
-        topMenu.add(containerSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(964, 7, 40, 40));
+        topMenu.add(containerSettings, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 7, 40, 40));
 
-        containerNotifications.setBackground(new java.awt.Color(58, 59, 60));
-        containerNotifications.setLayout(new java.awt.BorderLayout());
+        containerLogout.setBackground(new java.awt.Color(58, 59, 60));
+        containerLogout.setLayout(new java.awt.BorderLayout());
 
-        notifications.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/notifications.png"))); // NOI18N
-        notifications.setContentAreaFilled(false);
-        notifications.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        notifications.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/logout.png"))); // NOI18N
+        logoutBtn.setContentAreaFilled(false);
+        logoutBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logoutBtn.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                notificationsMouseMoved(evt);
+                logoutBtnMouseMoved(evt);
             }
         });
-        notifications.addMouseListener(new java.awt.event.MouseAdapter() {
+        logoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                notificationsMouseExited(evt);
+                logoutBtnMouseExited(evt);
             }
         });
-        containerNotifications.add(notifications, java.awt.BorderLayout.CENTER);
-
-        topMenu.add(containerNotifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(914, 7, 40, 40));
-
-        containerUser.setBackground(new java.awt.Color(58, 59, 60));
-        containerUser.setLayout(new java.awt.BorderLayout());
-
-        user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/user.png"))); // NOI18N
-        user.setContentAreaFilled(false);
-        user.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        user.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                userMouseMoved(evt);
-            }
-        });
-        user.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                userMouseExited(evt);
-            }
-        });
-        user.addActionListener(new java.awt.event.ActionListener() {
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userActionPerformed(evt);
+                logoutBtnActionPerformed(evt);
             }
         });
-        containerUser.add(user, java.awt.BorderLayout.CENTER);
+        containerLogout.add(logoutBtn, java.awt.BorderLayout.CENTER);
 
-        topMenu.add(containerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(864, 7, 40, 40));
+        topMenu.add(containerLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(964, 7, 40, 40));
 
         getContentPane().add(topMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 1024, 57));
 
@@ -637,7 +709,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void DisposeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonMousePressed
         if (evt.getClickCount() >= 0) {
-            this.dispose();
+            System.exit(0);
         } 
     }//GEN-LAST:event_DisposeButtonMousePressed
 
@@ -673,7 +745,7 @@ public class Profile extends javax.swing.JFrame {
 
     private void DisposeButtonWMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DisposeButtonWMousePressed
         if (evt.getClickCount() >= 0) {
-            this.dispose();
+            System.exit(0);
         } 
     }//GEN-LAST:event_DisposeButtonWMousePressed
 
@@ -718,6 +790,8 @@ public class Profile extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         PostOffset = 0;
         App.GetSingleton().Client.DoFetchPosts(PostOffset);
+        username.setText(App.GetSingleton().UserName);
+        postButton.setText("¿Qué estás pensando, " + App.GetSingleton().UserName + "?");
     }//GEN-LAST:event_formComponentShown
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
@@ -745,7 +819,7 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_postButtonMouseExited
 
     private void postButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postButtonActionPerformed
-        App.GetSingleton().SetState(AppState.CreatePost);
+        App.GetSingleton().SetState(AppState.CreatePostProfile);
     }//GEN-LAST:event_postButtonActionPerformed
 
     private void addPhotoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addPhotoMouseMoved
@@ -767,6 +841,28 @@ public class Profile extends javax.swing.JFrame {
     private void user2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_user2ActionPerformed
+
+    private void logoutBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseMoved
+        containerLogout.setBackground(new Color(58,59,60));
+    }//GEN-LAST:event_logoutBtnMouseMoved
+
+    private void logoutBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutBtnMouseExited
+        containerLogout.setBackground(new Color(35,36,37));
+    }//GEN-LAST:event_logoutBtnMouseExited
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO logout
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void searchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMousePressed
+        if (evt.getClickCount() >= 0) {
+            App.GetSingleton().SetState(AppState.Home);
+        }
+    }//GEN-LAST:event_searchMousePressed
+
+    private void addPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPhotoActionPerformed
+        App.GetSingleton().SetState(AppState.CreatePostProfile);
+    }//GEN-LAST:event_addPhotoActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -778,10 +874,10 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel MinimizeButtonW;
     private javax.swing.JLabel Title;
     private javax.swing.JButton addPhoto;
-    private javax.swing.JPanel addPost;
     private View.Components.RoundedPanel addPostRoundedPane;
     private View.Components.RoundedPanel containerHome;
     private View.Components.RoundPanelText containerImage;
+    private View.Components.RoundPanelText containerLogout;
     private View.Components.RoundPanelText containerNotifications;
     private View.Components.RoundedPanel containerPhoto;
     private View.Components.RoundPanelText containerPost;
@@ -794,7 +890,6 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -806,8 +901,8 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton notifications;
-    private View.Components.Post post3;
     private javax.swing.JButton postButton;
     private javax.swing.JPanel posts;
     private View.Components.RoundPanelText roundPanelText1;
@@ -822,5 +917,6 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JButton user;
     private javax.swing.JButton user1;
     private javax.swing.JButton user2;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

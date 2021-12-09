@@ -6,6 +6,7 @@
 package View.Components;
 
 import Faceboot.App;
+import FacebootNet.Packets.Server.SOauthPacket;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.text.ParseException;
@@ -28,6 +29,7 @@ import javax.swing.DefaultComboBoxModel;
 public class RegisterModal extends javax.swing.JDialog {
 
     ButtonGroup group = new ButtonGroup();
+    private SOauthPacket oauth;
     
     /**
      * Creates new form RegisterModal
@@ -71,10 +73,10 @@ public class RegisterModal extends javax.swing.JDialog {
         
         fillComboBoxDay(month+1, year+1901);
         fillComboBoxMonthYear();
-        
         cDay.setSelectedIndex(day);
         cMonth.setSelectedIndex(month);
         cYear.setSelectedIndex(year);
+        
     }
 
     /**
@@ -312,7 +314,7 @@ public class RegisterModal extends javax.swing.JDialog {
         containerName86Layout.setHorizontalGroup(
             containerName86Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerName86Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -385,7 +387,7 @@ public class RegisterModal extends javax.swing.JDialog {
         containerName2Layout.setHorizontalGroup(
             containerName2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerName2Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -460,7 +462,7 @@ public class RegisterModal extends javax.swing.JDialog {
             .addGroup(containerName88Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         containerName88Layout.setVerticalGroup(
             containerName88Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,9 +542,33 @@ public class RegisterModal extends javax.swing.JDialog {
         String birthday = this.cDay.getSelectedItem() + "/" + this.cMonth.getSelectedItem() + "/" + this.cYear.getSelectedItem();
         String gender = this.group.getSelection().getActionCommand();
 
-        App.GetSingleton().RegisterController.AttemptRegister(name, lastName, email, phone, password, confirmPassword, birthday, gender);      
+        App.GetSingleton().RegisterController.AttemptRegister(name, lastName, email, phone, password, confirmPassword, birthday, gender, oauth);      
     }//GEN-LAST:event_signUpActionPerformed
 
+     public void mapFields(SOauthPacket packet){
+        name.setText(packet.FirstName);
+        lastname.setText(packet.LastName);
+        email.setText(packet.Email);
+        password1.setText("");
+        confirmPassword.setText("");
+        phone.setText("");
+        male.setSelected(false);
+        female.setSelected(false);
+        personalized.setSelected(false);
+        if (packet.Gender.equals("male"))
+            male.setSelected(true);
+        else if (packet.Gender.equals("female"))
+            female.setSelected(true);
+        else
+            personalized.setSelected(true);
+        
+        cDay.setSelectedIndex((int)packet.BirthDay - 1);
+        cMonth.setSelectedIndex((int)packet.BirthMonth - 1);
+        cYear.setSelectedIndex((int)packet.BirthYear - 1901);
+        oauth = packet;
+        revalidate();
+    }
+     
     private void lastnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lastnameFocusGained
         lastname.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(37,119,241)));
     }//GEN-LAST:event_lastnameFocusGained

@@ -7,10 +7,12 @@ import FacebootNet.Engine.ErrorCode;
 import FacebootNet.Engine.Opcodes;
 import FacebootNet.Engine.PacketBuffer;
 import FacebootNet.FacebootNetClient;
+import FacebootNet.Packets.Server.SAttemptOauthPacket;
 import FacebootNet.Packets.Server.SConnectionErrorPacket;
 import FacebootNet.Packets.Server.SFetchPostsPacket;
 import FacebootNet.Packets.Server.SHandshakePacket;
 import FacebootNet.Packets.Server.SLoginPacket;
+import FacebootNet.Packets.Server.SOauthPacket;
 import FacebootNet.Packets.Server.SRegisterPacket;
 import View.Home;
 import View.Login;
@@ -103,16 +105,16 @@ public class App {
      *
      * @param newState
      */
-    public void SetState(AppState newState) {
+    public void SetState(AppState newState) {        
         // Update the application state.
         State = newState;
 
         // Hide and show the necessary views, given the state.
         LoginView.setVisible(State == AppState.Login || State == AppState.Register);
-        HomeView.setVisible(State == AppState.Home || State == AppState.CreatePost);
+        HomeView.setVisible(State == AppState.Home || State == AppState.CreatePostHome);
+        ProfileView.setVisible(State == AppState.Profile || State == AppState.CreatePostProfile);
         RegisterModal.setVisible(State == AppState.Register);
-        CreatePostModal.setVisible(State == AppState.CreatePost);
-        ProfileView.setVisible(State == AppState.Profile);
+        CreatePostModal.setVisible(State == AppState.CreatePostHome || State == AppState.CreatePostProfile);
         SettingsView.setVisible(State == AppState.Settings);
         SettingsAccountsView.setVisible(State == AppState.LinkedAccounts);
 
@@ -138,7 +140,6 @@ public class App {
 
         // If everything is okay, then switch to Login view state.
         SetState(AppState.Login);
-        LoginController.AttemptLogin("test@gmail.com", "123");
     }
 
     /**
@@ -165,6 +166,10 @@ public class App {
                 RegisterController.OnRegister(SRegisterPacket.Deserialize(data));
             } else if (packet.GetOpcode() == Opcodes.SocketError) {
                 InternalController.OnSocketError(SConnectionErrorPacket.Deserialize(data));
+            } else if (packet.GetOpcode() == Opcodes.AttemptOauth){
+                LoginController.OnAttemptOauth(SAttemptOauthPacket.Deserialize(data));
+            } else if (packet.GetOpcode() == Opcodes.RegisterOauth){
+                RegisterController.OnOauthInfo(SOauthPacket.Deserialize(data));
             } 
 
         } catch (Exception ex) {
@@ -200,6 +205,7 @@ public class App {
         //</editor-fold>
 
         new App();
+        
     }
 
     /**
@@ -216,6 +222,7 @@ public class App {
                 ErrorCode.Format(errorCode),
                 errorCode
         ));
+        
     }
 
     public void DisplayErrorMessage(String title, String error) {
