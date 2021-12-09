@@ -14,25 +14,24 @@ import java.util.Date;
  *
  * @author orlandocamacho
  */
-public class Post extends javax.swing.JPanel {
+public class PostWithAttachments extends javax.swing.JPanel {
     
     /**
      * Creates new form Post
      */
-    public Post() {
+    public PostWithAttachments() {
         this.setBackground(new Color(255,255,255,0));
         this.setOpaque(false);
         initComponents();
-        this.text.setLineWrap(true);
-        this.text.setWrapStyleWord(true);
         new TextPrompt("Escribe un comentario...", commentField );
-        this.setSize(734, 287);
+        this.setSize(734, 670);
     }
     
     public void mapPost(EPostStruct post){
         this.username.setText(post.UserName);
         this.time.setText(new Date(post.PostTime).toString());            
         this.text.setText(post.PostBody);
+        this.image.setText(post.HasAttachment+"");
         this.totalComments.setText(post.TotalComments + " comentarios");
         this.totalReactions.setText(String.valueOf(post.TotalLikes));
         this.deleteBtn.setVisible(false);
@@ -52,6 +51,8 @@ public class Post extends javax.swing.JPanel {
         user4 = new javax.swing.JButton();
         username = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
+        text = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         totalReactions = new javax.swing.JLabel();
         totalComments = new javax.swing.JLabel();
@@ -64,12 +65,10 @@ public class Post extends javax.swing.JPanel {
         user2 = new javax.swing.JButton();
         containerCommentField = new View.Components.RoundPanelText();
         commentField = new javax.swing.JTextField();
-        text = new javax.swing.JTextArea();
         containerDetele = new View.Components.RoundPanelText();
         deleteBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(23, 24, 26));
-        setPreferredSize(new java.awt.Dimension(734, 287));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         post.setBackground(new java.awt.Color(35, 36, 37));
@@ -94,20 +93,33 @@ public class Post extends javax.swing.JPanel {
         time.setForeground(new java.awt.Color(153, 153, 153));
         time.setText("11 h");
         post.add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 20));
-        post.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 167, 694, 3));
+
+        text.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        text.setForeground(new java.awt.Color(255, 255, 255));
+        text.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        text.setText("<html> fboawu foawufg oauwgfoauw gfoauw foawug foauwg foaugwfo awufo waufgao uwgf aouwgfo aufoa uwgfoau fgoawu gfouag wof awouf goauwgfoau wgfouawg foauwg foaugwf ouagw oauwg foaug foawug foauwgfoawug fowaug foauwgfoawugfoaw ugoaw wofuagwofu fawugfwaoufgw f </html>");
+        text.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        post.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 694, 60));
+
+        image.setBackground(new java.awt.Color(58, 59, 60));
+        image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/DisposeButton.png"))); // NOI18N
+        image.setOpaque(true);
+        post.add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 137, 734, 370));
+        post.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 694, -1));
 
         totalReactions.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         totalReactions.setForeground(new java.awt.Color(153, 153, 153));
         totalReactions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Images/likes.png"))); // NOI18N
         totalReactions.setText("2");
         totalReactions.setIconTextGap(10);
-        post.add(totalReactions, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 137, -1, -1));
+        post.add(totalReactions, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
 
         totalComments.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         totalComments.setForeground(new java.awt.Color(153, 153, 153));
         totalComments.setText("2 comentarios");
-        post.add(totalComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 137, 90, -1));
-        post.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 217, 694, -1));
+        post.add(totalComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, -1, -1));
+        post.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 694, -1));
 
         containerComment.setBackground(new java.awt.Color(35, 36, 37));
         containerComment.setLayout(new java.awt.BorderLayout());
@@ -136,7 +148,7 @@ public class Post extends javax.swing.JPanel {
         });
         containerComment.add(addComment, java.awt.BorderLayout.PAGE_END);
 
-        post.add(containerComment, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 177, 200, 30));
+        post.add(containerComment, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 200, -1));
 
         containerLike.setBackground(new java.awt.Color(35, 36, 37));
         containerLike.setLayout(new java.awt.BorderLayout());
@@ -166,7 +178,7 @@ public class Post extends javax.swing.JPanel {
         });
         containerLike.add(likeButton, java.awt.BorderLayout.CENTER);
 
-        post.add(containerLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 177, 200, 30));
+        post.add(containerLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 200, 30));
 
         containerUser2.setBackground(new java.awt.Color(58, 59, 60));
         containerUser2.setLayout(new java.awt.BorderLayout());
@@ -176,7 +188,7 @@ public class Post extends javax.swing.JPanel {
         user2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         containerUser2.add(user2, java.awt.BorderLayout.CENTER);
 
-        post.add(containerUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 232, 40, 40));
+        post.add(containerUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 615, 40, 40));
 
         containerCommentField.setBackground(new java.awt.Color(58, 59, 60));
 
@@ -211,30 +223,7 @@ public class Post extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        post.add(containerCommentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 232, 640, 40));
-
-        text.setBackground(new java.awt.Color(35, 36, 37));
-        text.setColumns(20);
-        text.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        text.setForeground(new java.awt.Color(255, 255, 255));
-        text.setRows(5);
-        text.setText("Texto del post");
-        text.setToolTipText("");
-        text.setBorder(null);
-        text.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textFocusLost(evt);
-            }
-        });
-        text.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textKeyTyped(evt);
-            }
-        });
-        post.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 690, 60));
+        post.add(containerCommentField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 615, -1, -1));
 
         containerDetele.setBackground(new java.awt.Color(35, 36, 37));
         containerDetele.setLayout(new java.awt.BorderLayout());
@@ -261,7 +250,7 @@ public class Post extends javax.swing.JPanel {
 
         post.add(containerDetele, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 12, 35, 35));
 
-        add(post, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 734, 287));
+        add(post, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 734, 670));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCommentMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCommentMouseMoved
@@ -292,22 +281,10 @@ public class Post extends javax.swing.JPanel {
         commentField.requestFocus();
     }//GEN-LAST:event_addCommentActionPerformed
 
-    private void textFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFocusGained
-        if (text.getText().equals("¿Qué estás pensando?")) {
-            text.setText("");
-        }
-    }//GEN-LAST:event_textFocusGained
-
-    private void textFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFocusLost
-        if (text.getText().equals("")){
-            text.setText("¿Qué estás pensando?");
-        }
-    }//GEN-LAST:event_textFocusLost
-
-    private void textKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textKeyTyped
-        if (text.getText().length() == 250)
+    private void commentFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_commentFieldKeyTyped
+        if (commentField.getText().length() == 250)
         evt.consume();
-    }//GEN-LAST:event_textKeyTyped
+    }//GEN-LAST:event_commentFieldKeyTyped
 
     private void deleteBtnMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBtnMouseMoved
         containerDetele.setBackground(new Color(58,59,60));
@@ -318,7 +295,7 @@ public class Post extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBtnMouseExited
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-       // delete post
+        // delete post
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void commentFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_commentFieldKeyPressed
@@ -329,11 +306,6 @@ public class Post extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_commentFieldKeyPressed
-
-    private void commentFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_commentFieldKeyTyped
-        if (commentField.getText().length() == 150)
-        evt.consume();
-    }//GEN-LAST:event_commentFieldKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -346,11 +318,12 @@ public class Post extends javax.swing.JPanel {
     private View.Components.RoundPanelText containerUser2;
     private View.Components.RoundPanelText containerUser4;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JLabel image;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JToggleButton likeButton;
     private View.Components.RoundedPanel post;
-    private javax.swing.JTextArea text;
+    private javax.swing.JLabel text;
     private javax.swing.JLabel time;
     private javax.swing.JLabel totalComments;
     private javax.swing.JLabel totalReactions;

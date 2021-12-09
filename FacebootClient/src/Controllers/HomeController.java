@@ -30,5 +30,7 @@ public class HomeController extends BaseController {
     public void OnFetchPosts(SFetchPostsPacket packet){
         System.out.printf("[HomeController.OnFetchPosts] TotalPosts=%d\n", packet.GetPosts().size());
         app.HomeView.RenderPosts(packet.GetPosts());
+        // TODO: Move to profile controller, update Facebootnet
+        app.ProfileView.RenderPosts(packet.GetPosts());
     }
 }

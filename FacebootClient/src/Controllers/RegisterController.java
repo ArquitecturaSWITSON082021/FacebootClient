@@ -10,6 +10,7 @@ import Faceboot.AppState;
 import Faceboot.Utils;
 import FacebootNet.Engine.ErrorCode;
 import FacebootNet.Packets.Server.SLoginPacket;
+import FacebootNet.Packets.Server.SOauthPacket;
 import FacebootNet.Packets.Server.SRegisterPacket;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,7 +42,7 @@ public class RegisterController extends BaseController {
      * @param email
      * @param password
      */
-    public void AttemptRegister(String Name, String LastName, String Email, String Phone, String Password, String ConfirmPassword, String Birthday, String Gender) {
+    public void AttemptRegister(String Name, String LastName, String Email, String Phone, String Password, String ConfirmPassword, String Birthday, String Gender, SOauthPacket Oauth) {
         try {
 
             if (Name.length() <= 0) {
@@ -84,7 +85,8 @@ public class RegisterController extends BaseController {
                     Password,
                     Phone,
                     Gender,
-                    Birthday
+                    Birthday,
+                    Oauth
             );
         } catch (Exception e) {
             app.DisplayErrorMessage("Error al registrarse", e.getMessage());
@@ -134,5 +136,10 @@ public class RegisterController extends BaseController {
 
         app.SetState(AppState.Login);
         Utils.ShowInfoMessage("Registro exitoso.");
+    }
+    
+    public void OnOauthInfo(SOauthPacket packet){
+        app.RegisterModal.mapFields(packet);
+        app.SetState(AppState.Register);
     }
 }
