@@ -90,7 +90,6 @@ public class LoginController extends BaseController {
     
     public void OnAttemptOauth(SAttemptOauthPacket request){
         Runtime rt = Runtime.getRuntime();
-
         try{
             rt.exec("rundll32 url.dll,FileProtocolHandler " + request.OauthUrl);
             rt.exec("open " + request.OauthUrl);

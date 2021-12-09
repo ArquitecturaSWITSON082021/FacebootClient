@@ -170,7 +170,7 @@ public class App {
                 LoginController.OnAttemptOauth(SAttemptOauthPacket.Deserialize(data));
             } else if (packet.GetOpcode() == Opcodes.RegisterOauth){
                 RegisterController.OnOauthInfo(SOauthPacket.Deserialize(data));
-            } 
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
